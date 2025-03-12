@@ -7,7 +7,7 @@ import App from '../src/App';
 
 describe('App', () => {
   it('renders headline', () => {
-    render(<App title="React" />);
+    render(<App />);
 
     screen.debug();
 

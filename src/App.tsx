@@ -1,10 +1,8 @@
-import { useState } from 'react'
-
-function App({title}:{title:string}) {
+function App() {
 
   return (
     <>
-    
+      <h1>WOW</h1>
     </>
   )
 }
