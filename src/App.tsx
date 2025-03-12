@@ -2,7 +2,8 @@ function App() {
 
   return (
     <>
-      <h1>WOW</h1>
+      <main></main>
+      <footer>Created by green zombie</footer>
     </>
   )
 }
