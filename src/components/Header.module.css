@@ -1,7 +1,7 @@
 .header {
-    --iconSize:45px;
+    --iconSize: 45px;
     padding: 0 10px;
-    
+
     position: relative;
     border-bottom: 1px solid gray;
 
@@ -29,8 +29,7 @@
         display: flex;
         align-items: end;
 
-        .menuIcon {
-        }
+        .menuIcon {}
 
         .websiteName {
             flex: 1;
@@ -44,15 +43,16 @@
             left: 0;
             border: 1px solid;
             font-size: 20px;
-            padding: 12px 0; 
+            padding: 12px 0;
             gap: 10px;
 
-            li{
-                padding: 0 40px;;
+            li {
+                padding: 0 40px;
+                ;
             }
         }
 
-        ul li:active{
+        ul li:active {
             background-color: rgb(255, 113, 113);
         }
 
@@ -63,6 +63,8 @@
 
     }
 }
+
+
 
 @media (min-width : 501px) {
     .header {
@@ -99,5 +101,13 @@
             }
         }
 
+    }
+}
+
+@media (max-width:700px)  {
+    .header {
+        .pageLinks {
+            font-size: 18px;
+        }
     }
 }
