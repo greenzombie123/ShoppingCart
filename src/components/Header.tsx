@@ -39,7 +39,7 @@ const Header = () => {
         </li>
       </ul>
       <CartIcon />
-    </header>
+      </header>
   );
 };
 
