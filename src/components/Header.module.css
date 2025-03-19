@@ -17,9 +17,15 @@
     .pageLinks {}
 
     .shoppingCartIcon {
-        width: var(--iconSize);
+        /* width: var(--iconSize); */
 
-        svg {}
+        .number{
+            
+        }
+
+        svg {
+            width: var(--iconSize);
+        }
     }
 
 }

@@ -73,16 +73,16 @@ const thing: Product[] = [
 ];
 
 const doShit = async () => {
-  const g = await fetch(`http://localhost:3000/test/a316`, {
-    method: "DELETE",
+  const g = await fetch(`http://localhost:3000/test`, {
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
+    body:JSON.stringify({test:[]})
   }).catch(e=>console.log(e))
 
-  const stuff = await g.json()
 
-  console.log(stuff)
 
-  // fs.writeFile("./src/b.json", JSON.stringify(stuff), err=>{})
+  console.log(g)
+
 };
 
 doShit()
