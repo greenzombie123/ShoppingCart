@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import style from "./Header.module.css";
+import { Cart } from "../products";
 
 export const CartIcon = ({number}:{number:number}) => {
+
   return (
     <Link to="/cart" className={style.shoppingCartIcon}>
       <div className={style.number}>{number}</div>
@@ -14,6 +16,8 @@ export const CartIcon = ({number}:{number:number}) => {
 };
 
 const Header = () => {
+  const cart:Cart = useLoaderData()
+  
   return (
     <header className={style.header}>
       <div className={style.menuIcon} data-testid="menuIcon">
@@ -39,7 +43,7 @@ const Header = () => {
           <Link to="/">Women's Clothing</Link>
         </li>
       </ul>
-      <CartIcon number={3}/>
+      <CartIcon number={cart.length}/>
       </header>
   );
 };

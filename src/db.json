@@ -27,7 +27,34 @@
       "h": "f"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": 1,
+      "quantity": 1,
+      "product": {
+        "name": "Talimo 3DX Ruby Ring",
+        "id": "1",
+        "category": "Jewelry",
+        "price": 199.99,
+        "ratings": 145,
+        "stars": 5,
+        "likes": 342,
+        "styles": [
+          {
+            "description": "Gold",
+            "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp",
+            "isCurrentStyle": true
+          },
+          {
+            "description": "Silver",
+            "picture": "/images/silverring.webp",
+            "isCurrentStyle": false
+          }
+        ]
+      },
+      "style": "Gold"
+    }
+  ],
   "products": [
     {
       "name": "Talimo 3DX Ruby Ring",

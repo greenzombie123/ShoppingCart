@@ -72,17 +72,17 @@ const thing: Product[] = [
   },
 ];
 
-const doShit = async () => {
-  const g = await fetch(`http://localhost:3000/test`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body:JSON.stringify({test:[]})
-  }).catch(e=>console.log(e))
+// const doShit = async () => {
+//   const g = await fetch(`http://localhost:3000/test`, {
+//     method: "PATCH",
+//     headers: { "Content-Type": "application/json" },
+//     body:JSON.stringify({test:[]})
+//   }).catch(e=>console.log(e))
 
 
 
-  console.log(g)
+//   console.log(g)
 
-};
+// };
 
-doShit()
+// doShit()
