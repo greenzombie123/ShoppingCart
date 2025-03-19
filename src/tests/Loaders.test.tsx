@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, Mock, vi } from "vitest";
+import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 import { getCart, getProducts } from "../Loaders";
 import { Cart, CartItem, Product } from "../products";
 
