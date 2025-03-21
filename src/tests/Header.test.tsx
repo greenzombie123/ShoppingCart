@@ -37,8 +37,7 @@ describe("Header component", () => {
 
       const menuIcon = await screen.findByTestId("menuIcon");
       expect(menuIcon).toBeInTheDocument();
-
-        expect(menuIcon).toBeInTheDocument()
+      expect(menuIcon).toBeInTheDocument()
     });
 });
 
