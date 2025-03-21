@@ -1,0 +1,230 @@
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex: 1;
+
+    button {
+        /* padding: 20px; */
+    }
+
+    .leftButton {}
+
+    .rightButton {}
+
+    .carousel_wrapper {
+        height: 60vh;
+
+        .carousel {
+            display: flex;
+            flex: 1;
+            height: 100%;
+            /* border: 1px solid; */
+            overflow-x: hidden;
+
+
+            .slide {
+                position: relative;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+
+                }
+
+                .itemInfo {
+                    display: flex;
+                    justify-content: space-between;
+                    position: absolute;
+                    bottom: 5px;
+                    padding: 0 5px;
+                    border: none;
+                    color: white;
+                    font-size: 20px;
+                    width: 100%;
+
+                    div {
+                        border-radius: 5px;
+                        padding: 2px 5px;
+                    }
+
+                    .name {
+                        background-color: blueviolet;
+                        /* width: max-content; */
+                    }
+
+                    .price {
+                        background-color: red;
+                        height: min-content;
+                    }
+                }
+            }
+
+        }
+
+        .navigation_list {
+            display: none;
+
+            div {
+                a {
+                    img {}
+                }
+            }
+        }
+    }
+}
+
+@media (min-width : 701px) {
+
+    .carouselContainer {
+
+        button {
+            padding: 20px;
+        }
+
+        .leftButton {}
+
+        .rightButton {}
+
+        .carousel_wrapper {
+            .carousel {
+                .slide {
+                    flex: 0 0 70%;
+                    margin: 0 15%;
+
+                    img {}
+
+                    .itemInfo {
+                        div {}
+
+                        .price {}
+
+                        .name {}
+
+                    }
+                }
+            }
+
+
+            .navigation_list {
+                display: none;
+
+                div {
+                    a {
+                        img {}
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width : 700px) {
+
+    .carouselContainer {
+
+        .leftButton {
+            padding: 20px;
+        }
+
+        .rightButton {
+            padding: 20px;
+        }
+
+        .carousel_wrapper {
+            .carousel {
+                .slide {
+                    flex: 0 0 100%;
+
+                    img {}
+
+                    .itemInfo {
+                        div {}
+
+                        .price {}
+
+                        .name {}
+
+                    }
+                }
+            }
+
+            .navigation_list {
+                display: none;
+
+                div {
+                    a {
+                        img {}
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width : 500px) {
+
+    .carouselContainer {
+        margin: 0 10px;
+
+        .leftButton,
+        .rightButton {
+            padding: 5px;
+            display: none;
+        }
+
+        .leftButton {}
+
+        .rightButton {}
+
+        .carousel_wrapper {
+            .carousel {
+                .slide {
+                    flex: 0 0 100%;
+
+                    img {}
+
+                    .itemInfo {
+                        flex-direction: column;
+                        div {
+                            font-size: 18px;
+                        }
+
+                        .price {
+                            width: max-content;
+                        }
+
+                        .name {
+
+                        }
+
+                    }
+
+                }
+            }
+
+            .navigation_list {
+                display: flex;
+                margin-top: 10px;
+                gap: 10px;
+                width: 100%;
+                justify-content: center;
+
+                div {
+                    height: 40px;
+                    width: 40px;
+                    overflow: hidden;
+                    border-radius: 50%;
+
+                    a {
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

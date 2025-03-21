@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Carousel > renders buttons on the screen 1`] = `
+<div
+  class="_carouselContainer_883aa8"
+  data-testid="a"
+>
+  <button
+    class="_leftButton_883aa8"
+  />
+  <button
+    class="_rightButton_883aa8"
+  />
+</div>
+`;

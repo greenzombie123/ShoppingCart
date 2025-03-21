@@ -1,11 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import routes from "../routes";
 import { CartIcon } from "../components/Header";
+import App from "../App";
+import { act } from "react";
 
 describe("Header component", () => {
-  it("renders links correctly", () => {
+  it("renders links correctly", async() => {
     const router = createMemoryRouter(routes, {
       initialEntries: ["/"],
       initialIndex: 0,
@@ -13,7 +15,7 @@ describe("Header component", () => {
 
     render(<RouterProvider router={router} />);
 
-    const links = screen.getAllByRole("link");
+    const links = await waitFor(()=>screen.getAllByRole("link"))
 
     expect(links[0].textContent).toBe("Buy Stuff");
     expect(links[1].textContent).toBe("Electronics");
@@ -22,25 +24,27 @@ describe("Header component", () => {
     expect(links[4].textContent).toBe("Women's Clothing");
 
     expect(screen.getByRole("banner")).toMatchSnapshot();
+    expect(screen).toMatchSnapshot();
   });
 
-  it("menuIcon renders", () => {
-    const router = createMemoryRouter(routes, {
-      initialEntries: ["/"],
-      initialIndex: 0,
+    it("menuIcon renders", async () => {
+      const router = createMemoryRouter(routes, {
+        initialEntries: ["/"],
+        initialIndex: 0,
+      });
+
+      render(<RouterProvider router={router} />);
+
+      const menuIcon = await screen.findByTestId("menuIcon");
+      expect(menuIcon).toBeInTheDocument();
+
+        expect(menuIcon).toBeInTheDocument()
     });
-
-    render(<RouterProvider router={router} />);
-
-    const menuIcon = screen.getByTestId("menuIcon");
-
-    expect(menuIcon).toBeInTheDocument();
-  });
 });
 
-describe("CartIcon", () => {
-  it("Renders on the screen with a five", () => {
-    const routes = [{ path: "/", element:<CartIcon number={5}/> }];
+describe("CartIcon",  () => {
+  it("Renders on the screen with a five", async () => {
+    const routes = [{ path: "/", element: <CartIcon number={5} /> }];
 
     const router = createMemoryRouter(routes, {
       initialEntries: ["/"],
@@ -49,14 +53,10 @@ describe("CartIcon", () => {
 
     render(<RouterProvider router={router} />);
 
-    const cartIcon = screen.getByRole("link")
+    const cartIcon = await screen.findByRole("link");
+    const numberText = await screen.findByText(5);
 
-    expect(cartIcon).toBeInTheDocument()
-    
-    const numberText = screen.getByText(5)
-
-    expect(numberText).toBeInTheDocument()
-
-
+    expect(cartIcon).toBeInTheDocument();
+    expect(numberText).toBeInTheDocument();
   });
 });

@@ -8,6 +8,4 @@ expect.extend(matchers);
 
 afterEach(() => {
   cleanup();
-  // vi.restoreAllMocks()
-  // vi.restoreAllMocks()
 });

@@ -43,7 +43,7 @@ const Header = () => {
           <Link to="/">Women's Clothing</Link>
         </li>
       </ul>
-      <CartIcon number={cart.length}/>
+      <CartIcon number={2}/>
       </header>
   );
 };

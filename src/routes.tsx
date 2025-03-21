@@ -8,6 +8,8 @@ const routes: RouteObject[] = [
     path: "/",
     element: <App />,
     loader: getCart,
+    HydrateFallback:null,
+    // loader:async ()=>await 2,
     children: [
       {
         element: <Carousel />,
