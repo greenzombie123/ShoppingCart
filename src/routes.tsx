@@ -13,7 +13,7 @@ const routes: RouteObject[] = [
     children: [
       {
         element: <Carousel />,
-        index:true
+        index:true,
       },
     ],
   },

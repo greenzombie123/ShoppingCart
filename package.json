@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest --typecheck"
   },
   "dependencies": {
     "json-server": "^1.0.0-beta.3",
@@ -28,6 +28,7 @@
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "expect-type": "^1.2.0",
     "globals": "^15.15.0",
     "jsdom": "^26.0.0",
     "typescript": "~5.7.2",

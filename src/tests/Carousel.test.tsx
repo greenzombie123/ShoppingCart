@@ -16,4 +16,6 @@ describe("Carousel", () => {
     expect(buttons[0]).toBeInTheDocument();
     expect(buttons[1]).toBeInTheDocument();
   });
+
+  // it()
 });

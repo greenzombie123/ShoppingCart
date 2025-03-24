@@ -9,7 +9,6 @@ function App() {
       <Header/>
       <main>
         <Outlet/>
-        {/* <Carousel/> */}
       </main>
       <footer>Created by green zombie</footer>
     </>
