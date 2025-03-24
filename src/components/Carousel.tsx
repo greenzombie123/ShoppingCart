@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import style from "./Carousel.module.css";
 import { Product } from "../products";
 
@@ -9,7 +9,7 @@ const Carousel = () => {
     <div className={style.carouselContainer} data-testid="a">
       <button className={style.leftButton}></button>
       <div className={style.carousel_wrapper}>
-        <Slider products={products}/>
+        <Slider products={products} />
         <div className="navigation_list">
           <div>
             <a href="">
@@ -44,24 +44,32 @@ const Carousel = () => {
 };
 
 interface SliderProps {
-  products:Product[]
+  products: Product[];
 }
 
-export const Slider = ({products}:SliderProps) => {
-  return <div className={style.carousel}>
-    
-  </div>;
+export const Slider = ({ products }: SliderProps) => {
+  return (
+    <div className={style.carousel}>
+      {products.map((product) => (
+        <Slide product={product} />
+      ))}
+    </div>
+  );
 };
 
-export const Slide = () => {
+interface SlideProps {
+  product: Product;
+}
+
+export const Slide = ({ product }: SlideProps) => {
   return (
-    <div className={style.slide} data-testId="slide">
-      <img src="" alt="" />
+    <Link key={product.id} to={`product/${product.id}`} className={style.slide} data-testid="slide">
+      <img src={product.styles[0].picture} alt={product.name} />
       <div className={style.itemInfo}>
-        <div className={style.name}>leather bag f2fwefw</div>
-        <div className={style.price}>$100</div>
+        <div className={style.name}>{product.name}</div>
+        <div className={style.price}>{product.price}</div>
       </div>
-    </div>
+    </Link>
   );
 };
 
