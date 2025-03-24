@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import App from "./App";
-import { getCart } from "./Loaders";
+import { getCart, getRandomProducts } from "./Loaders";
 import Carousel from "./components/Carousel";
 
 const routes: RouteObject[] = [
@@ -12,6 +12,7 @@ const routes: RouteObject[] = [
     // loader:async ()=>await 2,
     children: [
       {
+        loader:getRandomProducts,
         element: <Carousel />,
         index:true,
       },
