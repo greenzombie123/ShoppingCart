@@ -139,7 +139,7 @@ describe("getRandomProducts", () => {
     spy.mockRestore();
   });
 
-  it("Returns type Product objects", async () => {
+  it("Returns type Product objects and exactly 5 items", async () => {
     const mockProducts: Product[] = [
       {
         id: 1,
@@ -246,6 +246,27 @@ describe("getRandomProducts", () => {
           },
         ],
       },
+      {
+        id: 6,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 2,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      }
     ];
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(
@@ -259,6 +280,8 @@ describe("getRandomProducts", () => {
     const products = await getRandomProducts();
     const product = products[0]
 
+
+    expect(products.length).toBe(5)
     expectTypeOf(product).toEqualTypeOf<Product>()
 
     spy.mockRestore();
