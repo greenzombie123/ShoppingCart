@@ -1,12 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import routes from "../routes";
 import { CartIcon } from "../components/Header";
-import App from "../App";
-import { act } from "react";
 
 describe("Header component", () => {
+  HTMLElement.prototype.scrollIntoView = vi.fn()
+
   it("renders links correctly", async() => {
     const router = createMemoryRouter(routes, {
       initialEntries: ["/"],

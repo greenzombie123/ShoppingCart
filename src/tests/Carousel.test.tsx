@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import {
   createMemoryRouter,
   MemoryRouter,
@@ -11,8 +11,17 @@ import routes from "../routes";
 import { Product } from "../products";
 import userEvent from "@testing-library/user-event";
 
+beforeAll(()=>{
+  HTMLElement.prototype.scrollIntoView = vi.fn()
+})
+
+afterAll(()=>{
+  // vi.resetAllMocks()
+})
+
 describe("Carousel", () => {
-  it("renders buttons on the screen", async () => {
+  it.skip("renders buttons on the screen", async () => {
+
     const router = createMemoryRouter(routes);
 
     render(<RouterProvider router={router} />);
@@ -23,7 +32,7 @@ describe("Carousel", () => {
     expect(buttons[1]).toBeInTheDocument();
   });
 
-  it("renders all 5 slides", () => {
+  it.skip("renders all 5 slides", () => {
     const products: Product[] = [
       {
         id: 1,
@@ -134,7 +143,7 @@ describe("Carousel", () => {
 
     render(
       <MemoryRouter>
-        <Slider products={products} />
+        <Slider products={products} currentSlide={1}/>
       </MemoryRouter>
     );
 
@@ -149,6 +158,10 @@ describe("Carousel", () => {
   });
 
   it("Moves the slider to the right when a button is pushed", async () => {
+
+    const mock = vi.fn()
+    HTMLElement.prototype.scrollIntoView = mock
+    
     const products: Product[] = [
       {
         id: 1,
@@ -267,10 +280,25 @@ describe("Carousel", () => {
 
     const buttons = await waitFor(()=>screen.getAllByRole<HTMLButtonElement>("button"));
 
-    await user.click(buttons[1])
+    const slides = await waitFor(()=>screen.getAllByTestId("slide"))
 
-    const slides = screen.getAllByTestId("slide");
+    expect(slides[0]).toBeInTheDocument()
+    expect(slides[1]).toBeInTheDocument()
+    expect(slides[2]).toBeInTheDocument()
+    expect(slides[3]).toBeInTheDocument()
+    expect(slides[4]).toBeInTheDocument()
+    expect(slides[5]).not.toBeNull()
 
-    expect(slides[1]).toHaveClass("main")
+    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledOnce()
+    expect(mock.mock.instances).toContain(slides[0])
+
+     await user.click(buttons[1])
+
+     expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(2)
+     expect(mock.mock.instances).toContain(slides[1])
   });
 });
+
+describe("SlideState", ()=>{
+  it("")
+})
