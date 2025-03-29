@@ -89,8 +89,8 @@
         .carousel_wrapper {
             .carousel {
                 .slide {
-                    flex: 0 0 70%;
-                    margin: 0 15%;
+                    flex: 0 0 100%;
+                    margin: 0 0;
 
                     img {}
 

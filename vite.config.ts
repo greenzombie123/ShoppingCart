@@ -13,6 +13,6 @@ export default defineConfig({
     typecheck:{
       enabled:true,
       checker:"tsc",
-    }
-  },
+    },
+  }
 })

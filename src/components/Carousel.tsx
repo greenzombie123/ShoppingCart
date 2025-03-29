@@ -113,7 +113,7 @@ export const Slide = ({ product, isCurrent, currentSlide }: SlideProps) => {
       <img src={product.styles[0].picture} alt={product.name} />
       <div className={style.itemInfo}>
         <div className={style.name}>{product.name}</div>
-        <div className={style.price}>{product.price}</div>
+        <div className={style.price}>${product.price}</div>
       </div>
     </Link>
   );

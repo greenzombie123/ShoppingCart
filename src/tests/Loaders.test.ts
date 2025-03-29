@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
+import {  describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
 import { getCart, getProducts, getRandomProducts } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
 
@@ -288,64 +288,64 @@ describe("getRandomProducts", () => {
   });
 });
 
-describe.skip("Test Server", () => {
-  //   let things: { name: string; id: string }[];
+// describe.skip("Test Server", () => {
+//   //   let things: { name: string; id: string }[];
 
-  const testItems = [
-    { id: 1, name: "teddybear" },
-    { id: 2, name: "surfboard" },
-  ];
+//   const testItems = [
+//     { id: 1, name: "teddybear" },
+//     { id: 2, name: "surfboard" },
+//   ];
 
-  beforeEach(async () => {
-    const response = await fetch("http://localhost:3000/test/", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(testItems),
-    }).catch((e) => console.log(e));
+//   beforeEach(async () => {
+//     const response = await fetch("http://localhost:3000/test/", {
+//       method: "PUT",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(testItems),
+//     }).catch((e) => console.log(e));
 
-    if (response.ok) {
-      console.log("NICE");
-    }
-  });
+//     if (response.ok) {
+//       console.log("NICE");
+//     }
+//   });
 
-  //   beforeEach(async () => {
-  //     const stuff = ["ice", "teddybear", "racing car"];
+//   //   beforeEach(async () => {
+//   //     const stuff = ["ice", "teddybear", "racing car"];
 
-  //     const jsonArray = await Promise.all(
-  //       stuff.map<Promise<Response>>(async (a): Promise<Response> => {
-  //         return await fetch(`http://localhost:3000/test/`, {
-  //           method: "POST",
-  //           body: JSON.stringify({ name: a }),
-  //           headers: { "Content-Type": "application/json" },
-  //         });
-  //       })
-  //     );
+//   //     const jsonArray = await Promise.all(
+//   //       stuff.map<Promise<Response>>(async (a): Promise<Response> => {
+//   //         return await fetch(`http://localhost:3000/test/`, {
+//   //           method: "POST",
+//   //           body: JSON.stringify({ name: a }),
+//   //           headers: { "Content-Type": "application/json" },
+//   //         });
+//   //       })
+//   //     );
 
-  //     things = await Promise.all(
-  //       jsonArray.map(async (item): Promise<{ name: string; id: string }> => {
-  //         return await item.json();
-  //       })
-  //     );
-  //   });
+//   //     things = await Promise.all(
+//   //       jsonArray.map(async (item): Promise<{ name: string; id: string }> => {
+//   //         return await item.json();
+//   //       })
+//   //     );
+//   //   });
 
-  //   afterEach(async () => {
-  //     vi.resetAllMocks();
+//   //   afterEach(async () => {
+//   //     vi.resetAllMocks();
 
-  //     await Promise.all(
-  //       things.map<Promise<Response>>(async (e, i): Promise<Response> => {
-  //         return await fetch(`http://localhost:3000/test/${things[i].id}`, {
-  //           method: "DELETE",
-  //           headers: { "Content-Type": "application/json" },
-  //         });
-  //       })
-  //     );
-  //   });
+//   //     await Promise.all(
+//   //       things.map<Promise<Response>>(async (e, i): Promise<Response> => {
+//   //         return await fetch(`http://localhost:3000/test/${things[i].id}`, {
+//   //           method: "DELETE",
+//   //           headers: { "Content-Type": "application/json" },
+//   //         });
+//   //       })
+//   //     );
+//   //   });
 
-  it("Returns nothing when sent a request", async () => {
-    const data = await fetch("http://localhost:3000/test/1");
-    console.log(data);
-    const item = await data.json();
+//   it("Returns nothing when sent a request", async () => {
+//     const data = await fetch("http://localhost:3000/test/1");
+//     console.log(data);
+//     const item = await data.json();
 
-    expect(item).toStrictEqual([]);
-  });
-});
+//     expect(item).toStrictEqual([]);
+//   });
+// });

@@ -32,45 +32,45 @@ export type CartItem = {
 
 export type Cart = CartItem[];
 
-const thing: Product[] = [
-  {
-    id: 1,
-    name: "polo shirt",
-    price: 2314,
-    ratings: 334,
-    stars: 5,
-    likes: 380,
-    category: "Men's Clothing",
-    styles: [
-      {
-        description: "black",
-        picture: "/images/poloshirtblack.webp",
-        isCurrentStyle: true,
-      },
-      {
-        description: "blue",
-        picture: "/images/bluepoloshirt.jpg",
-        isCurrentStyle: false,
-      },
-    ],
-  },
-  {
-    id: 1,
-    name: "shirt",
-    price: 1299,
-    ratings: 234,
-    stars: 4,
-    likes: 1000,
-    category: "Men's Clothing",
-    styles: [
-      {
-        description: "white",
-        picture: "src/assets/bluepoloshirt.jpg",
-        isCurrentStyle: true,
-      },
-    ],
-  },
-];
+// const thing: Product[] = [
+//   {
+//     id: 1,
+//     name: "polo shirt",
+//     price: 2314,
+//     ratings: 334,
+//     stars: 5,
+//     likes: 380,
+//     category: "Men's Clothing",
+//     styles: [
+//       {
+//         description: "black",
+//         picture: "/images/poloshirtblack.webp",
+//         isCurrentStyle: true,
+//       },
+//       {
+//         description: "blue",
+//         picture: "/images/bluepoloshirt.jpg",
+//         isCurrentStyle: false,
+//       },
+//     ],
+//   },
+//   {
+//     id: 1,
+//     name: "shirt",
+//     price: 1299,
+//     ratings: 234,
+//     stars: 4,
+//     likes: 1000,
+//     category: "Men's Clothing",
+//     styles: [
+//       {
+//         description: "white",
+//         picture: "src/assets/bluepoloshirt.jpg",
+//         isCurrentStyle: true,
+//       },
+//     ],
+//   },
+// ];
 
 // const doShit = async () => {
 //   const g = await fetch(`http://localhost:3000/test`, {

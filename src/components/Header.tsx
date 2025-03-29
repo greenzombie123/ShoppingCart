@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData} from "react-router-dom";
 import style from "./Header.module.css";
 import { Cart } from "../products";
 
