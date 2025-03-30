@@ -386,7 +386,6 @@ describe("Carousel", () => {
       },
     ];
 
-
     const routes:RouteObject[] = [{path:"/", element:<Carousel/>, loader: ()=> products}]
 
     const user = userEvent.setup()
@@ -409,11 +408,8 @@ describe("Carousel", () => {
     expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledOnce()
     expect(mock.mock.instances).toContain(slides[0])
 
-     await user.click(buttons[1])
-     await user.click(buttons[1])
+     await user.click(buttons[6])
 
-     
-     console.log(mock.mock.instances)
      expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(2)
      expect(mock.mock.instances).toContain(slides[1])
   });
@@ -769,8 +765,8 @@ describe("NavigationList", ()=>{
       },
     ];
 
-    // const mock = vi.fn()
-    // HTMLElement.prototype.scrollIntoView = mock
+    const mock = vi.fn()
+    HTMLElement.prototype.scrollIntoView = mock
 
     const user = userEvent.setup()
 
@@ -793,11 +789,15 @@ describe("NavigationList", ()=>{
     render(<RouterProvider router={router} />);
 
     const navigationList = await waitFor(()=>screen.getByRole("list"))
-    const navListItems = Array.from(navigationList.querySelectorAll("li")) as HTMLLIElement[]
-    await user.click(navListItems[4])
-
+    const navListItems = Array.from(navigationList.querySelectorAll("button")) as HTMLButtonElement[]
     const slides = await waitFor(()=>screen.getAllByTestId("slide"))
 
-    // expect(mock.mock.instances).toContain(slides[4])
+    await user.click(navListItems[4])
+    expect(mock.mock.instances).toContain(slides[4])
+
+    await user.click(navListItems[2])
+    expect(mock.mock.instances).toContain(slides[2])
+
+    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(3)
   })
 })
