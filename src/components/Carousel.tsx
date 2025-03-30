@@ -3,7 +3,7 @@ import style from "./Carousel.module.css";
 import { Product } from "../products";
 import { useEffect, useRef, useState } from "react";
 
-type SliderState = 0 | 1 | 2 | 3 | 4;
+export type SliderState = 0 | 1 | 2 | 3 | 4;
 
 const Carousel = () => {
   const products = useLoaderData<Product[]>();
@@ -26,6 +26,10 @@ const Carousel = () => {
     setCurrentSlide(newSlide);
   };
 
+  const handleThumbNailClick = (index:SliderState)=>{
+    setCurrentSlide(index)
+  }
+
   return (
     <div className={style.carouselContainer} data-testid="a">
       <button
@@ -34,7 +38,7 @@ const Carousel = () => {
       ></button>
       <div className={style.carousel_wrapper}>
         <Slider products={products} currentSlide={currentSlide} />
-        <NavigationList products={products} />
+        <NavigationList products={products} onThumbNailClick={handleThumbNailClick}/>
       </div>
       <button
         className={style.rightButton}
@@ -46,14 +50,16 @@ const Carousel = () => {
 
 interface NavigationListProps {
   products: Product[];
+  onThumbNailClick:(index:SliderState)=>void
 }
 
-export const NavigationList = ({ products }: NavigationListProps) => {
-  const navListItems = products.map((product) => (
+export const NavigationList = ({ products, onThumbNailClick }: NavigationListProps) => {
+  const numbers:SliderState[] = [0,1,2,3,4]
+  const navListItems = products.map((product, index) => (
     <li key={product.name}>
-      <a href="">
+      <button onClick={()=>onThumbNailClick(numbers[index])}>
         <img src={product.styles[0].picture} alt={product.name} />
-      </a>
+      </button>
     </li>
   ));
 

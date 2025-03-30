@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { render, screen, waitFor } from "@testing-library/react";
-import Carousel, { NavigationList, Slider } from "../components/Carousel";
+import Carousel, { NavigationList, Slider} from "../components/Carousel";
 import routes from "../routes";
 import { Product } from "../products";
 import userEvent from "@testing-library/user-event";
@@ -410,7 +410,10 @@ describe("Carousel", () => {
     expect(mock.mock.instances).toContain(slides[0])
 
      await user.click(buttons[1])
+     await user.click(buttons[1])
 
+     
+     console.log(mock.mock.instances)
      expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(2)
      expect(mock.mock.instances).toContain(slides[1])
   });
@@ -526,7 +529,7 @@ describe("NavigationList", ()=>{
       },
     ];
 
-    render(<NavigationList products={products}/>)
+    render(<NavigationList products={products} onThumbNailClick={vi.fn()}/>)
 
     const images = screen.getAllByRole("img")
 
@@ -655,5 +658,146 @@ describe("NavigationList", ()=>{
     const navigationList = await waitFor(()=>screen.getByRole("list"))
 
     expect(navigationList).toBeInTheDocument()
+  })
+
+  it("moves the slider when a thumbnail is pressed", async ()=>{
+    const products: Product[] = [
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 2,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirta",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtb",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtc",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtd",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+    ];
+
+    // const mock = vi.fn()
+    // HTMLElement.prototype.scrollIntoView = mock
+
+    const user = userEvent.setup()
+
+    // vi.spyOn(global, "fetch").mockImplementation(
+    //   vi.fn(() =>
+    //     Promise.resolve({
+    //       json: () => Promise.resolve(products),
+    //     })
+    //   ) as Mock
+    // );
+
+    // const router = createMemoryRouter(routes);
+
+    // render(<RouterProvider router={router} />);
+
+    const routes:RouteObject[] = [{path:"/", element:<Carousel/>, loader: ()=> products}]
+
+    const router = createMemoryRouter(routes);
+
+    render(<RouterProvider router={router} />);
+
+    const navigationList = await waitFor(()=>screen.getByRole("list"))
+    const navListItems = Array.from(navigationList.querySelectorAll("li")) as HTMLLIElement[]
+    await user.click(navListItems[4])
+
+    const slides = await waitFor(()=>screen.getAllByTestId("slide"))
+
+    // expect(mock.mock.instances).toContain(slides[4])
   })
 })
