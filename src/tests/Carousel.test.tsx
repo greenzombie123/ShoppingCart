@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, Mock, vi } from "vitest";
 import {
   createMemoryRouter,
   MemoryRouter,
@@ -21,6 +21,122 @@ afterAll(()=>{
 
 describe("Carousel", () => {
   it("renders buttons on the screen", async () => {
+
+    const products: Product[] = [
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 2,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirta",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtb",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtc",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtd",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+    ];
+
+    vi.spyOn(global, "fetch").mockImplementation(
+      vi.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(products),
+        })
+      ) as Mock
+    );
 
     const router = createMemoryRouter(routes);
 
@@ -57,7 +173,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirta",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -78,7 +194,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtb",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -99,7 +215,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtc",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -120,7 +236,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtd",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -186,7 +302,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirta",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -207,7 +323,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtb",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -228,7 +344,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtc",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -249,7 +365,7 @@ describe("Carousel", () => {
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtd",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -269,6 +385,7 @@ describe("Carousel", () => {
         ],
       },
     ];
+
 
     const routes:RouteObject[] = [{path:"/", element:<Carousel/>, loader: ()=> products}]
 
@@ -325,7 +442,7 @@ describe("NavigationList", ()=>{
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirta",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -346,7 +463,7 @@ describe("NavigationList", ()=>{
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtb",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -367,7 +484,7 @@ describe("NavigationList", ()=>{
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtc",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -388,7 +505,7 @@ describe("NavigationList", ()=>{
       },
       {
         id: 1,
-        name: "polo shirt",
+        name: "polo shirtd",
         price: 2314,
         ratings: 334,
         stars: 5,
@@ -418,5 +535,125 @@ describe("NavigationList", ()=>{
     expect(images[2]).toBeInTheDocument()
     expect(images[3]).toBeInTheDocument()
     expect(images[4]).toBeInTheDocument()
+  })
+
+  it("is rendered with the Carousel component", async ()=>{
+    const products: Product[] = [
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 2,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirta",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtb",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtc",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirtd",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+    ];
+
+    const routes:RouteObject[] = [{path:"/", element:<Carousel/>, loader: ()=> products}]
+
+    const router = createMemoryRouter(routes);
+
+    render(<RouterProvider router={router} />);
+
+    const navigationList = await waitFor(()=>screen.getByRole("list"))
+
+    expect(navigationList).toBeInTheDocument()
   })
 })

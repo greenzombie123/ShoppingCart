@@ -9,7 +9,6 @@ const routes: RouteObject[] = [
     element: <App />,
     loader: getCart,
     HydrateFallback:null,
-    // loader:async ()=>await 2,
     children: [
       {
         loader:getRandomProducts,

@@ -65,7 +65,7 @@
         .navigation_list {
             display: none;
 
-            div {
+            li {
                 a {
                     img {}
                 }
@@ -109,7 +109,7 @@
             .navigation_list {
                 display: none;
 
-                div {
+                li {
                     a {
                         img {}
                     }
@@ -153,7 +153,7 @@
             .navigation_list {
                 display: none;
 
-                div {
+                li {
                     a {
                         img {}
                     }
@@ -211,7 +211,7 @@
                 width: 100%;
                 justify-content: center;
 
-                div {
+                li {
                     height: 40px;
                     width: 40px;
                     overflow: hidden;

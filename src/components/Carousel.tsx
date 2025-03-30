@@ -34,6 +34,7 @@ const Carousel = () => {
       ></button>
       <div className={style.carousel_wrapper}>
         <Slider products={products} currentSlide={currentSlide} />
+        <NavigationList products={products} />
       </div>
       <button
         className={style.rightButton}
@@ -49,18 +50,14 @@ interface NavigationListProps {
 
 export const NavigationList = ({ products }: NavigationListProps) => {
   const navListItems = products.map((product) => (
-    <div key={product.name}>
+    <li key={product.name}>
       <a href="">
         <img src={product.styles[0].picture} alt={product.name} />
       </a>
-    </div>
+    </li>
   ));
 
-  return (
-    <div className={style.navigation_list}>
-      {navListItems}
-    </div>
-  );
+  return <ul className={style.navigation_list}>{navListItems}</ul>;
 };
 
 interface SliderProps {
@@ -73,6 +70,7 @@ export const Slider = ({ products, currentSlide }: SliderProps) => {
     <div className={style.carousel}>
       {products.map((product, index) => (
         <Slide
+          key={product.name}
           product={product}
           isCurrent={currentSlide === index}
           currentSlide={currentSlide}
@@ -94,7 +92,6 @@ export const Slide = ({ product, isCurrent, currentSlide }: SlideProps) => {
   useEffect(() => {
     if (isCurrent && slideRef.current !== null) {
       slideRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
-      console.log(currentSlide);
     }
   }, [isCurrent, currentSlide]);
 
