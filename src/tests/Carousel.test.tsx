@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { render, screen, waitFor } from "@testing-library/react";
-import Carousel, { Slider } from "../components/Carousel";
+import Carousel, { NavigationList, Slider } from "../components/Carousel";
 import routes from "../routes";
 import { Product } from "../products";
 import userEvent from "@testing-library/user-event";
@@ -20,7 +20,7 @@ afterAll(()=>{
 })
 
 describe("Carousel", () => {
-  it.skip("renders buttons on the screen", async () => {
+  it("renders buttons on the screen", async () => {
 
     const router = createMemoryRouter(routes);
 
@@ -32,7 +32,7 @@ describe("Carousel", () => {
     expect(buttons[1]).toBeInTheDocument();
   });
 
-  it.skip("renders all 5 slides", () => {
+  it("renders all 5 slides", () => {
     const products: Product[] = [
       {
         id: 1,
@@ -299,6 +299,124 @@ describe("Carousel", () => {
   });
 });
 
-describe("SlideState", ()=>{
-  it("")
+describe("NavigationList", ()=>{
+  it("renders 5 images", ()=>{
+    const products: Product[] = [
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 2,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "polo shirt",
+        price: 2314,
+        ratings: 334,
+        stars: 5,
+        likes: 380,
+        category: "Men's Clothing",
+        styles: [
+          {
+            description: "black",
+            picture: "/images/poloshirtblack.webp",
+            isCurrentStyle: true,
+          },
+          {
+            description: "blue",
+            picture: "/images/bluepoloshirt.jpg",
+            isCurrentStyle: false,
+          },
+        ],
+      },
+    ];
+
+    render(<NavigationList products={products}/>)
+
+    const images = screen.getAllByRole("img")
+
+    expect(images[0]).toBeInTheDocument()
+    expect(images[1]).toBeInTheDocument()
+    expect(images[2]).toBeInTheDocument()
+    expect(images[3]).toBeInTheDocument()
+    expect(images[4]).toBeInTheDocument()
+  })
 })

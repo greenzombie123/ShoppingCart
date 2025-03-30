@@ -33,34 +33,7 @@ const Carousel = () => {
         onClick={handleSlideChange(-1)}
       ></button>
       <div className={style.carousel_wrapper}>
-        <Slider products={products} currentSlide={currentSlide}/>
-        <div className="navigation_list">
-          <div>
-            <a href="">
-              <img src="./assets/dufflebag.webp" alt="" />
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <img src="./assets/leatherbag.webp" alt="" />
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <img src="./assets/pinkbag.webp" alt="" />
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <img src="./assets/leatherbag.webp" alt="" />
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <img src="./assets/pinkbag.webp" alt="" />
-            </a>
-          </div>
-        </div>
+        <Slider products={products} currentSlide={currentSlide} />
       </div>
       <button
         className={style.rightButton}
@@ -70,16 +43,40 @@ const Carousel = () => {
   );
 };
 
+interface NavigationListProps {
+  products: Product[];
+}
+
+export const NavigationList = ({ products }: NavigationListProps) => {
+  const navListItems = products.map((product) => (
+    <div key={product.name}>
+      <a href="">
+        <img src={product.styles[0].picture} alt={product.name} />
+      </a>
+    </div>
+  ));
+
+  return (
+    <div className={style.navigation_list}>
+      {navListItems}
+    </div>
+  );
+};
+
 interface SliderProps {
   products: Product[];
-  currentSlide:SliderState
+  currentSlide: SliderState;
 }
 
 export const Slider = ({ products, currentSlide }: SliderProps) => {
   return (
     <div className={style.carousel}>
       {products.map((product, index) => (
-        <Slide product={product} isCurrent={currentSlide === index}  currentSlide={currentSlide}/>
+        <Slide
+          product={product}
+          isCurrent={currentSlide === index}
+          currentSlide={currentSlide}
+        />
       ))}
     </div>
   );
@@ -87,20 +84,19 @@ export const Slider = ({ products, currentSlide }: SliderProps) => {
 
 interface SlideProps {
   product: Product;
-  isCurrent:boolean;
-  currentSlide:SliderState
+  isCurrent: boolean;
+  currentSlide: SliderState;
 }
 
 export const Slide = ({ product, isCurrent, currentSlide }: SlideProps) => {
-  const slideRef = useRef<HTMLAnchorElement|null>(null)
+  const slideRef = useRef<HTMLAnchorElement | null>(null);
 
-  useEffect(()=>{
-    if(isCurrent && slideRef.current !== null){
-      slideRef.current.scrollIntoView({block:"center", behavior:"smooth"})
-      console.log(currentSlide)
+  useEffect(() => {
+    if (isCurrent && slideRef.current !== null) {
+      slideRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
+      console.log(currentSlide);
     }
-
-  }, [isCurrent, currentSlide])
+  }, [isCurrent, currentSlide]);
 
   return (
     <Link

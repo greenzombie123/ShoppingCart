@@ -50,6 +50,7 @@ exports[`Carousel > renders all 5 slides 1`] = `
     <div
       class="_price_883aa8"
     >
+      $
       2314
     </div>
   </div>
