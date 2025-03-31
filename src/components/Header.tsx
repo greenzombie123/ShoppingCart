@@ -31,16 +31,16 @@ const Header = () => {
       </div>
       <ul className={style.pageLinks}>
         <li>
-          <Link to="/">Electronics</Link>
+          <Link to="/store">Electronics</Link>
         </li>
         <li>
-          <Link to="/">Jewelry</Link>
+          <Link to="/store">Jewelry</Link>
         </li>
         <li>
-          <Link to="/">Men's Clothing</Link>
+          <Link to="/store">Men's Clothing</Link>
         </li>
         <li>
-          <Link to="/">Women's Clothing</Link>
+          <Link to="/store">Women's Clothing</Link>
         </li>
       </ul>
       <CartIcon number={2}/>

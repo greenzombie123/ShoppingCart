@@ -1,33 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Carousel > render a slide of a product 1`] = `
-<a
-  class="_slide_883aa8"
-  data-discover="true"
-  data-testid="slide"
-  href="/product/1"
->
-  <img
-    alt="polo shirt"
-    src="/images/poloshirtblack.webp"
-  />
-  <div
-    class="_itemInfo_883aa8"
-  >
-    <div
-      class="_name_883aa8"
-    >
-      polo shirt
-    </div>
-    <div
-      class="_price_883aa8"
-    >
-      2314
-    </div>
-  </div>
-</a>
-`;
-
 exports[`Carousel > renders all 5 slides 1`] = `
 <a
   class="_slide_883aa8"
@@ -55,18 +27,4 @@ exports[`Carousel > renders all 5 slides 1`] = `
     </div>
   </div>
 </a>
-`;
-
-exports[`Carousel > renders buttons on the screen 1`] = `
-<div
-  class="_carouselContainer_883aa8"
-  data-testid="a"
->
-  <button
-    class="_leftButton_883aa8"
-  />
-  <button
-    class="_rightButton_883aa8"
-  />
-</div>
 `;

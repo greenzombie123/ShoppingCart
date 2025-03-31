@@ -770,17 +770,6 @@ describe("NavigationList", ()=>{
 
     const user = userEvent.setup()
 
-    // vi.spyOn(global, "fetch").mockImplementation(
-    //   vi.fn(() =>
-    //     Promise.resolve({
-    //       json: () => Promise.resolve(products),
-    //     })
-    //   ) as Mock
-    // );
-
-    // const router = createMemoryRouter(routes);
-
-    // render(<RouterProvider router={router} />);
 
     const routes:RouteObject[] = [{path:"/", element:<Carousel/>, loader: ()=> products}]
 
