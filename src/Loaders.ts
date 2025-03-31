@@ -1,4 +1,9 @@
-import { Cart, Product } from "./products";
+import { Cart, Product, ProductCategory } from "./products";
+
+const getProductsByCategory = async (category:ProductCategory)=>{
+    const data = await fetch(`http://localhost:3000/products?category=${category}`)
+    return await data.json()
+}
 
 const getProducts = async ():Promise<Product[]> => {
     const data = await fetch("http://localhost:3000/products")
@@ -32,4 +37,4 @@ const getRandomProducts = async ():Promise<Product[]> =>{ //:Promise<Product[]>
    return newProducts
 }
 
-export { getProducts, getCart, getRandomProducts };
+export { getProducts, getCart, getRandomProducts, getProductsByCategory };

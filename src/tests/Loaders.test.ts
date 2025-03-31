@@ -1,6 +1,116 @@
-import {  describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
-import { getCart, getProducts, getRandomProducts } from "../Loaders.js";
+import { describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
+import { getCart, getProducts, getProductsByCategory, getRandomProducts } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
+
+//Pre setup
+
+const mockProducts: Product[] = [
+  {
+    id: 1,
+    name: "polo shirt",
+    price: 2314,
+    ratings: 334,
+    stars: 2,
+    likes: 380,
+    category: "Men's Clothing",
+    styles: [
+      {
+        description: "black",
+        picture: "/images/poloshirtblack.webp",
+        isCurrentStyle: true,
+      },
+      {
+        description: "blue",
+        picture: "/images/bluepoloshirt.jpg",
+        isCurrentStyle: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "polo shirta",
+    price: 2314,
+    ratings: 334,
+    stars: 5,
+    likes: 380,
+    category: "Jewelry",
+    styles: [
+      {
+        description: "black",
+        picture: "/images/poloshirtblack.webp",
+        isCurrentStyle: true,
+      },
+      {
+        description: "blue",
+        picture: "/images/bluepoloshirt.jpg",
+        isCurrentStyle: false,
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "polo shirtb",
+    price: 2314,
+    ratings: 334,
+    stars: 5,
+    likes: 380,
+    category: "Men's Clothing",
+    styles: [
+      {
+        description: "black",
+        picture: "/images/poloshirtblack.webp",
+        isCurrentStyle: true,
+      },
+      {
+        description: "blue",
+        picture: "/images/bluepoloshirt.jpg",
+        isCurrentStyle: false,
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "polo shirtc",
+    price: 2314,
+    ratings: 334,
+    stars: 5,
+    likes: 380,
+    category: "Electronics",
+    styles: [
+      {
+        description: "black",
+        picture: "/images/poloshirtblack.webp",
+        isCurrentStyle: true,
+      },
+      {
+        description: "blue",
+        picture: "/images/bluepoloshirt.jpg",
+        isCurrentStyle: false,
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "polo shirtd",
+    price: 2314,
+    ratings: 334,
+    stars: 5,
+    likes: 380,
+    category: "Women's Clothing",
+    styles: [
+      {
+        description: "black",
+        picture: "/images/poloshirtblack.webp",
+        isCurrentStyle: true,
+      },
+      {
+        description: "blue",
+        picture: "/images/bluepoloshirt.jpg",
+        isCurrentStyle: false,
+      },
+    ],
+  },
+];
 
 describe("getProducts", () => {
   it("Get Yuks Polo Shirt from the server", async () => {
@@ -266,7 +376,7 @@ describe("getRandomProducts", () => {
             isCurrentStyle: false,
           },
         ],
-      }
+      },
     ];
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(
@@ -278,13 +388,36 @@ describe("getRandomProducts", () => {
     );
 
     const products = await getRandomProducts();
-    const product = products[0]
+    const product = products[0];
 
-
-    expect(products.length).toBe(5)
-    expectTypeOf(product).toEqualTypeOf<Product>()
+    expect(products.length).toBe(5);
+    expectTypeOf(product).toEqualTypeOf<Product>();
 
     spy.mockRestore();
+  });
+});
+
+describe("getProductsByCategory", () => {
+  it("returns products under the category of men's clothing", async () => {
+
+    const mensClothingUrl = `http://localhost:3000/products?category=Men's Clothing`
+
+    vi.spyOn(global, "fetch").mockImplementation(
+      vi.fn((url: string) => {
+        const values =
+          url === mensClothingUrl ? [mockProducts[0], mockProducts[2]] : null;
+        if(!values) throw new Error("Something programmatically incorrect has occured");
+        
+        return Promise.resolve({
+          json: () => Promise.resolve(values),
+        });
+      }) as Mock
+    );
+
+    const products:Product[] = await getProductsByCategory("Men's Clothing")
+
+    expect(products[0]).toEqual(mockProducts[0])
+    expect(products[1]).toEqual(mockProducts[2])
   });
 });
 

@@ -34,13 +34,13 @@ const products: Product[] = [
     ],
   },
   {
-    id: 1,
+    id: 2,
     name: "polo shirta",
     price: 2314,
     ratings: 334,
     stars: 5,
     likes: 380,
-    category: "Men's Clothing",
+    category: "Jewelry",
     styles: [
       {
         description: "black",
@@ -55,7 +55,7 @@ const products: Product[] = [
     ],
   },
   {
-    id: 1,
+    id: 3,
     name: "polo shirtb",
     price: 2314,
     ratings: 334,
@@ -76,13 +76,13 @@ const products: Product[] = [
     ],
   },
   {
-    id: 1,
+    id: 4,
     name: "polo shirtc",
     price: 2314,
     ratings: 334,
     stars: 5,
     likes: 380,
-    category: "Men's Clothing",
+    category: "Electronics",
     styles: [
       {
         description: "black",
@@ -97,13 +97,13 @@ const products: Product[] = [
     ],
   },
   {
-    id: 1,
+    id: 5,
     name: "polo shirtd",
     price: 2314,
     ratings: 334,
     stars: 5,
     likes: 380,
-    category: "Men's Clothing",
+    category: "Women's Clothing",
     styles: [
       {
         description: "black",
@@ -173,7 +173,7 @@ describe("StorePage", () => {
     expect(storePage).toBeInTheDocument();
   });
 
-  it("render store page when men's clothing link is clicked", async () => {
+  it("render store items when men's clothing link is clicked", async () => {
     const router = createMemoryRouter(routes);
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
@@ -186,8 +186,10 @@ describe("StorePage", () => {
 
     await user.click(link);
 
-    const storePage = await waitFor(() => screen.getByTestId("store_page"));
+    const storeItems = await waitFor(() => screen.getAllByAltText(/^polo shirts/i));
 
-    expect(storePage).toBeInTheDocument();
+    expect(storeItems[0]).toBeInTheDocument();
+    expect(storeItems[1]).toBeInTheDocument();
+
   });
 });
