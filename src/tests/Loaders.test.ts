@@ -1,6 +1,19 @@
 import { describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
-import { getCart, getProducts, getProductsByCategory, getRandomProducts } from "../Loaders.js";
+import {
+  getCart,
+  getProducts,
+  getProductsByCategory,
+  getRandomProducts,
+  getStoreItems,
+} from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
+import {
+  ClientLoaderFunctionArgs,
+  LoaderFunctionArgs,
+  RouteMatch,
+  RouteObject,
+  RouteProps,
+} from "react-router-dom";
 
 //Pre setup
 
@@ -399,25 +412,51 @@ describe("getRandomProducts", () => {
 
 describe("getProductsByCategory", () => {
   it("returns products under the category of men's clothing", async () => {
-
-    const mensClothingUrl = `http://localhost:3000/products?category=Men's Clothing`
+    const mensClothingUrl = `http://localhost:3000/products?category=Men's Clothing`;
 
     vi.spyOn(global, "fetch").mockImplementation(
       vi.fn((url: string) => {
         const values =
           url === mensClothingUrl ? [mockProducts[0], mockProducts[2]] : null;
-        if(!values) throw new Error("Something programmatically incorrect has occured");
-        
+        if (!values)
+          throw new Error("Something programmatically incorrect has occured");
+
         return Promise.resolve({
           json: () => Promise.resolve(values),
         });
       }) as Mock
     );
 
-    const products:Product[] = await getProductsByCategory("Men's Clothing")
+    const products: Product[] = await getProductsByCategory("Men's Clothing");
 
-    expect(products[0]).toEqual(mockProducts[0])
-    expect(products[1]).toEqual(mockProducts[2])
+    expect(products[0]).toEqual(mockProducts[0]);
+    expect(products[1]).toEqual(mockProducts[2]);
+  });
+});
+
+describe("getStoreItems", () => {
+  it("returns products under the category of men's clothing", async () => {
+    const mensClothingUrl = `http://localhost:3000/products?category=Men's Clothing`;
+
+    vi.spyOn(global, "fetch").mockImplementation(
+      vi.fn((url: string) => {
+        const values =
+          url === mensClothingUrl ? [mockProducts[0], mockProducts[2]] : null;
+        if (!values)
+          throw new Error("Something programmatically incorrect has occured");
+
+        return Promise.resolve({
+          json: () => Promise.resolve(values),
+        });
+      }) as Mock
+    );
+
+    const mockParam = { params: { category: "Men's Clothing" } };
+
+    const products: Product[] = await getStoreItems(mockParam);
+
+    expect(products[0]).toEqual(mockProducts[0]);
+    expect(products[1]).toEqual(mockProducts[2]);
   });
 });
 

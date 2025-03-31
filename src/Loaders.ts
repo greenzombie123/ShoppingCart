@@ -5,6 +5,16 @@ const getProductsByCategory = async (category:ProductCategory)=>{
     return await data.json()
 }
 
+const getStoreItems = async ({params}:{params:{category:string}})=>{
+    const category = params.category === "Men's Clothing" ? "Men's Clothing" :
+    params.category === "Women's Clothing" ? "Women's Clothing" :
+    params.category === "Electronics" ? "Electronics" :
+    params.category === "Jewelry" ? "Jewelry" : null
+    if (!category) throw new Error("No such category exist");
+    
+    return await getProductsByCategory(category)
+}
+
 const getProducts = async ():Promise<Product[]> => {
     const data = await fetch("http://localhost:3000/products")
     return await data.json()
@@ -37,4 +47,4 @@ const getRandomProducts = async ():Promise<Product[]> =>{ //:Promise<Product[]>
    return newProducts
 }
 
-export { getProducts, getCart, getRandomProducts, getProductsByCategory };
+export { getProducts, getCart, getRandomProducts, getProductsByCategory, getStoreItems };

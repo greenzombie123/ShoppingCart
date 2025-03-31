@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import StorePage from "../components/StorePage";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import routes from "../routes";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
@@ -186,7 +186,10 @@ describe("StorePage", () => {
 
     await user.click(link);
 
-    const storeItems = await waitFor(() => screen.getAllByAltText(/^polo shirts/i));
+    const storePage = await waitFor(() => screen.getByTestId("store_page"));
+    
+    // Use within to find DOM elements within DOM elements
+    const storeItems = await waitFor(() => within(storePage).getAllByAltText(/^polo shirts/i));
 
     expect(storeItems[0]).toBeInTheDocument();
     expect(storeItems[1]).toBeInTheDocument();
