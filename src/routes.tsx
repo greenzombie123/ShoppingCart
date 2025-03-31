@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import App from "./App";
-import { getCart, getRandomProducts } from "./Loaders";
+import { getCart, getRandomProducts, getStoreItems } from "./Loaders";
 import Carousel from "./components/Carousel";
 import StorePage from "./components/StorePage";
 
@@ -17,8 +17,9 @@ const routes: RouteObject[] = [
         index:true,
       },
       {
+        loader:getStoreItems,
         element:<StorePage/>,
-        path:"/store"
+        path:"store/:category"
       }
     ],
   },

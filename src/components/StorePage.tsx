@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import style from "./StorePage.module.css";
 import { Product } from "../products";
 
@@ -9,7 +9,7 @@ type StoreItemProps = {
 export const StoreItem = ({product}:StoreItemProps) => {
 
   return (
-    <div className={style.itemCard}>
+    <div className={style.itemCard} key={product.name}>
       <Link to={`/product/${product.id}`}>
         <div className={style.imgContainer}>
           <img src={product.styles[0].picture} alt={product.name} />
@@ -40,8 +40,11 @@ export const StoreItem = ({product}:StoreItemProps) => {
 };
 
 const StorePage = () => {
+  const products:Product[] = useLoaderData()
+  const storeItems = products.map(product => <StoreItem product={product} key={product.id}/>)
+  
   return <div className={style.items} data-testid="store_page">
-    
+    {storeItems}
   </div>;
 };
 

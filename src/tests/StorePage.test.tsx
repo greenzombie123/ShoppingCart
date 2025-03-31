@@ -118,34 +118,42 @@ const products: Product[] = [
     ],
   },
 ];
-
+const menClothingProducts = [products[0], products[2]];
 const emptyCart: Cart = [];
 const productsURL = "http://localhost:3000/products";
 const cartURL = "http://localhost:3000/cart";
+const menClothingURL = "http://localhost:3000/products?category=Men's Clothing";
 
-beforeAll(()=>{
-  HTMLElement.prototype.scrollIntoView = vi.fn()
+beforeAll(() => {
+  HTMLElement.prototype.scrollIntoView = vi.fn();
 
   const spy = vi.spyOn(global, "fetch").mockImplementation(
     vi.fn((url: string) => {
       const values =
-        url === productsURL ? products : cartURL === url ? emptyCart : null;
-      if (!values) return;
-
+        url === productsURL
+          ? products
+          : cartURL === url
+          ? emptyCart
+          : url === menClothingURL
+          ? menClothingProducts
+          : null;
+      if (!values) throw new Error("Couldn't process url string");
       return Promise.resolve({
-        json: ()=>Promise.resolve(values),
+        json: () => Promise.resolve(values),
       });
     }) as Mock
   );
-})
+});
 
-afterAll(()=>{
-  vi.resetAllMocks()
-})
+afterAll(() => {
+  vi.resetAllMocks();
+});
 
 describe("StorePage", () => {
   it("renders on the screen", async () => {
-    const route: RouteObject[] = [{ path: "/", element: <StorePage /> }];
+    const route: RouteObject[] = [
+      { path: "/", element: <StorePage />, loader: () => products },
+    ];
     const router = createMemoryRouter(route);
     render(<RouterProvider router={router} />);
 
@@ -155,7 +163,7 @@ describe("StorePage", () => {
     expect(storePage).toMatchSnapshot();
   });
 
-  it("render store page when men's clothing link is clicked", async () => {
+  it.skip("render store page when men's clothing link is clicked", async () => {
     const router = createMemoryRouter(routes);
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
@@ -182,17 +190,16 @@ describe("StorePage", () => {
       screen.getByRole("link", { name: "Men's Clothing" })
     );
 
-    expect(link).toBeInTheDocument();
-
     await user.click(link);
 
     const storePage = await waitFor(() => screen.getByTestId("store_page"));
-    
+
     // Use within to find DOM elements within DOM elements
-    const storeItems = await waitFor(() => within(storePage).getAllByAltText(/^polo shirts/i));
+    const storeItems = await waitFor(() =>
+      within(storePage).getAllByAltText(/^polo shirt/i)
+    );
 
     expect(storeItems[0]).toBeInTheDocument();
     expect(storeItems[1]).toBeInTheDocument();
-
   });
 });

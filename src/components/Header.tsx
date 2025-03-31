@@ -31,13 +31,13 @@ const Header = () => {
       </div>
       <ul className={style.pageLinks}>
         <li>
-          <Link to="/store">Electronics</Link>
+          <Link to="/store/">Electronics</Link>
         </li>
         <li>
           <Link to="/store">Jewelry</Link>
         </li>
         <li>
-          <Link to="/store">Men's Clothing</Link>
+          <Link to="store/Men's Clothing">Men's Clothing</Link>
         </li>
         <li>
           <Link to="/store">Women's Clothing</Link>

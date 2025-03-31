@@ -36,7 +36,7 @@ exports[`Header component > renders links correctly 1`] = `
     <li>
       <a
         data-discover="true"
-        href="/store"
+        href="/store/"
       >
         Electronics
       </a>
@@ -52,7 +52,7 @@ exports[`Header component > renders links correctly 1`] = `
     <li>
       <a
         data-discover="true"
-        href="/store"
+        href="/store/Men's Clothing"
       >
         Men's Clothing
       </a>
