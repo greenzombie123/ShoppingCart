@@ -5,11 +5,11 @@ import {
   RouteObject,
   RouterProvider,
 } from "react-router-dom";
-import StorePage from "../components/StorePage";
+import StorePage, { StarContainer } from "../components/StorePage";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import routes from "../routes";
-import App from "../App";
 import userEvent from "@testing-library/user-event";
+import storePageStyle from "../components/StorePage.module.css";
 
 const products: Product[] = [
   {
@@ -163,7 +163,7 @@ describe("StorePage", () => {
     expect(storePage).toMatchSnapshot();
   });
 
-  it.skip("render store page when men's clothing link is clicked", async () => {
+  it("render store page when men's clothing link is clicked", async () => {
     const router = createMemoryRouter(routes);
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
@@ -201,5 +201,27 @@ describe("StorePage", () => {
 
     expect(storeItems[0]).toBeInTheDocument();
     expect(storeItems[1]).toBeInTheDocument();
+  });
+
+  it(" renders all 5 stars in star container", async () => {
+    render(<StarContainer stars={0} />);
+
+    const stars = await waitFor(() =>
+      screen.getAllByRole("img", { name: "star" })
+    );
+    // console.log(await screen.getByRole("img", {name:"star"}).classList)
+    expect(stars.length).toBe(5);
+  });
+
+  it(" renders 4 stars that are on", async () => {
+    render(<StarContainer stars={4} />);
+
+    const stars = await waitFor(() =>
+      screen
+        .getAllByRole("img", { name: "star" })
+        .filter((star) => star.classList.contains(storePageStyle.on))
+    );
+    // console.log(await screen.getByRole("img", {name:"star"}).classList)
+    expect(stars.length).toBe(4);
   });
 });

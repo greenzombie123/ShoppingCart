@@ -25,8 +25,6 @@ const getStoreItems: LoaderFunction = async ({
       : null;
   if (!category) throw new Error("No such category exist");
 
-  console.log(category)
-
   return await getProductsByCategory(category);
 };
 
