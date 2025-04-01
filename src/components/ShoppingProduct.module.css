@@ -1,0 +1,286 @@
+.shoppingProduct {
+    --productBorder:rgb(188, 188, 188);
+    --productPadding: 5px 10px;
+
+    img{
+        height: auto;
+                max-width: 100%;
+    }
+
+    flex: 1;
+    display: grid;
+    grid-template: 0fr / 3fr 1fr;
+    grid-template-areas: "picture details"
+    "picture widgets";
+    padding: 15px;
+    column-gap: 20px;
+
+    .picture {
+        height: inherit;
+        grid-area: picture;
+        display: flex;
+        flex-direction: column;
+        height: 75vh;
+        padding: 5px;
+
+        .imgContainer {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+
+            img {
+                height: auto;
+                max-width: 100%;
+            }
+        }
+
+        .colorTabs {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+
+            .colorTab {
+                padding: 3px;
+            }
+        }
+    }
+
+
+    .productdetails {
+        grid-area: details;
+        padding: var(--productPadding);
+        border-top: 1px solid var(--productBorder);
+        border-left: 1px solid  var(--productBorder);
+        border-right: 1px solid  var(--productBorder);
+        border-radius: 5px;
+
+        p {
+            font-size: 1.6rem
+        }
+
+        .stars {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            .stars_container {
+                display: flex;
+
+                .star {
+                    width: 20px;
+                    aspect-ratio: 1;
+                    background-color: rgb(132, 132, 132);
+                    clip-path: polygon(50% 0,
+                            calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
+                            calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                            calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                            calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn))));
+
+                    &.on {
+                        background: rgb(255, 150, 4);
+                    }
+                }
+            }
+
+            .ratings {
+                font-size: 1.2rem;
+            }
+        }
+
+        p.style {
+            margin-top: 10px;
+        }
+    }
+
+    .productToCart {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        grid-area: widgets;
+        border-bottom: 1px solid  var(--productBorder);
+        border-left: 1px solid  var(--productBorder);
+        border-right: 1px solid  var(--productBorder);
+        border-radius: 5px;
+        padding: var(--productPadding);
+
+        p.quantity{
+            font-size: 1.6rem;
+        }
+
+        .quantityCounter {
+            display: flex;
+            border: 1px solid;
+            width: min-content;
+
+            button {
+                border: none;
+                cursor: pointer;
+            }
+
+            .increaseButton {}
+
+            .counter {
+                padding: 0 8px;
+            }
+
+            .decreaseButton {}
+        }
+
+        .addButton {
+            background-color: yellow;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            margin-top: auto;
+            cursor: pointer;
+        }
+    }
+
+}
+
+@media (max-width:1000px) {
+    .shoppingProduct {
+        --productBorder:rgb(188, 188, 188);
+        --productPadding: 5px 10px;
+    
+    
+        flex: 1;
+        display: grid;
+        /* grid-template: 0fr / 3fr 1fr; */
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto; 
+        grid-template-areas: 
+        "details"
+        "picture"
+        "widgets"
+        ;
+        padding: 15px;
+        column-gap: 20px;
+    
+        .picture {
+            height: inherit;
+            grid-area: picture;
+            display: flex;
+            flex-direction: column;
+            height: 75vh;
+            padding: 5px;
+    
+            .imgContainer {
+                display: flex;
+                justify-content: center;
+                height: 100%;
+               
+    
+                img {
+                    height: auto;
+                    max-width: 100%;
+                    /* min-height: 100%; */
+                }
+            }
+    
+            .colorTabs {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 10px;
+    
+                .colorTab {
+                    padding: 3px;
+                }
+            }
+        }
+    
+    
+        .productdetails {
+            grid-area: details;
+            padding: var(--productPadding);
+            border-top: 1px solid var(--productBorder);
+            border-left: 1px solid  var(--productBorder);
+            border-right: 1px solid  var(--productBorder);
+            border-radius: 5px;
+    
+            p {
+                font-size: 1.6rem
+            }
+    
+            .stars {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+    
+                .stars_container {
+                    display: flex;
+    
+                    .star {
+                        width: 20px;
+                        aspect-ratio: 1;
+                        background-color: rgb(132, 132, 132);
+                        clip-path: polygon(50% 0,
+                                calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
+                                calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                                calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                                calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn))));
+    
+                        &.on {
+                            background: rgb(255, 150, 4);
+                        }
+                    }
+                }
+    
+                .ratings {
+                    font-size: 1.2rem;
+                }
+            }
+    
+            p.style {
+                margin-top: 10px;
+            }
+        }
+    
+        .productToCart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            grid-area: widgets;
+            border-bottom: 1px solid  var(--productBorder);
+            border-left: 1px solid  var(--productBorder);
+            border-right: 1px solid  var(--productBorder);
+            border-radius: 5px;
+            padding: var(--productPadding);
+    
+            p.quantity{
+                font-size: 1.6rem;
+            }
+    
+            .quantityCounter {
+                display: flex;
+                border: 1px solid;
+                width: min-content;
+    
+                button {
+                    border: none;
+                    cursor: pointer;
+                }
+    
+                .increaseButton {}
+    
+                .counter {
+                    padding: 0 8px;
+                }
+    
+                .decreaseButton {}
+            }
+    
+            .addButton {
+                background-color: yellow;
+                border-radius: 5px;
+                font-size: 1.5rem;
+                margin-top: auto;
+                cursor: pointer;
+            }
+        }
+    
+    }
+}
