@@ -22,13 +22,8 @@ export const StoreItem = ({ product }: StoreItemProps) => {
           <div className={style.styles}></div>
           <div className={style.name}>{product.name}</div>
           <div className={style.stars}>
-            <div className={style.stars_container}>
-              <div className={style.star + " " + style.on}></div>
-              <div className={style.star + " " + style.on}></div>
-              <div className={style.star + " " + style.on}></div>
-              <div className={style.star}></div>
-              <div className={style.star}></div>
-            </div>
+            <StarContainer stars={product.stars} />
+
             <div className={style.ratings}>({product.ratings})</div>
           </div>
           <div className={style.price}>${product.price}</div>
@@ -44,15 +39,18 @@ export const StarContainer = ({ stars }: { stars: number }) => {
   for (let index = 1; index < 6; index++) {
     // Only apply on classname if the number of star is more than the current index
     const starStyle = stars >= index ? style.star + " " + style.on : style.star;
-    const star = <span key={index} role="img" aria-label="star"  className={starStyle}></span>;
-    starImages.push(star)
+    const star = (
+      <span
+        key={index}
+        role="img"
+        aria-label="star"
+        className={starStyle}
+      ></span>
+    );
+    starImages.push(star);
   }
 
-  return (
-    <div className={style.stars_container}>
-      {starImages}
-    </div>
-  );
+  return <div className={style.stars_container}>{starImages}</div>;
 };
 
 const StorePage = () => {

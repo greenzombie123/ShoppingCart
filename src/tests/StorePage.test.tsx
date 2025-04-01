@@ -127,7 +127,7 @@ const menClothingURL = "http://localhost:3000/products?category=Men's Clothing";
 beforeAll(() => {
   HTMLElement.prototype.scrollIntoView = vi.fn();
 
-  const spy = vi.spyOn(global, "fetch").mockImplementation(
+  vi.spyOn(global, "fetch").mockImplementation(
     vi.fn((url: string) => {
       const values =
         url === productsURL
@@ -223,5 +223,19 @@ describe("StorePage", () => {
     );
     // console.log(await screen.getByRole("img", {name:"star"}).classList)
     expect(stars.length).toBe(4);
+  });
+
+  it(" renders star container", async () => {
+    const route: RouteObject[] = [
+      { path: "/", element: <StorePage />, loader: () => [products[0]] },
+    ];
+    const router = createMemoryRouter(route);
+    render(<RouterProvider router={router} />);
+
+    const stars = await waitFor(() =>
+      screen.getAllByRole("img", { name: "star" })
+    );
+    
+    expect(stars.length).toBe(5);
   });
 });

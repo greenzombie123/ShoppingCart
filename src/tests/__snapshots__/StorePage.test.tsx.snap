@@ -54,20 +54,30 @@ exports[`StorePage > renders on the screen 1`] = `
           <div
             class="_stars_container_079726"
           >
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726 _on_079726"
-            />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726"
+              role="img"
+            />
+            <span
+              aria-label="star"
+              class="_star_079726"
+              role="img"
             />
           </div>
           <div
@@ -136,20 +146,30 @@ exports[`StorePage > renders on the screen 1`] = `
           <div
             class="_stars_container_079726"
           >
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
           </div>
           <div
@@ -218,20 +238,30 @@ exports[`StorePage > renders on the screen 1`] = `
           <div
             class="_stars_container_079726"
           >
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
           </div>
           <div
@@ -300,20 +330,30 @@ exports[`StorePage > renders on the screen 1`] = `
           <div
             class="_stars_container_079726"
           >
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
           </div>
           <div
@@ -382,20 +422,30 @@ exports[`StorePage > renders on the screen 1`] = `
           <div
             class="_stars_container_079726"
           >
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
+            <span
+              aria-label="star"
               class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
-            <div
-              class="_star_079726"
+            <span
+              aria-label="star"
+              class="_star_079726 _on_079726"
+              role="img"
             />
           </div>
           <div
