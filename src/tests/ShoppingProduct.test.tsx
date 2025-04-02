@@ -6,6 +6,7 @@ import {
   expect,
   it,
   Mock,
+  test,
   vi,
 } from "vitest";
 import { Cart, Product } from "../products";
@@ -13,6 +14,7 @@ import { BrowserRouter, RouteObject } from "react-router-dom";
 import ShoppingProduct from "../components/ShoppingProduct";
 import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
+import userEvent from "@testing-library/user-event";
 
 const product: Product = {
   id: 1,
@@ -102,14 +104,30 @@ describe("ShoppingProduct", () => {
     render(<ShoppingProduct />, { wrapper: BrowserRouter });
 
     const firstStyleButton = (await waitFor(() =>
-      screen.getByRole("button", {name:"black"})
+      screen.getByRole("button", { name: "black" })
     )) as HTMLButtonElement;
 
     const secondStyleButton = (await waitFor(() =>
-        screen.getByRole("button", {name:"blue"})
-      )) as HTMLButtonElement;
+      screen.getByRole("button", { name: "blue" })
+    )) as HTMLButtonElement;
 
-    expect(firstStyleButton).toBeInTheDocument()
-    expect(secondStyleButton).toBeInTheDocument()
+    expect(firstStyleButton).toBeInTheDocument();
+    expect(secondStyleButton).toBeInTheDocument();
+  });
+
+  test("change picture when a color tab button is pushed", async () => {
+    const user = userEvent.setup();
+
+    render(<ShoppingProduct />, { wrapper: BrowserRouter });
+
+    const secondStyleButton = (await waitFor(() =>
+      screen.getByRole("button", { name: "blue" })
+    )) as HTMLButtonElement;
+
+    await user.click(secondStyleButton);
+
+    const img = (await screen.findByRole("img")) as HTMLImageElement;
+
+    expect(img.src).toBe("http://localhost:3000/images/bluepoloshirt.jpg");
   });
 });
