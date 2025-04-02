@@ -2,11 +2,7 @@
     --productBorder:rgb(188, 188, 188);
     --productPadding: 5px 10px;
 
-    img{
-        height: auto;
-                max-width: 100%;
-    }
-
+    
     flex: 1;
     display: grid;
     grid-template: 0fr / 3fr 1fr;
@@ -15,6 +11,11 @@
     padding: 15px;
     column-gap: 20px;
 
+    img{
+        height: auto;
+                max-width: 100%;
+    }
+    
     .picture {
         height: inherit;
         grid-area: picture;

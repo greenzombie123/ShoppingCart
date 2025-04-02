@@ -459,3 +459,11 @@ describe("getStoreItems", () => {
     expect(products[1]).toEqual(mockProducts[2]);
   });
 });
+
+describe.skip("getProduct", ()=>{
+  it("returns product", ()=>{
+    const mockProduct = mockProducts[0]
+
+
+  })
+})

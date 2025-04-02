@@ -1,9 +1,43 @@
+import React, { useState } from "react";
+import { Product} from "../products";
 import style from "./ShoppingProduct.module.css";
+import { useLocation } from "react-router-dom";
+
+export const Picture = ({product}: {product:Product}) => {
+  const currentStyle = product.styles.filter(productStyle=>productStyle.isCurrentStyle)[0]
+
+  return (
+    <div className={style.picture}>
+      <div className={style.imgContainer}>
+        <img src={currentStyle.picture} alt={product.name + " " + currentStyle.description} />
+      </div>
+
+      <div className={style.colorTabs}>
+        Style:
+        <button className={style.colorTab}>Red</button>
+      </div>
+    </div>
+  );
+};
+
+export const ColorTabs = () => {
+  return (
+    <div className={style.colorTabs}>
+      Style:
+      <button className={style.colorTab}>Red</button>
+    </div>
+  );
+};
 
 const ShoppingProduct = () => {
+  const location = useLocation()
+  const state = location.state as Product
+  const [product, setProduct] = useState<Product>(state)
+
   return (
     <div className={style.shoppingProduct}>
-      <div className={style.picture}>
+      <Picture product={product}/>
+      {/* <div className={style.picture}>
         <div className={style.imgContainer}>
           <img src="" alt="" />
         </div>
@@ -11,7 +45,7 @@ const ShoppingProduct = () => {
           Style:
           <button className={style.colorTab}>Red</button>
         </div>
-      </div>
+      </div> */}
       <div className={style.productdetails}>
         <p>Leather Bag</p>
         <div className={style.stars}>
