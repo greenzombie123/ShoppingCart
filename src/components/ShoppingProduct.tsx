@@ -1,43 +1,52 @@
 import React, { useState } from "react";
-import { Product, Style} from "../products";
+import { Product, Style } from "../products";
 import style from "./ShoppingProduct.module.css";
 import { useLocation } from "react-router-dom";
 
-export const Picture = ({product}: {product:Product}) => {
-  const currentStyle = product.styles.filter(productStyle=>productStyle.isCurrentStyle)[0]
+export const Picture = ({ product }: { product: Product }) => {
+  const currentStyle = product.styles.filter(
+    (productStyle) => productStyle.isCurrentStyle
+  )[0];
 
   return (
     <div className={style.picture}>
       <div className={style.imgContainer}>
-        <img src={currentStyle.picture} alt={product.name + " " + currentStyle.description} />
+        <img
+          src={currentStyle.picture}
+          alt={product.name + " " + currentStyle.description}
+        />
       </div>
 
-      <ColorTabs styles={product.styles}/>
+      <ColorTabs styles={product.styles} />
     </div>
   );
 };
 
 type ColorTabsProps = {
-  styles:Style[]
-}
+  styles: Style[];
+};
 
-export const ColorTabs = ({styles}:ColorTabsProps) => {
+export const ColorTabs = ({ styles }: ColorTabsProps) => {
+  if (styles.length === 1) return null;
+
   return (
     <div className={style.colorTabs}>
       Style:
-      {styles.map(productStyle => <button className={style.colorTab}>{productStyle.description}</button>)}
+      {styles.map((productStyle) => (
+        <button className={style.colorTab}>{productStyle.description}</button>
+      ))}
     </div>
   );
 };
 
 const ShoppingProduct = () => {
-  const location = useLocation()
-  const state = location.state as Product
-  const [product, setProduct] = useState<Product>(state)
+  const location = useLocation();
+  const state = location.state as Product;
+  const [product, setProduct] = useState<Product>(state);
 
   return (
     <div className={style.shoppingProduct}>
-      <Picture product={product}/>
+      <Picture product={product} />
       {/* <div className={style.picture}>
         <div className={style.imgContainer}>
           <img src="" alt="" />
