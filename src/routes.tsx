@@ -3,6 +3,7 @@ import App from "./App";
 import { getCart, getRandomProducts, getStoreItems } from "./Loaders";
 import Carousel from "./components/Carousel";
 import StorePage from "./components/StorePage";
+import ShoppingProduct from "./components/ShoppingProduct";
 
 const routes: RouteObject[] = [
   {
@@ -20,6 +21,10 @@ const routes: RouteObject[] = [
         loader:getStoreItems,
         element:<StorePage/>,
         path:"store/:category"
+      },
+      {
+        element:<ShoppingProduct/>,
+        path:"product/:id"
       }
     ],
   },

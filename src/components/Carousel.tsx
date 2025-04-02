@@ -108,6 +108,7 @@ export const Slide = ({ product, isCurrent, currentSlide }: SlideProps) => {
       className={style.slide}
       data-testid="slide"
       ref={slideRef}
+      state={product}
     >
       <img src={product.styles[0].picture} alt={product.name} />
       <div className={style.itemInfo}>

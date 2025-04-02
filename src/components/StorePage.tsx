@@ -9,7 +9,7 @@ type StoreItemProps = {
 export const StoreItem = ({ product }: StoreItemProps) => {
   return (
     <div className={style.itemCard} key={product.name}>
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/product/${product.id}`} state={product}>
         <div className={style.imgContainer}>
           <img src={product.styles[0].picture} alt={product.name} />
           <div className={style.bestSeller}>BestSeller</div>
