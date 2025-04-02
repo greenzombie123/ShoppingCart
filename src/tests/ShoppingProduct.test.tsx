@@ -1,9 +1,15 @@
-import { afterAll, beforeAll, beforeEach, describe, expect, it, Mock, vi } from "vitest";
-import { Cart, Product } from "../products";
 import {
-  BrowserRouter,
-  RouteObject,
-} from "react-router-dom";
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  Mock,
+  vi,
+} from "vitest";
+import { Cart, Product } from "../products";
+import { BrowserRouter, RouteObject } from "react-router-dom";
 import ShoppingProduct from "../components/ShoppingProduct";
 import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
@@ -81,8 +87,6 @@ afterAll(() => {
 
 describe("ShoppingProduct", () => {
   it("renders the product's image", async () => {
-
-
     // const router = createMemoryRouter([shoppingProductRoute]);
     render(<ShoppingProduct />, { wrapper: BrowserRouter });
 
@@ -92,5 +96,20 @@ describe("ShoppingProduct", () => {
 
     expect(img.src).toBe("http://localhost:3000/images/poloshirtblack.webp");
     expect(img).toMatchSnapshot();
+  });
+
+  it("renders style buttons", async () => {
+    render(<ShoppingProduct />, { wrapper: BrowserRouter });
+
+    const firstStyleButton = (await waitFor(() =>
+      screen.getByRole("button", {name:"black"})
+    )) as HTMLButtonElement;
+
+    const secondStyleButton = (await waitFor(() =>
+        screen.getByRole("button", {name:"blue"})
+      )) as HTMLButtonElement;
+
+    expect(firstStyleButton).toBeInTheDocument()
+    expect(secondStyleButton).toBeInTheDocument()
   });
 });

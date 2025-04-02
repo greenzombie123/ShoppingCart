@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Product} from "../products";
+import { Product, Style} from "../products";
 import style from "./ShoppingProduct.module.css";
 import { useLocation } from "react-router-dom";
 
@@ -12,19 +12,20 @@ export const Picture = ({product}: {product:Product}) => {
         <img src={currentStyle.picture} alt={product.name + " " + currentStyle.description} />
       </div>
 
-      <div className={style.colorTabs}>
-        Style:
-        <button className={style.colorTab}>Red</button>
-      </div>
+      <ColorTabs styles={product.styles}/>
     </div>
   );
 };
 
-export const ColorTabs = () => {
+type ColorTabsProps = {
+  styles:Style[]
+}
+
+export const ColorTabs = ({styles}:ColorTabsProps) => {
   return (
     <div className={style.colorTabs}>
       Style:
-      <button className={style.colorTab}>Red</button>
+      {styles.map(productStyle => <button className={style.colorTab}>{productStyle.description}</button>)}
     </div>
   );
 };
