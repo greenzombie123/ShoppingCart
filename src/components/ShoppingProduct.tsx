@@ -59,6 +59,14 @@ export const ColorTabs = ({
   );
 };
 
+export const ProductDetails = ()=>{
+  return <></>
+}
+
+export const ProductToCart = ()=>{
+  return <></>
+}
+
 const ShoppingProduct = () => {
   const location = useLocation();
   const state = location.state as Product;
