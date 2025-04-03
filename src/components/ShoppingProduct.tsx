@@ -73,7 +73,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
     <div className={style.productdetails}>
       <p>{product.name}</p>
       <div className={style.stars}>
-        <StarContainer stars={product.stars} style={style}/>
+        <StarContainer stars={product.stars} style={style} />
         <div className={style.ratings}>({product.ratings})</div>
       </div>
       <p>{changeToPrice(product.price)}</p>
@@ -82,8 +82,47 @@ export const ProductDetails = ({ product }: { product: Product }) => {
   );
 };
 
-export const ProductToCart = () => {
-  return <></>;
+export const ProductToCart = ({ product }: { product: Product }) => {
+  const [quantity, setQuantity] = useState<number>(1);
+
+  const handleQuantityIncrease = () => {
+    setQuantity(quantity + 1);
+  };
+  const handleQuantityDecrease = () => {
+    if (quantity !== 1) setQuantity(quantity - 1);
+  };
+
+  return (
+    <div className={style.productToCart}>
+      <p className={style.quantity}>Quantity</p>
+      <div className={style.quantityCounter}>
+        <button
+          id="increaseButton"
+          aria-label="Increase quantity"
+          className={style.increaseButton}
+          onClick={handleQuantityIncrease}
+        >
+          &#43;
+        </button>
+        <output
+          htmlFor="increaseButton decreaseButton"
+          name="quantity"
+          className={style.counter}
+        >
+          {quantity}
+        </output>
+        <button
+          id="decreaseButton"
+          aria-label="Decrease quantity"
+          className={style.decreaseButton}
+          onClick={handleQuantityDecrease}
+        >
+          &#8722;
+        </button>
+      </div>
+      <button className={style.addButton}>Add to Cart</button>
+    </div>
+  );
 };
 
 const ShoppingProduct = () => {
@@ -105,7 +144,7 @@ const ShoppingProduct = () => {
   return (
     <div className={style.shoppingProduct}>
       <Picture product={product} onColorTabClick={handleChangeStyle} />
-      <ProductDetails product={product}/>
+      <ProductDetails product={product} />
       <div className={style.productToCart}>
         <p className={style.quantity}>Quantity</p>
         <div className={style.quantityCounter}>

@@ -1,7 +1,6 @@
 import {
   afterAll,
   beforeAll,
-  beforeEach,
   describe,
   expect,
   it,
@@ -11,9 +10,8 @@ import {
 } from "vitest";
 import { Cart, Product } from "../products";
 import { BrowserRouter, RouteObject } from "react-router-dom";
-import ShoppingProduct, { ProductDetails } from "../components/ShoppingProduct";
+import ShoppingProduct, { ProductDetails, ProductToCart } from "../components/ShoppingProduct";
 import { render, screen, waitFor } from "@testing-library/react";
-import React from "react";
 import userEvent from "@testing-library/user-event";
 import storePageStyle from "../components/ShoppingProduct.module.css";
 
@@ -154,3 +152,19 @@ describe("ProductDetails", () => {
     expect(style.textContent).toBe("Style: black");
   });
 });
+
+describe("ProductToCart", ()=>{
+    it("shows the quantity on the quantity counter", async ()=>{
+        const user = userEvent.setup()
+
+        render(<ProductToCart/>)
+
+        const button = await screen.findByRole("button", {name:"Increase quantity"}) as HTMLButtonElement
+
+        await user.click(button)
+
+        const quantityLabel = await screen.findByRole("status")
+
+        expect(quantityLabel.textContent).toBe("2")
+    })
+})
