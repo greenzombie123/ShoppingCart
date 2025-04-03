@@ -154,10 +154,10 @@ describe("ProductDetails", () => {
 });
 
 describe("ProductToCart", ()=>{
-    it("shows the quantity on the quantity counter", async ()=>{
+    it("increase quantity by one if increase button of quantity counter is clicked", async ()=>{
         const user = userEvent.setup()
 
-        render(<ProductToCart/>)
+        render(<ProductToCart product={product}/>)
 
         const button = await screen.findByRole("button", {name:"Increase quantity"}) as HTMLButtonElement
 
@@ -166,5 +166,21 @@ describe("ProductToCart", ()=>{
         const quantityLabel = await screen.findByRole("status")
 
         expect(quantityLabel.textContent).toBe("2")
+    })
+
+    it("decrease quantity by one if decrease button of quantity counter is clicked", async ()=>{
+        const user = userEvent.setup()
+
+        render(<ProductToCart product={product}/>)
+
+        const button1 = await screen.findByRole("button", {name:"Increase quantity"}) as HTMLButtonElement
+        const button2 = await screen.findByRole("button", {name:"Decrease quantity"}) as HTMLButtonElement
+
+        await user.click(button1)
+        await user.click(button2)
+
+        const quantityLabel = await screen.findByRole("status")
+
+        expect(quantityLabel.textContent).toBe("1")
     })
 })
