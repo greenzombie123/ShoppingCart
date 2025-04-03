@@ -3,6 +3,7 @@
 exports[`ShoppingProduct > renders the product's image 1`] = `
 <img
   alt="polo shirt black"
+  aria-label="picture"
   src="/images/poloshirtblack.webp"
 />
 `;

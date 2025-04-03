@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Product, Style } from "../products";
 import style from "./ShoppingProduct.module.css";
 import { useLocation } from "react-router-dom";
+import { StarContainer } from "./StorePage";
+import { changeToPrice } from "../utilities/utility";
 
 type PictureProps = {
   product: Product;
@@ -19,6 +21,7 @@ export const Picture = ({ product, onColorTabClick }: PictureProps) => {
         <img
           src={currentStyle.picture}
           alt={product.name + " " + currentStyle.description}
+          aria-label="picture"
         />
       </div>
 
@@ -26,6 +29,7 @@ export const Picture = ({ product, onColorTabClick }: PictureProps) => {
         styles={product.styles}
         onColorTabClick={onColorTabClick}
         product={product}
+        key={product.id}
       />
     </div>
   );
@@ -51,6 +55,7 @@ export const ColorTabs = ({
         <button
           className={style.colorTab}
           onClick={onColorTabClick(index, product)}
+          key={productStyle.description}
         >
           {productStyle.description}
         </button>
@@ -59,13 +64,27 @@ export const ColorTabs = ({
   );
 };
 
-export const ProductDetails = ()=>{
-  return <></>
-}
+export const ProductDetails = ({ product }: { product: Product }) => {
+  const description = product.styles.find(
+    (productStyle) => productStyle.isCurrentStyle
+  )?.description;
 
-export const ProductToCart = ()=>{
-  return <></>
-}
+  return (
+    <div className={style.productdetails}>
+      <p>{product.name}</p>
+      <div className={style.stars}>
+        <StarContainer stars={product.stars} />
+        <div className={style.ratings}>({product.ratings})</div>
+      </div>
+      <p>{changeToPrice(product.price)}</p>
+      <p className={style.style}>{description && `Style: ${description}`}</p>
+    </div>
+  );
+};
+
+export const ProductToCart = () => {
+  return <></>;
+};
 
 const ShoppingProduct = () => {
   const location = useLocation();
@@ -85,23 +104,8 @@ const ShoppingProduct = () => {
 
   return (
     <div className={style.shoppingProduct}>
-      <Picture product={product} onColorTabClick={handleChangeStyle}/>
-
-      <div className={style.productdetails}>
-        <p>Leather Bag</p>
-        <div className={style.stars}>
-          <div className={style.stars_container}>
-            <div className={style.star + style.on}></div>
-            <div className={style.star + style.on}></div>
-            <div className={style.star + style.on}></div>
-            <div className={style.star + style.on}></div>
-            <div className={style.star + style.on}></div>
-          </div>
-          <div className={style.ratings}>(13)</div>
-        </div>
-        <p>$200</p>
-        <p className={style.style}>Style: Red</p>
-      </div>
+      <Picture product={product} onColorTabClick={handleChangeStyle} />
+      <ProductDetails product={product}/>
       <div className={style.productToCart}>
         <p className={style.quantity}>Quantity</p>
         <div className={style.quantityCounter}>

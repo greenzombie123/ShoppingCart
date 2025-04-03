@@ -15,7 +15,7 @@ import ShoppingProduct, { ProductDetails } from "../components/ShoppingProduct";
 import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import shoppingProductStyle from "../components/ShoppingProduct.module.css";
+import storePageStyle from "../components/StorePage.module.css";
 
 const product: Product = {
   id: 1,
@@ -94,7 +94,7 @@ describe("ShoppingProduct", () => {
     render(<ShoppingProduct />, { wrapper: BrowserRouter });
 
     const img = (await waitFor(() =>
-      screen.getByRole("img")
+      screen.getByAltText("polo shirt black")
     )) as HTMLImageElement;
 
     expect(img.src).toBe("http://localhost:3000/images/poloshirtblack.webp");
@@ -127,29 +127,29 @@ describe("ShoppingProduct", () => {
 
     await user.click(secondStyleButton);
 
-    const img = (await screen.findByRole("img")) as HTMLImageElement;
+    const img = (await screen.findByRole("img", {name:"picture"})) as HTMLImageElement;
 
     expect(img.src).toBe("http://localhost:3000/images/bluepoloshirt.jpg");
   });
 });
 
-describe.skip("ProductDetails", () => {
+describe("ProductDetails", () => {
   it("renders info about the product", async () => {
-    render(<ProductDetails />, { wrapper: BrowserRouter });
+    render(<ProductDetails product={product}/>, { wrapper: BrowserRouter });
 
     const name = await screen.findByText("polo shirt");
     const price = await screen.findByText("$23.14");
     const stars = (await screen.findAllByRole("img", { name: "star" })).filter(
-      (star) => star.classList.contains(shoppingProductStyle.on)
+      (star) => star.classList.contains(storePageStyle.on)
     );
-    const rating = await screen.findByText("334");
+    const rating = await screen.findByText("(334)");
     const style = await screen.findByText("Style: black");
   
 
     expect(name.textContent).toBe("polo shirt")
     expect(price.textContent).toBe("$23.14")
     expect(stars.length).toBe(2)
-    expect(rating.textContent).toBe("334")
+    expect(rating.textContent).toBe("(334)")
     expect(style.textContent).toBe("Style: black")
 });
 });
