@@ -183,4 +183,18 @@ describe("ProductToCart", ()=>{
 
         expect(quantityLabel.textContent).toBe("1")
     })
+
+    it("does not decrease quantity by one if decrease button of quantity counter is clicked if quantity if one", async ()=>{
+        const user = userEvent.setup()
+
+        render(<ProductToCart product={product}/>)
+
+        const button = await screen.findByRole("button", {name:"Decrease quantity"}) as HTMLButtonElement
+
+        await user.click(button)
+
+        const quantityLabel = await screen.findByRole("status")
+
+        expect(quantityLabel.textContent).not.toBe("0")
+    })
 })
