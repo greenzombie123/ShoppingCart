@@ -204,7 +204,7 @@ describe("StorePage", () => {
   });
 
   it(" renders all 5 stars in star container", async () => {
-    render(<StarContainer stars={0} />);
+    render(<StarContainer stars={0} style={storePageStyle}/>);
 
     const stars = await waitFor(() =>
       screen.getAllByRole("img", { name: "star" })
@@ -214,7 +214,7 @@ describe("StorePage", () => {
   });
 
   it(" renders 4 stars that are on", async () => {
-    render(<StarContainer stars={4} />);
+    render(<StarContainer stars={4} style={storePageStyle}/>);
 
     const stars = await waitFor(() =>
       screen

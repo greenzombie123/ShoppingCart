@@ -22,7 +22,7 @@ export const StoreItem = ({ product }: StoreItemProps) => {
           <div className={style.styles}></div>
           <div className={style.name}>{product.name}</div>
           <div className={style.stars}>
-            <StarContainer stars={product.stars} />
+            <StarContainer stars={product.stars} style={style}/>
 
             <div className={style.ratings}>({product.ratings})</div>
           </div>
@@ -33,7 +33,7 @@ export const StoreItem = ({ product }: StoreItemProps) => {
   );
 };
 
-export const StarContainer = ({ stars }: { stars: number }) => {
+export const StarContainer = ({ stars, style }: { stars: number, style:CSSModuleClasses }) => {
   const starImages = [];
 
   for (let index = 1; index < 6; index++) {

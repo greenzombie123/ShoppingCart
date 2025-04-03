@@ -73,7 +73,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
     <div className={style.productdetails}>
       <p>{product.name}</p>
       <div className={style.stars}>
-        <StarContainer stars={product.stars} />
+        <StarContainer stars={product.stars} style={style}/>
         <div className={style.ratings}>({product.ratings})</div>
       </div>
       <p>{changeToPrice(product.price)}</p>
