@@ -145,15 +145,7 @@ const ShoppingProduct = () => {
     <div className={style.shoppingProduct}>
       <Picture product={product} onColorTabClick={handleChangeStyle} />
       <ProductDetails product={product} />
-      <div className={style.productToCart}>
-        <p className={style.quantity}>Quantity</p>
-        <div className={style.quantityCounter}>
-          <button className={style.increaseButton}>&#43;</button>
-          <p className={style.counter}>1</p>
-          <button className={style.decreaseButton}>&#8722;</button>
-        </div>
-        <button className={style.addButton}>Add to Cart</button>
-      </div>
+      <ProductToCart product={product}/>
     </div>
   );
 };

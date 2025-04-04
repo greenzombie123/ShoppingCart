@@ -197,4 +197,17 @@ describe("ProductToCart", ()=>{
 
         expect(quantityLabel.textContent).not.toBe("0")
     })
+
+    it("renders a pop up when the add to cart button is clicked", async ()=>{
+        const user = userEvent.setup()
+
+        render(<ProductToCart product={product}/>)
+
+        const button = await screen.findByRole("button", {name:"Add to Cart"}) as HTMLButtonElement
+
+        await user.click(button)
+
+        expect(await screen.findByRole("dialog")).toBeInTheDocument()
+    })
 })
+

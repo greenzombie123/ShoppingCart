@@ -25,7 +25,7 @@ export type Style = {
 
 export type CartItem = {
   product: Product;
-  id: number;
+  // id: number;
   quantity: number;
   style: string;
 };

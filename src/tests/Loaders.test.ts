@@ -216,7 +216,7 @@ describe("getCart", () => {
 
     const cartItem: CartItem = {
       product: { ...product },
-      id: product.id,
+      // id: product.id,
       quantity: 2,
       style: "",
     };
@@ -459,11 +459,3 @@ describe("getStoreItems", () => {
     expect(products[1]).toEqual(mockProducts[2]);
   });
 });
-
-describe.skip("getProduct", ()=>{
-  it("returns product", ()=>{
-    const mockProduct = mockProducts[0]
-
-
-  })
-})

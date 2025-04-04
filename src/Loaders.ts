@@ -8,10 +8,9 @@ const getProductsByCategory = async (category: ProductCategory):Promise<Product[
   return await data.json();
 };
 
-//{params}:{params:{category:string}}
 const getStoreItems: LoaderFunction = async ({
   params,
-}: LoaderFunctionArgs<{ category: string }>):Promise<Product[]> => {
+}: LoaderFunctionArgs<{ category: string }>) => {
 
   const category =
     params.category === "Men's Clothing"
