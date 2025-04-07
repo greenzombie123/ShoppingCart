@@ -1,5 +1,6 @@
 import { describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
 import {
+  addToCart,
   getCart,
   getProducts,
   getProductsByCategory,
@@ -8,6 +9,8 @@ import {
 } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
 import {
+  ActionFunction,
+  ActionFunctionArgs,
   LoaderFunctionArgs,
 } from "react-router-dom";
 
@@ -215,10 +218,12 @@ describe("getCart", () => {
     };
 
     const cartItem: CartItem = {
-      product: { ...product },
-      // id: product.id,
+      // product: { ...product },
+      id: product.id,
       quantity: 2,
       style: "",
+      name: product.name,
+      price: product.price,
     };
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(
@@ -450,12 +455,50 @@ describe("getStoreItems", () => {
     const mockParam: LoaderFunctionArgs = {
       params: { category: "Men's Clothing" },
       context: undefined,
-      request: undefined as unknown as Request
+      request: undefined as unknown as Request,
     };
 
     const products: Product[] = await getStoreItems(mockParam);
 
     expect(products[0]).toEqual(mockProducts[0]);
     expect(products[1]).toEqual(mockProducts[2]);
+  });
+});
+
+describe("addToCart", () => {
+  it("adds customer's request to the cart", async () => {
+    const mock = vi.fn(
+      (input: string, init: { method: string; body: string }) => ({ ok: true })
+    );
+
+    const spy = vi.spyOn(global, "fetch").mockImplementation(mock as Mock);
+
+    const formData: FormData = new FormData();
+
+    formData.append("name", "stuff");
+    formData.append("price", "222");
+    formData.append("id", "1");
+    formData.append("quantity", "2");
+    formData.append("style", "red");
+
+    const request: Request = new Request("http://localhost:3000/product/1", {
+      method: "POST",
+      body: formData,
+    });
+
+    const mockParam: ActionFunctionArgs = {
+      params: { product: "1" },
+      request: request,
+      context: null,
+    };
+
+    await addToCart(mockParam);
+
+    expect(spy).toBeCalled();
+
+    expect(spy).toBeCalledWith("http://localhost:3000/cart", {
+      body: '{"name":"stuff","price":222,"id":1,"quantity":2,"style":"red"}',
+      method: "POST",
+    });
   });
 });

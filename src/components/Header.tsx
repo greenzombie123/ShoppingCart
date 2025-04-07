@@ -16,6 +16,7 @@ export const CartIcon = ({number}:{number:number}) => {
 };
 
 const Header = () => {
+  //TODO Pass cart to the appropriate jsx so it can be rendered
   const cart:Cart = useLoaderData()
   
   return (

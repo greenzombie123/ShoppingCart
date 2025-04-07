@@ -1,7 +1,42 @@
-import { LoaderFunction, LoaderFunctionArgs } from "react-router-dom";
-import { Cart, Product, ProductCategory } from "./products";
+import {
+  ActionFunction,
+  ActionFunctionArgs,
+  LoaderFunction,
+  LoaderFunctionArgs,
+} from "react-router-dom";
+import { Cart, CartItem, Product, ProductCategory } from "./products";
 
-const getProductsByCategory = async (category: ProductCategory):Promise<Product[]> => {
+const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
+  const formData = await request.formData();
+  const name = formData.get("name");
+  const price = Number(formData.get("price"));
+  const id = Number(formData.get("id"));
+  const quantity = Number(formData.get("quantity"));
+  const style = formData.get("style");
+
+  if (name && price && id && quantity && style) {
+    const cartItem: CartItem = {
+      name: name as string,
+      price: price,
+      id: id,
+      quantity: quantity,
+      style: style as string,
+    };
+
+    const data = JSON.stringify(cartItem);
+
+    const response = await fetch("http://localhost:3000/cart", {
+      method: "POST",
+      body: data,
+    });
+
+    if (response.ok) return response.ok;
+  } else throw new Error("Cartitem is invalid");
+};
+
+const getProductsByCategory = async (
+  category: ProductCategory
+): Promise<Product[]> => {
   const data = await fetch(
     `http://localhost:3000/products?category=${category}`
   );
@@ -11,7 +46,6 @@ const getProductsByCategory = async (category: ProductCategory):Promise<Product[
 const getStoreItems: LoaderFunction = async ({
   params,
 }: LoaderFunctionArgs<{ category: string }>) => {
-
   const category =
     params.category === "Men's Clothing"
       ? "Men's Clothing"
@@ -65,4 +99,5 @@ export {
   getRandomProducts,
   getProductsByCategory,
   getStoreItems,
+  addToCart,
 };

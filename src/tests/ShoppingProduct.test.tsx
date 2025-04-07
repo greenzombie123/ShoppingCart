@@ -9,11 +9,21 @@ import {
   vi,
 } from "vitest";
 import { Cart, Product } from "../products";
-import { BrowserRouter, RouteObject } from "react-router-dom";
-import ShoppingProduct, { ProductDetails, ProductToCart } from "../components/ShoppingProduct";
+import {
+  BrowserRouter,
+  createMemoryRouter,
+  RouteObject,
+  RouterProvider,
+} from "react-router-dom";
+import ShoppingProduct, {
+  ProductDetails,
+  ProductToCart,
+} from "../components/ShoppingProduct";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import storePageStyle from "../components/ShoppingProduct.module.css";
+import { renderWithRouter } from "../utilities/testulit";
+import { ReactNode } from "react";
 
 const product: Product = {
   id: 1,
@@ -88,8 +98,12 @@ afterAll(() => {
 
 describe("ShoppingProduct", () => {
   it("renders the product's image", async () => {
-    // const router = createMemoryRouter([shoppingProductRoute]);
-    render(<ShoppingProduct />, { wrapper: BrowserRouter });
+    const router = createMemoryRouter([shoppingProductRoute], {
+      initialEntries: ["/product/:id"],
+      initialIndex: 0,
+    });
+    render(<RouterProvider router={router} />);
+    
 
     const img = (await waitFor(() =>
       screen.getByAltText("polo shirt black")
@@ -100,7 +114,8 @@ describe("ShoppingProduct", () => {
   });
 
   it("renders style buttons", async () => {
-    render(<ShoppingProduct />, { wrapper: BrowserRouter });
+
+    renderWithRouter({element:<ShoppingProduct/>})
 
     const firstStyleButton = (await waitFor(() =>
       screen.getByRole("button", { name: "black" })
@@ -115,9 +130,11 @@ describe("ShoppingProduct", () => {
   });
 
   test("change picture when a color tab button is pushed", async () => {
-    const user = userEvent.setup();
+    // const user = userEvent.setup();
 
-    render(<ShoppingProduct />, { wrapper: BrowserRouter });
+    // render(<ShoppingProduct />, { wrapper: BrowserRouter });
+
+    const {user} = renderWithRouter({element:<ShoppingProduct/>, path:"/product/1"})
 
     const secondStyleButton = (await waitFor(() =>
       screen.getByRole("button", { name: "blue" })
@@ -153,61 +170,69 @@ describe("ProductDetails", () => {
   });
 });
 
-describe("ProductToCart", ()=>{
-    it("increase quantity by one if increase button of quantity counter is clicked", async ()=>{
-        const user = userEvent.setup()
+describe("ProductToCart", () => {
+  it("increase quantity by one if increase button of quantity counter is clicked", async () => {
+    const user = userEvent.setup();
 
-        render(<ProductToCart product={product}/>)
+    render(<ProductToCart product={product} />);
 
-        const button = await screen.findByRole("button", {name:"Increase quantity"}) as HTMLButtonElement
+    const button = (await screen.findByRole("button", {
+      name: "Increase quantity",
+    })) as HTMLButtonElement;
 
-        await user.click(button)
+    await user.click(button);
 
-        const quantityLabel = await screen.findByRole("status")
+    const quantityLabel = await screen.findByRole("status");
 
-        expect(quantityLabel.textContent).toBe("2")
-    })
+    expect(quantityLabel.textContent).toBe("2");
+  });
 
-    it("decrease quantity by one if decrease button of quantity counter is clicked", async ()=>{
-        const user = userEvent.setup()
+  it("decrease quantity by one if decrease button of quantity counter is clicked", async () => {
+    const user = userEvent.setup();
 
-        render(<ProductToCart product={product}/>)
+    render(<ProductToCart product={product} />);
 
-        const button1 = await screen.findByRole("button", {name:"Increase quantity"}) as HTMLButtonElement
-        const button2 = await screen.findByRole("button", {name:"Decrease quantity"}) as HTMLButtonElement
+    const button1 = (await screen.findByRole("button", {
+      name: "Increase quantity",
+    })) as HTMLButtonElement;
+    const button2 = (await screen.findByRole("button", {
+      name: "Decrease quantity",
+    })) as HTMLButtonElement;
 
-        await user.click(button1)
-        await user.click(button2)
+    await user.click(button1);
+    await user.click(button2);
 
-        const quantityLabel = await screen.findByRole("status")
+    const quantityLabel = await screen.findByRole("status");
 
-        expect(quantityLabel.textContent).toBe("1")
-    })
+    expect(quantityLabel.textContent).toBe("1");
+  });
 
-    it("does not decrease quantity by one if decrease button of quantity counter is clicked if quantity if one", async ()=>{
-        const user = userEvent.setup()
+  it("does not decrease quantity by one if decrease button of quantity counter is clicked if quantity if one", async () => {
+    const user = userEvent.setup();
 
-        render(<ProductToCart product={product}/>)
+    render(<ProductToCart product={product} />);
 
-        const button = await screen.findByRole("button", {name:"Decrease quantity"}) as HTMLButtonElement
+    const button = (await screen.findByRole("button", {
+      name: "Decrease quantity",
+    })) as HTMLButtonElement;
 
-        await user.click(button)
+    await user.click(button);
 
-        const quantityLabel = await screen.findByRole("status")
+    const quantityLabel = await screen.findByRole("status");
 
-        expect(quantityLabel.textContent).not.toBe("0")
-    })
+    expect(quantityLabel.textContent).not.toBe("0");
+  });
 
-    it("renders a pop up when the add to cart button is clicked", async ()=>{
-        const user = userEvent.setup()
+  it("renders a pop up when the add to cart button is clicked", async () => {
 
-        render(<ProductToCart product={product}/>)
+    const {user} = renderWithRouter({element:<ShoppingProduct/>, path:"/product/1", loader:()=>product})
 
-        const button = await screen.findByRole("button", {name:"Add to Cart"}) as HTMLButtonElement
+    const button = (await screen.findByRole("button", {
+      name: "Add to Cart",
+    })) as HTMLButtonElement;
 
-        await user.click(button)
+    await user.click(button);
 
-        expect(await screen.findByRole("dialog")).toBeInTheDocument()
-    })
-})
-
+    expect(await screen.findByRole("dialog")).toBeInTheDocument();
+  });
+});

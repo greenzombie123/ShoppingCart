@@ -24,8 +24,9 @@ export type Style = {
 };
 
 export type CartItem = {
-  product: Product;
-  // id: number;
+  name:string,
+  price: number;
+  id: number;
   quantity: number;
   style: string;
 };

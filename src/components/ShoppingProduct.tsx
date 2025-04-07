@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Product, Style } from "../products";
+import { CartItem, Product, Style } from "../products";
 import style from "./ShoppingProduct.module.css";
-import { useLocation } from "react-router-dom";
+import { useFetcher, useLocation } from "react-router-dom";
 import { StarContainer } from "./StorePage";
 import { changeToPrice } from "../utilities/utility";
 
@@ -56,6 +56,7 @@ export const ColorTabs = ({
           className={style.colorTab}
           onClick={onColorTabClick(index, product)}
           key={productStyle.description}
+          type="button"
         >
           {productStyle.description}
         </button>
@@ -85,6 +86,10 @@ export const ProductDetails = ({ product }: { product: Product }) => {
 export const ProductToCart = ({ product }: { product: Product }) => {
   const [quantity, setQuantity] = useState<number>(1);
 
+  const productStyle = product.styles.find(
+    (productStyle) => productStyle.isCurrentStyle
+  )?.description;
+
   const handleQuantityIncrease = () => {
     setQuantity(quantity + 1);
   };
@@ -97,6 +102,7 @@ export const ProductToCart = ({ product }: { product: Product }) => {
       <p className={style.quantity}>Quantity</p>
       <div className={style.quantityCounter}>
         <button
+          type="button"
           id="increaseButton"
           aria-label="Increase quantity"
           className={style.increaseButton}
@@ -112,6 +118,7 @@ export const ProductToCart = ({ product }: { product: Product }) => {
           {quantity}
         </output>
         <button
+          type="button"
           id="decreaseButton"
           aria-label="Decrease quantity"
           className={style.decreaseButton}
@@ -121,12 +128,18 @@ export const ProductToCart = ({ product }: { product: Product }) => {
         </button>
       </div>
       <button className={style.addButton}>Add to Cart</button>
+
+      <input type="hidden" name="id" value={product.id} />
+      <input type="hidden" name="name" value={product.name} />
+      <input type="hidden" name="style" value={productStyle} />
+      <input type="hidden" name="price" value={product.price} />
     </div>
   );
 };
 
 const ShoppingProduct = () => {
   const location = useLocation();
+  const fetcher = useFetcher();
   const state = location.state as Product;
   const [product, setProduct] = useState<Product>(state);
 
@@ -142,12 +155,20 @@ const ShoppingProduct = () => {
   };
 
   return (
-    <div className={style.shoppingProduct}>
+    <fetcher.Form
+      className={style.shoppingProduct}
+      method="POST"
+      action={`/product/${product.id}`}
+    >
       <Picture product={product} onColorTabClick={handleChangeStyle} />
       <ProductDetails product={product} />
-      <ProductToCart product={product}/>
-    </div>
+      <ProductToCart product={product} />
+    </fetcher.Form>
   );
+};
+
+export const PopUp = ({ cartItem }: { cartItem: CartItem }) => {
+  return <dialog></dialog>;
 };
 
 export default ShoppingProduct;
