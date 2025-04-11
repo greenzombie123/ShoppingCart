@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import App from "./App";
-import { getCart, getRandomProducts, getStoreItems } from "./Loaders";
+import { addToCart, getCart, getRandomProducts, getStoreItems } from "./Loaders";
 import Carousel from "./components/Carousel";
 import StorePage from "./components/StorePage";
 import ShoppingProduct from "./components/ShoppingProduct";
@@ -23,6 +23,7 @@ const routes: RouteObject[] = [
         path:"store/:category"
       },
       {
+        action:addToCart,
         element:<ShoppingProduct/>,
         path:"product/:id"
       }

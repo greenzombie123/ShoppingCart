@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`something > does something 1`] = `
+<div>
+  <form
+    method="POST"
+  >
+    <button>
+      2
+    </button>
+    <input
+      name="a"
+      type="text"
+      value="2"
+    />
+  </form>
+</div>
+`;

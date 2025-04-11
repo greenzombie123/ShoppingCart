@@ -22,14 +22,14 @@
       "id": "c9c6"
     },
     {
-      "id": 155,
+      "id": "155",
       "name": "fff",
       "h": "f"
     }
   ],
   "cart": [
     {
-      "id": 1,
+      "id": "1",
       "quantity": 1,
       "product": {
         "name": "Talimo 3DX Ruby Ring",
@@ -53,6 +53,27 @@
         ]
       },
       "style": "Gold"
+    },
+    {
+      "id": 13,
+      "name": "Maggie Lo Blouse",
+      "price": 39.99,
+      "quantity": 2,
+      "style": "Black"
+    },
+    {
+      "id": 13,
+      "name": "Maggie Lo Blouse",
+      "price": 39.99,
+      "quantity": 2,
+      "style": "Black"
+    },
+    {
+      "id": 13,
+      "name": "Maggie Lo Blouse",
+      "price": 39.99,
+      "quantity": 1,
+      "style": "Black"
     }
   ],
   "products": [
@@ -60,7 +81,7 @@
       "name": "Talimo 3DX Ruby Ring",
       "id": "1",
       "category": "Jewelry",
-      "price": 199.90,
+      "price": 199.9,
       "ratings": 145,
       "stars": 5,
       "likes": 342,

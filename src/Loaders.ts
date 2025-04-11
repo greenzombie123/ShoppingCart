@@ -14,13 +14,14 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const quantity = Number(formData.get("quantity"));
   const style = formData.get("style");
 
-  if (name && price && id && quantity && style) {
+
+  if (name && price && id && quantity) {
     const cartItem: CartItem = {
       name: name as string,
       price: price,
       id: id,
       quantity: quantity,
-      style: style as string,
+      style: style ? style as string : undefined
     };
 
     const data = JSON.stringify(cartItem);
@@ -30,7 +31,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
       body: data,
     });
 
-    if (response.ok) return response.ok;
+    if (response.ok) return {ok:true};
   } else throw new Error("Cartitem is invalid");
 };
 

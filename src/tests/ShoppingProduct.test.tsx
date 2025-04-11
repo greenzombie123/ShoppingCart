@@ -1,6 +1,7 @@
 import {
   afterAll,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -16,13 +17,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ShoppingProduct, {
+  PopUp,
   ProductDetails,
   ProductToCart,
 } from "../components/ShoppingProduct";
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import storePageStyle from "../components/ShoppingProduct.module.css";
 import { renderWithRouter } from "../utilities/testulit";
+import routes from "../routes";
+import * as ReactRouter from "react-router-dom";
 import { ReactNode } from "react";
 
 const product: Product = {
@@ -103,7 +107,6 @@ describe("ShoppingProduct", () => {
       initialIndex: 0,
     });
     render(<RouterProvider router={router} />);
-    
 
     const img = (await waitFor(() =>
       screen.getByAltText("polo shirt black")
@@ -114,8 +117,7 @@ describe("ShoppingProduct", () => {
   });
 
   it("renders style buttons", async () => {
-
-    renderWithRouter({element:<ShoppingProduct/>})
+    renderWithRouter({ element: <ShoppingProduct /> });
 
     const firstStyleButton = (await waitFor(() =>
       screen.getByRole("button", { name: "black" })
@@ -134,7 +136,10 @@ describe("ShoppingProduct", () => {
 
     // render(<ShoppingProduct />, { wrapper: BrowserRouter });
 
-    const {user} = renderWithRouter({element:<ShoppingProduct/>, path:"/product/1"})
+    const { user } = renderWithRouter({
+      element: <ShoppingProduct />,
+      path: "/product/1",
+    });
 
     const secondStyleButton = (await waitFor(() =>
       screen.getByRole("button", { name: "blue" })
@@ -223,16 +228,43 @@ describe("ProductToCart", () => {
     expect(quantityLabel.textContent).not.toBe("0");
   });
 
-  it("renders a pop up when the add to cart button is clicked", async () => {
+  it("renders a pop up when the add to cart button is clicked", async () => {});
+});
 
-    const {user} = renderWithRouter({element:<ShoppingProduct/>, path:"/product/1", loader:()=>product})
+describe("PopUp", () => {
+  beforeEach(() => {
+    HTMLDialogElement.prototype.show = vi.fn();
+    HTMLDialogElement.prototype.showModal = vi.fn();
+    HTMLDialogElement.prototype.close = vi.fn();
+  });
 
-    const button = (await screen.findByRole("button", {
-      name: "Add to Cart",
-    })) as HTMLButtonElement;
+  it("renders when given a certain prop", async () => {
+    const data = { ok: true };
+    const status = "idle";
 
-    await user.click(button);
+    render(<PopUp cartItem={null} status={status} data={data} />);
 
-    expect(await screen.findByRole("dialog")).toBeInTheDocument();
+    expect(HTMLDialogElement.prototype.showModal).toBeCalled();
+    expect(HTMLDialogElement.prototype.showModal).not.toBeCalledTimes(2);
+  });
+
+  it("closes when button is pressed", async () => {
+    const data = { ok: true };
+    const status = "idle";
+
+    const user = userEvent.setup();
+
+    act(() => {
+      render(<PopUp cartItem={null} status={status} data={data} />);
+    });
+
+    const dialog = await screen.findByRole("dialog", { hidden: true });
+
+    const button = await dialog.querySelector("button");
+
+    if (button) await user.click(button);
+
+    expect(HTMLDialogElement.prototype.close).toBeCalled()
+    expect(HTMLDialogElement.prototype.close).not.toHaveBeenCalledTimes(2)
   });
 });

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { Ref, RefObject, useEffect, useRef, useState } from "react";
 import { CartItem, Product, Style } from "../products";
 import style from "./ShoppingProduct.module.css";
-import { useFetcher, useLocation } from "react-router-dom";
+import { data, useFetcher, useLocation } from "react-router-dom";
 import { StarContainer } from "./StorePage";
 import { changeToPrice } from "../utilities/utility";
 
@@ -133,6 +133,7 @@ export const ProductToCart = ({ product }: { product: Product }) => {
       <input type="hidden" name="name" value={product.name} />
       <input type="hidden" name="style" value={productStyle} />
       <input type="hidden" name="price" value={product.price} />
+      <input type="hidden" name="quantity" value={quantity} />
     </div>
   );
 };
@@ -163,12 +164,34 @@ const ShoppingProduct = () => {
       <Picture product={product} onColorTabClick={handleChangeStyle} />
       <ProductDetails product={product} />
       <ProductToCart product={product} />
+      <PopUp cartItem={null} data={fetcher.data} status={fetcher.state}/>
     </fetcher.Form>
   );
 };
 
-export const PopUp = ({ cartItem }: { cartItem: CartItem }) => {
-  return <dialog></dialog>;
+export const PopUp = ({
+  cartItem,
+  status,
+  data
+}: {
+  cartItem: CartItem | null;
+  data: {ok:boolean};
+  status:"idle" | "submitting" | "loading"
+}) => {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    
+    // console.log("dfdsfsfdsfsd")
+    if (data?.ok && status === "idle") {
+      dialogRef.current?.showModal();
+    }
+  }, [data, status]);
+  return (
+    <dialog ref={dialogRef} role="dialog">
+      <button type="button" onClick={()=>{dialogRef.current?.close()}} data-testId="g">1</button>
+    </dialog>
+  );
 };
 
 export default ShoppingProduct;
