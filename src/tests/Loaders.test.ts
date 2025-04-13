@@ -218,12 +218,12 @@ describe("getCart", () => {
     };
 
     const cartItem: CartItem = {
-      // product: { ...product },
       id: product.id,
       quantity: 2,
       style: "",
       name: product.name,
       price: product.price,
+      picture:product.styles[0].picture
     };
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(

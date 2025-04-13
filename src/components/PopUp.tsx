@@ -3,15 +3,14 @@ import { CartItem } from "../products";
 import style from "./PopUp.module.css"
 
 export const PopUp = ({
-    cartItem,
     status,
     data,
   }: {
-    cartItem: CartItem | null;
     data: {productInfo:CartItem};
     status:"idle" | "submitting" | "loading"
   }) => {
     const dialogRef = useRef<HTMLDialogElement>(null)
+    const cartItem:CartItem | null = data ? data.productInfo : null
   
     useEffect(() => {
       

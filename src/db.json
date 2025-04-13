@@ -87,6 +87,37 @@
       "name": "Pierced Owl Rose Gold Plated Stainless Steel Double",
       "price": 10.99,
       "quantity": 1
+    },
+    {
+      "id": 1,
+      "name": "Talimo 3DX Ruby Ring",
+      "price": 199.9,
+      "quantity": 1,
+      "style": "Gold",
+      "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp"
+    },
+    {
+      "id": 1,
+      "name": "Talimo 3DX Ruby Ring",
+      "price": 199.9,
+      "quantity": 1,
+      "style": "Gold",
+      "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp"
+    },
+    {
+      "id": 9,
+      "name": "Orvella Silver Twist Earrings",
+      "price": 59.99,
+      "quantity": 1,
+      "picture": "/images/twistearrings.webp"
+    },
+    {
+      "id": 2,
+      "name": "Nevolta UltraPhone X",
+      "price": 899.99,
+      "quantity": 1,
+      "style": "White",
+      "picture": "/images/ultraphonewhite.webp"
     }
   ],
   "products": [

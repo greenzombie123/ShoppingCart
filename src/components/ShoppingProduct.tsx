@@ -89,7 +89,9 @@ export const ProductToCart = ({ product }: { product: Product }) => {
 
   const productStyle = product.styles.find(
     (productStyle) => productStyle.isCurrentStyle
-  )?.description;
+  ) //?.description;
+
+
 
   const handleQuantityIncrease = () => {
     setQuantity(quantity + 1);
@@ -132,9 +134,11 @@ export const ProductToCart = ({ product }: { product: Product }) => {
 
       <input type="hidden" name="id" value={product.id} />
       <input type="hidden" name="name" value={product.name} />
-      <input type="hidden" name="style" value={productStyle} />
+      <input type="hidden" name="style" value={productStyle?.description} />
       <input type="hidden" name="price" value={product.price} />
       <input type="hidden" name="quantity" value={quantity} />
+      <input type="hidden" name="picture" value={productStyle?.picture} />
+
     </div>
   );
 };
@@ -165,7 +169,7 @@ const ShoppingProduct = () => {
       <Picture product={product} onColorTabClick={handleChangeStyle} />
       <ProductDetails product={product} />
       <ProductToCart product={product} />
-      <PopUp cartItem={null} data={fetcher.data} status={fetcher.state}/>
+      <PopUp data={fetcher.data} status={fetcher.state}/>
     </fetcher.Form>
   );
 };
