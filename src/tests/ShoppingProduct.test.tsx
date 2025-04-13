@@ -9,7 +9,7 @@ import {
   test,
   vi,
 } from "vitest";
-import { Cart, Product } from "../products";
+import { Cart, CartItem, Product } from "../products";
 import {
   BrowserRouter,
   createMemoryRouter,
@@ -17,7 +17,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ShoppingProduct, {
-  PopUp,
   ProductDetails,
   ProductToCart,
 } from "../components/ShoppingProduct";
@@ -25,9 +24,7 @@ import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import storePageStyle from "../components/ShoppingProduct.module.css";
 import { renderWithRouter } from "../utilities/testulit";
-import routes from "../routes";
-import * as ReactRouter from "react-router-dom";
-import { ReactNode } from "react";
+import { PopUp } from "../components/PopUp";
 
 const product: Product = {
   id: 1,
@@ -264,7 +261,36 @@ describe("PopUp", () => {
 
     if (button) await user.click(button);
 
-    expect(HTMLDialogElement.prototype.close).toBeCalled()
-    expect(HTMLDialogElement.prototype.close).not.toHaveBeenCalledTimes(2)
+    expect(HTMLDialogElement.prototype.close).toBeCalled();
+    expect(HTMLDialogElement.prototype.close).not.toHaveBeenCalledTimes(2);
+  });
+
+  it("renders picture and info of cart item in the popup", async () => {
+    const data = { ok: true };
+    const status = "idle";
+    const cartItem: CartItem = {
+      name: product.name,
+      price: product.price,
+      id: product.id,
+      quantity: 1,
+      style: product.styles[0].description,
+    };
+
+    act(() => {
+      render(<PopUp cartItem={cartItem} status={status} data={data} />);
+    });
+
+    const dialog = await screen.findByRole("dialog", { hidden: true });
+
+    const img = dialog.querySelector("img");
+    const h2 = dialog.querySelector("h2");
+    const info = dialog.querySelectorAll("span");
+
+    expect(img?.src).toBe("/images/poloshirtblack.webp")
+    expect(h2?.textContent).toBe(product.name)
+    expect(info[0]?.textContent).toBe(product.price)
+    expect(info[1]?.textContent).toBe(product.styles[0].description)
+    expect(info[2]?.textContent).toBe(1)
+
   });
 });

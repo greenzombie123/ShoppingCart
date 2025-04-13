@@ -74,6 +74,13 @@
       "price": 39.99,
       "quantity": 1,
       "style": "Black"
+    },
+    {
+      "id": 13,
+      "name": "Maggie Lo Blouse",
+      "price": 39.99,
+      "quantity": 1,
+      "style": "Black"
     }
   ],
   "products": [

@@ -4,6 +4,7 @@ import style from "./ShoppingProduct.module.css";
 import { data, useFetcher, useLocation } from "react-router-dom";
 import { StarContainer } from "./StorePage";
 import { changeToPrice } from "../utilities/utility";
+import { PopUp } from "./PopUp";
 
 type PictureProps = {
   product: Product;
@@ -169,29 +170,5 @@ const ShoppingProduct = () => {
   );
 };
 
-export const PopUp = ({
-  cartItem,
-  status,
-  data
-}: {
-  cartItem: CartItem | null;
-  data: {ok:boolean};
-  status:"idle" | "submitting" | "loading"
-}) => {
-  const dialogRef = useRef<HTMLDialogElement>(null)
-
-  useEffect(() => {
-    
-    // console.log("dfdsfsfdsfsd")
-    if (data?.ok && status === "idle") {
-      dialogRef.current?.showModal();
-    }
-  }, [data, status]);
-  return (
-    <dialog ref={dialogRef} role="dialog">
-      <button type="button" onClick={()=>{dialogRef.current?.close()}} data-testId="g">1</button>
-    </dialog>
-  );
-};
 
 export default ShoppingProduct;
