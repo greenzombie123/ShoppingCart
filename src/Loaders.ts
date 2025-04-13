@@ -33,7 +33,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
       body: data,
     });
 
-    if (response.ok) return {ok:true};
+    if (response.ok) return {productInfo:cartItem};
   } else throw new Error("Cartitem is invalid");
 };
 

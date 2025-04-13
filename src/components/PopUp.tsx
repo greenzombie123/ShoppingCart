@@ -8,14 +8,14 @@ export const PopUp = ({
     data,
   }: {
     cartItem: CartItem | null;
-    data: {ok:boolean};
+    data: {productInfo:CartItem};
     status:"idle" | "submitting" | "loading"
   }) => {
     const dialogRef = useRef<HTMLDialogElement>(null)
   
     useEffect(() => {
       
-      if (data?.ok && status === "idle") {
+      if (data?.productInfo && status === "idle") {
         dialogRef.current?.showModal();
       }
     }, [data, status]);
