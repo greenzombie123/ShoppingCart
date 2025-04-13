@@ -81,6 +81,12 @@
       "price": 39.99,
       "quantity": 1,
       "style": "Black"
+    },
+    {
+      "id": 21,
+      "name": "Pierced Owl Rose Gold Plated Stainless Steel Double",
+      "price": 10.99,
+      "quantity": 1
     }
   ],
   "products": [

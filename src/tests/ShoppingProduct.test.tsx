@@ -274,6 +274,7 @@ describe("PopUp", () => {
       id: product.id,
       quantity: 1,
       style: product.styles[0].description,
+      picture: product.styles[0].picture,
     };
 
     act(() => {
@@ -286,11 +287,14 @@ describe("PopUp", () => {
     const h2 = dialog.querySelector("h2");
     const info = dialog.querySelectorAll("span");
 
-    expect(img?.src).toBe("/images/poloshirtblack.webp")
+    if(!img?.src) throw Error("WrONg!")
+
+    expect(img?.src).not.toBe(undefined)
+    expect(/\/images\/poloshirtblack\.webp/.test(img?.src)).toBe(true)
     expect(h2?.textContent).toBe(product.name)
-    expect(info[0]?.textContent).toBe(product.price)
+    expect(info[0]?.textContent).toBe(""+product.price)
     expect(info[1]?.textContent).toBe(product.styles[0].description)
-    expect(info[2]?.textContent).toBe(1)
+    expect(info[2]?.textContent).toBe("Quantity: 1")
 
   });
 });
