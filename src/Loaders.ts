@@ -13,15 +13,17 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const id = Number(formData.get("id"));
   const quantity = Number(formData.get("quantity"));
   const style = formData.get("style");
+  const picture = formData.get("picture")
 
 
-  if (name && price && id && quantity) {
+  if (name && price && id && quantity && picture) {
     const cartItem: CartItem = {
       name: name as string,
       price: price,
       id: id,
       quantity: quantity,
-      style: style ? style as string : undefined
+      style: style ? style as string : undefined,
+      picture:picture as string
     };
 
     const data = JSON.stringify(cartItem);

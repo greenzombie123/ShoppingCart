@@ -480,6 +480,7 @@ describe("addToCart", () => {
     formData.append("id", "1");
     formData.append("quantity", "2");
     formData.append("style", "red");
+    formData.append("picture", "http://localhost:3000/images/poloshirtblack.webp");
 
     const request: Request = new Request("http://localhost:3000/product/1", {
       method: "POST",
@@ -497,7 +498,7 @@ describe("addToCart", () => {
     expect(spy).toBeCalled();
 
     expect(spy).toBeCalledWith("http://localhost:3000/cart", {
-      body: '{"name":"stuff","price":222,"id":1,"quantity":2,"style":"red"}',
+      body: '{"name":"stuff","price":222,"id":1,"quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp"}',
       method: "POST",
     });
   });
