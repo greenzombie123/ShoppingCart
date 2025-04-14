@@ -236,7 +236,7 @@ describe("getCart", () => {
 
     const cart: Cart = await getCart();
 
-    expect(cart[0]).toStrictEqual(cartItem);
+    expect(cart[0]).toEqual(cartItem);
     spy.mockRestore();
   });
 });

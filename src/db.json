@@ -27,7 +27,16 @@
       "h": "f"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": 2,
+      "name": "Nevolta UltraPhone X",
+      "price": 899.99,
+      "quantity": 3,
+      "style": "Blue",
+      "picture": "/images/s22-ultra-sky-blue-has-arrived-v0-ifgvi6j4qum81.jpg"
+    }
+  ],
   "products": [
     {
       "name": "Talimo 3DX Ruby Ring",
