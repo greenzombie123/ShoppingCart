@@ -236,7 +236,6 @@ describe("PopUp", () => {
   });
 
   it("renders when given a certain prop", async () => {
-    // const data = { ok: true };
     const data: { productInfo: CartItem } = {
       productInfo: {
         name: product.name,
@@ -249,7 +248,7 @@ describe("PopUp", () => {
     };
     const status = "idle";
 
-    render(<PopUp cartItem={null} status={status} data={data} />);
+    render(<PopUp status={status} data={data} />);
 
     expect(HTMLDialogElement.prototype.showModal).toBeCalled();
     expect(HTMLDialogElement.prototype.showModal).not.toBeCalledTimes(2);
@@ -271,7 +270,7 @@ describe("PopUp", () => {
     const user = userEvent.setup();
 
     act(() => {
-      render(<PopUp cartItem={null} status={status} data={data} />);
+      render(<PopUp status={status} data={data} />);
     });
 
     const dialog = await screen.findByRole("dialog", { hidden: true });
@@ -296,17 +295,9 @@ describe("PopUp", () => {
       },
     };
     const status = "idle";
-    const cartItem: CartItem = {
-      name: product.name,
-      price: product.price,
-      id: product.id,
-      quantity: 1,
-      style: product.styles[0].description,
-      picture: product.styles[0].picture,
-    };
 
     act(() => {
-      render(<PopUp cartItem={cartItem} status={status} data={data} />);
+      render(<PopUp status={status} data={data} />);
     });
 
     const dialog = await screen.findByRole("dialog", { hidden: true });
