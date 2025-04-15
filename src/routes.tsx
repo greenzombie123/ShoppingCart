@@ -4,6 +4,7 @@ import { addToCart, getCart, getRandomProducts, getStoreItems } from "./Loaders"
 import Carousel from "./components/Carousel";
 import StorePage from "./components/StorePage";
 import ShoppingProduct from "./components/ShoppingProduct";
+import ShoppingCart from "./components/ShoppingCart";
 
 const routes: RouteObject[] = [
   {
@@ -26,6 +27,10 @@ const routes: RouteObject[] = [
         action:addToCart,
         element:<ShoppingProduct/>,
         path:"product/:id"
+      },
+      {
+        element:<ShoppingCart/>,
+        path:"mycart"
       }
     ],
   },

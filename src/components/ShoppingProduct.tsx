@@ -1,7 +1,7 @@
-import React, { Ref, RefObject, useEffect, useRef, useState } from "react";
-import { CartItem, Product, Style } from "../products";
+import  {  useState } from "react";
+import { Product, Style } from "../products";
 import style from "./ShoppingProduct.module.css";
-import { data, useFetcher, useLocation } from "react-router-dom";
+import {  useFetcher, useLocation } from "react-router-dom";
 import { StarContainer } from "./StorePage";
 import { changeToPrice } from "../utilities/utility";
 import { PopUp } from "./PopUp";

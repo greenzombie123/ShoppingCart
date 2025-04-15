@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { CartItem } from "../products";
-import style from "./PopUp.module.css"
+//import style from "./PopUp.module.css"
 
 export const PopUp = ({
     status,

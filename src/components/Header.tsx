@@ -1,7 +1,6 @@
 import { Link, useLoaderData} from "react-router-dom";
 import style from "./Header.module.css";
 import { Cart } from "../products";
-import { preview } from "vite";
 
 export const CartIcon = ({cart}:{cart:Cart}) => {
   const cartItemNumber = cart.reduce<number>((prev, next)=>{

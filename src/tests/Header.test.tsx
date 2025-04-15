@@ -78,22 +78,3 @@ describe("Header component", () => {
 
   });
 });
-
-describe.skip("CartIcon", () => {
-  it("Renders on the screen with a five", async () => {
-    const routes = [{ path: "/", element: <CartIcon number={5} /> }];
-
-    const router = createMemoryRouter(routes, {
-      initialEntries: ["/"],
-      initialIndex: 0,
-    });
-
-    render(<RouterProvider router={router} />);
-
-    const cartIcon = await screen.findByRole("link");
-    const numberText = await screen.findByText(5);
-
-    expect(cartIcon).toBeInTheDocument();
-    expect(numberText).toBeInTheDocument();
-  });
-});

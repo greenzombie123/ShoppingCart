@@ -1,0 +1,373 @@
+.shoppingCart {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    flex: 1;
+
+    .cart {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        height: 78vh;
+        overflow-y: scroll;
+
+        .item {
+            display: flex;
+            height: 200px;
+            border: 1px solid;
+
+            a {
+                cursor: pointer;
+
+                .imgContainer {
+                    display: flex;
+                    justify-content: center;
+                    height: 100%;
+                    width: 200px;
+                    background-color: rgb(231, 231, 231);
+
+                    img {
+                        height: 100%;
+                        max-width: 100%;
+                    }
+                }
+            }
+
+            .itemInfo_left {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                padding: 10px;
+                margin-right: auto;
+
+                .name {
+                    font-size: 1.2rem;
+                }
+
+                .style {
+                    font-size: 1.2rem;
+                }
+
+                .removeButton {
+                    margin-top: auto;
+                    background-color: yellow;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+            }
+
+            .itemInfo_right {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: end;
+                padding: 10px;
+
+                .quantityCounter {
+                    display: flex;
+                    border: 1px solid;
+
+                    button {
+                        border: none;
+                        cursor: pointer;
+                    }
+
+                    .increaseButton {}
+
+                    .counter {
+                        padding: 0 8px;
+                    }
+
+                    .decreaseButton {}
+                }
+
+                .price {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+
+    .rightSide {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        flex: 0 0 300px;
+
+        .priceContainer {
+            display: flex;
+            flex-direction: column;
+            height: 120px;
+            width: 100%;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 10px;
+
+            .topPrice {
+                display: flex;
+                justify-content: space-between;
+
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .bottomPrice {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.1rem;
+
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .checkoutButton {
+                background-color: yellow;
+                border-radius: 5px;
+                font-size: 1.5rem;
+                margin-top: auto;
+                cursor: pointer;
+            }
+        }
+
+        .viewedList {
+            border-radius: 5px;
+            border: 1px solid;
+            height: 60vh;
+            padding: 5px;
+            overflow-y: scroll;
+
+            .heading {
+                font-size: 1.5rem;
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .viewedItem {
+                display: flex;
+                justify-content: space-between;
+                border-radius: 5px;
+                border: 1px solid;
+                padding: 5px;
+                margin-bottom: 5px;
+
+                a {
+                    cursor: pointer;
+
+                    .imgContainer {
+                        display: flex;
+                        justify-content: center;
+                        height: 100%;
+                        width: 100px;
+                        background-color: rgb(231, 231, 231);
+
+                        img {
+                            height: 100%;
+                            max-width: 100%;
+                        }
+                    }
+                }
+
+                .infoContainer {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .name {}
+
+                    .stars {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+    
+                        .stars_container {
+                            display: flex;
+    
+                            .star {
+                                width: 15px;
+                                aspect-ratio: 1;
+                                background-color: rgb(132, 132, 132);
+                                clip-path: polygon(50% 0,
+                                        calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
+                                        calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                                        calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
+                                        calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn))));
+    
+                                &.on {
+                                    background: rgb(255, 150, 4);
+                                }
+                            }
+                        }
+    
+                        .ratings {
+                            font-size: 1rem;
+                        }
+                    }
+
+                    .price{
+                        font-size: 1.3rem;
+                    }
+
+                    .addButton {
+                        background-color: yellow;
+                        border-radius: 5px;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*TODO 1000px or lower */
+@media (max-width:1000px) {
+    .shoppingCart {
+         display: grid;
+        grid-template-areas: 
+        "cart"
+        "rightside"
+        ;
+    
+        .cart {
+            grid-area: cart;
+            height: 100%;
+    
+            .item {
+              
+    
+                a {
+                    cursor: pointer;
+    
+                    .imgContainer {
+                        
+                        img {
+                        }
+                    }
+                }
+    
+                .itemInfo_left {
+    
+                    .name {
+                    }
+    
+                    .style {
+                    }
+    
+                    .removeButton {
+                    }
+    
+                }
+    
+                .itemInfo_right {
+    
+                    .quantityCounter {
+    
+                        button {
+                        }
+    
+                        .increaseButton {}
+    
+                        .counter {
+                        }
+    
+                        .decreaseButton {}
+                    }
+    
+                    .price {
+                    }
+                }
+            }
+        }
+    
+        .rightSide {
+            grid-area: rightside;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+    
+            flex: 0 0 300px;
+    
+            .priceContainer {
+             
+                .topPrice {
+    
+                    p {
+                    }
+                }
+    
+                .bottomPrice {
+    
+                    p {
+                    }
+                }
+    
+                .checkoutButton {
+                    
+                }
+            }
+    
+            .viewedList {
+                position: relative;
+                display: flex;
+                width: 100vw;
+                height: 20vh;
+                padding-top: 50px;
+                overflow-x: scroll;
+                gap: 10px;
+    
+                .heading {
+                   position: absolute;
+                   width: 100%;
+                   text-align: left;
+                   top: -4px;
+                   left: 10px;
+                }
+    
+                .viewedItem {
+                    gap: 50px;
+
+                    a {
+                       
+                        .imgContainer {
+                            
+                            img {
+                            
+                            }
+                        }
+                    }
+    
+                    .infoContainer {
+                      
+                        .name {}
+    
+                        .stars {
+                           
+                            .stars_container {
+                                
+                                .star {
+                                    &.on {
+                                        }
+                                }
+                            }
+        
+                            .ratings {
+                            }
+                        }
+    
+                        .price{
+                        }
+    
+                        .addButton {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

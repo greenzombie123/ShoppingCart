@@ -29,12 +29,19 @@
   ],
   "cart": [
     {
-      "id": 2,
+      "id": "2",
       "name": "Nevolta UltraPhone X",
       "price": 899.99,
       "quantity": 3,
       "style": "Blue",
       "picture": "/images/s22-ultra-sky-blue-has-arrived-v0-ifgvi6j4qum81.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Orvella Silver Twist Earrings",
+      "price": 59.99,
+      "quantity": 3,
+      "picture": "/images/twistearrings.webp"
     }
   ],
   "products": [
