@@ -6,3 +6,4 @@ export const changeToPrice = (price: number) => {
     return "$" + frontPart + "," + backPart;
   } else return "$" + string;
 };
+
