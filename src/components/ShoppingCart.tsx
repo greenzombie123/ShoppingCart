@@ -23,7 +23,7 @@ const Item = ({ cartItem }: { cartItem: CartItem }) => {
           <p className={style.counter}>{cartItem.quantity}</p>
           <button className={style.decreaseButton}>&#8722;</button>
         </div>
-        <p className={style.price}>{"$"+(cartItem.price * cartItem.quantity)}</p>
+        <p className={style.price}>{"$"+(cartItem.price * cartItem.quantity).toFixed(2)}</p>
       </div>
     </div>
   );

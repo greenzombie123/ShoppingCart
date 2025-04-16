@@ -28,7 +28,7 @@ const routes: RouteObject[] = [
         path:"product/:id"
       },
       {
-        action:getCart,
+        loader:getCart,
         element:<ShoppingCart/>,
         path:"mycart"
       }
