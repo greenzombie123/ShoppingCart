@@ -7,3 +7,4 @@ export const changeToPrice = (price: number) => {
   } else return "$" + string;
 };
 
+// 00.22   0000.22

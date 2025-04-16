@@ -11,7 +11,6 @@ const routes: RouteObject[] = [
     path: "/",
     element: <App />,
     loader: getCart,
-    HydrateFallback:null,
     children: [
       {
         loader:getRandomProducts,
@@ -29,6 +28,7 @@ const routes: RouteObject[] = [
         path:"product/:id"
       },
       {
+        action:getCart,
         element:<ShoppingCart/>,
         path:"mycart"
       }

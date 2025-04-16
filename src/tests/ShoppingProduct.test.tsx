@@ -29,7 +29,7 @@ import { PopUp } from "../components/PopUp";
 const product: Product = {
   id: 1,
   name: "polo shirt",
-  price: 2314,
+  price: 23.14,
   ratings: 334,
   stars: 2,
   likes: 380,

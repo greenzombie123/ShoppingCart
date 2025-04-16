@@ -78,7 +78,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
         <StarContainer stars={product.stars} style={style} />
         <div className={style.ratings}>({product.ratings})</div>
       </div>
-      <p>{changeToPrice(product.price)}</p>
+      <p>{"$"+product.price}</p>
       <p className={style.style}>{description && `Style: ${description}`}</p>
     </div>
   );

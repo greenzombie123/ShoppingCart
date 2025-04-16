@@ -75,7 +75,6 @@ const getCart = async (): Promise<Cart> => {
 };
 
 const getRandomProducts = async (): Promise<Product[]> => {
-  //:Promise<Product[]>
 
   const data = await fetch("http://localhost:3000/products");
   const products: Product[] = await data.json();
