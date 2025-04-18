@@ -13,6 +13,8 @@ const QuantityCounter = ({
   onIncreaseButtonClick: (id: number) => void;
   onDecreaseButtonClick: (id: number) => void;
 }) => {
+  // console.log(cartItem.quantity)
+
   return (
     <div className={style.quantityCounter}>
       <button
@@ -84,21 +86,27 @@ const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
   const [cartItems, setCartItems] = useState(cart);
 
+  console.log(cartItems);
+
   const handleQuantityIncrease = (id: number) => {
+    // console.log(cartItems)
+
     const updatedCart = cartItems.map((cartItem) => {
       if (cartItem.id === id)
         return {
           ...cartItem,
-          quantity: ++cartItem.quantity,
+          quantity: cartItem.quantity + 1,
         };
       else return cartItem;
     });
+
+    // console.log(updatedCart)
 
     setCartItems(updatedCart);
   };
 
   const handleQuantityDecrease = (id: number) => {
-    const currentCartItem = cartItems.find((cartItem) => cartItem.id);
+    const currentCartItem = cartItems.find((cartItem) => cartItem.id === id);
     if (currentCartItem?.quantity === 1) return;
 
     const updatedCart = cartItems.map((cartItem) => {
@@ -116,7 +124,7 @@ const ShoppingCart = () => {
   return (
     <form className={style.shoppingCart}>
       <div className={style.cart}>
-        {cart.map((cartItem) => (
+        {cartItems.map((cartItem) => (
           <Item
             cartItem={cartItem}
             key={cartItem.id}

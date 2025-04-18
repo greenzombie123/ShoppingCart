@@ -129,5 +129,12 @@ describe("ShoppingCart", () => {
     })
 
     expect(quantityCounter.textContent).toBe("3");
+
+    await waitFor(async ()=>{
+        await user.click(increaseButton)
+    })
+    
+    expect(quantityCounter.textContent).toBe("4");
   });
+
 });
