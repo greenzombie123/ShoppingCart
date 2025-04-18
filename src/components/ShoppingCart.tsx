@@ -3,8 +3,39 @@ import { Cart, CartItem } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
 
-const Item = ({ cartItem }: { cartItem: CartItem }) => {
+const QuantityCounter = ({ cartItem }: { cartItem: CartItem }) => {
+  return (
+    <div className={style.quantityCounter}>
+      <button
+        type="button"
+        id="increaseButton"
+        aria-label="Increase quantity"
+        className={style.increaseButton}
+        //onClick={handleQuantityIncrease}
+      >
+        &#43;
+      </button>
+      <output
+        htmlFor="increaseButton decreaseButton"
+        name="quantity"
+        className={style.counter}
+      >
+        {cartItem.quantity}
+      </output>
+      <button
+        type="button"
+        id="decreaseButton"
+        aria-label="Decrease quantity"
+        className={style.decreaseButton}
+        //onClick={handleQuantityDecrease}
+      >
+        &#8722;
+      </button>
+    </div>
+  );
+};
 
+const Item = ({ cartItem }: { cartItem: CartItem }) => {
   return (
     <div className={style.item}>
       <Link to={`/product/${cartItem.id}`}>
@@ -18,24 +49,29 @@ const Item = ({ cartItem }: { cartItem: CartItem }) => {
         <button className={style.removeButton}>Remove</button>
       </div>
       <div className={style.itemInfo_right}>
-        <div className={style.quantityCounter}>
+        <QuantityCounter cartItem={cartItem} />
+        {/* <div className={style.quantityCounter}>
           <button className={style.increaseButton}>&#43;</button>
           <p className={style.counter}>{cartItem.quantity}</p>
           <button className={style.decreaseButton}>&#8722;</button>
-        </div>
-        <p className={style.price}>{"$"+(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+        </div> */}
+        <p className={style.price}>
+          {"$" + (cartItem.price * cartItem.quantity).toFixed(2)}
+        </p>
       </div>
     </div>
   );
 };
 
 const ShoppingCart = () => {
-  const cart = useLoaderData<Cart>()
+  const cart = useLoaderData<Cart>();
 
   return (
     <form className={style.shoppingCart}>
       <div className={style.cart}>
-      {cart.map(cartItem=><Item cartItem={cartItem} key={cartItem.id}/>)}
+        {cart.map((cartItem) => (
+          <Item cartItem={cartItem} key={cartItem.id} />
+        ))}
       </div>
       <div className={style.rightSide}>
         <div className={style.priceContainer}>

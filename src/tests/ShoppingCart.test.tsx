@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import ShoppingCart from "../components/ShoppingCart";
 import { mockCart, renderWithRouter } from "../utilities/testulit";
-import { screen } from "@testing-library/dom";
+import { findByRole, screen } from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 
 describe("ShoppingCart", () => {
   it("renders cart item", async () => {
@@ -67,5 +67,63 @@ describe("ShoppingCart", () => {
 
     const cartItem1Name2 = await screen.findByText("Maggie Lo Blouse");
     expect(cartItem1Name2).toBeInTheDocument();
+  });
+
+  it("renders a quantity counter that shows the quantity of a cart item", async ()=>{
+    const route = {
+        element: <ShoppingCart />,
+        path: "/",
+        loader: () => ([{
+          name: "LBJ Boom Box",
+          id: 12,
+          price: 59.99,
+          style: "Red",
+          picture: "/images/redjbl-boombox.jpeg",
+          quantity: 10,
+        }]),
+      };
+  
+      const { findByRole } = renderWithRouter(route);
+      
+      const increaseButton = (await findByRole("button", {
+        name: "Increase quantity",
+      })) as HTMLButtonElement;
+
+      const decreaseButton = (await findByRole("button", {
+        name: "Decrease quantity",
+      })) as HTMLButtonElement;
+
+      const quantityCounter = await findByRole("status");
+  
+      expect(quantityCounter.textContent).toBe("10");
+      expect(increaseButton).toBeInTheDocument()
+      expect(decreaseButton).toBeInTheDocument()
+  })
+
+  it.skip("changes quantity of cart items to 2 when quantity counter is clicked", async () => {
+    const route = {
+      element: <ShoppingCart />,
+      path: "/",
+      loader: () => ({
+        name: "LBJ Boom Box",
+        id: 12,
+        price: 59.99,
+        style: "Red",
+        picture: "/images/redjbl-boombox.jpeg",
+        quantity: 2,
+      }),
+    };
+
+    const { user, findByRole } = renderWithRouter(route);
+    const increaseButton = (await findByRole("button", {
+      name: "Increase quantity",
+    })) as HTMLButtonElement;
+    const quantityCounter = await findByRole("status");
+
+    act(() => {
+      user.click(increaseButton);
+    });
+
+    expect(quantityCounter.textContent).toBe(3);
   });
 });
