@@ -2,8 +2,17 @@ import { Link, useLoaderData } from "react-router-dom";
 import { Cart, CartItem } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
+import { useState } from "react";
 
-const QuantityCounter = ({ cartItem }: { cartItem: CartItem }) => {
+const QuantityCounter = ({
+  cartItem,
+  onIncreaseButtonClick,
+  onDecreaseButtonClick,
+}: {
+  cartItem: CartItem;
+  onIncreaseButtonClick: (id: number) => void;
+  onDecreaseButtonClick: (id: number) => void;
+}) => {
   return (
     <div className={style.quantityCounter}>
       <button
@@ -11,7 +20,7 @@ const QuantityCounter = ({ cartItem }: { cartItem: CartItem }) => {
         id="increaseButton"
         aria-label="Increase quantity"
         className={style.increaseButton}
-        //onClick={handleQuantityIncrease}
+        onClick={() => onIncreaseButtonClick(cartItem.id)}
       >
         &#43;
       </button>
@@ -27,7 +36,7 @@ const QuantityCounter = ({ cartItem }: { cartItem: CartItem }) => {
         id="decreaseButton"
         aria-label="Decrease quantity"
         className={style.decreaseButton}
-        //onClick={handleQuantityDecrease}
+        onClick={() => onDecreaseButtonClick(cartItem.id)}
       >
         &#8722;
       </button>
@@ -35,7 +44,15 @@ const QuantityCounter = ({ cartItem }: { cartItem: CartItem }) => {
   );
 };
 
-const Item = ({ cartItem }: { cartItem: CartItem }) => {
+const Item = ({
+  cartItem,
+  onIncreaseButtonClick,
+  onDecreaseButtonClick,
+}: {
+  cartItem: CartItem;
+  onIncreaseButtonClick: (id: number) => void;
+  onDecreaseButtonClick: (id: number) => void;
+}) => {
   return (
     <div className={style.item}>
       <Link to={`/product/${cartItem.id}`}>
@@ -49,12 +66,12 @@ const Item = ({ cartItem }: { cartItem: CartItem }) => {
         <button className={style.removeButton}>Remove</button>
       </div>
       <div className={style.itemInfo_right}>
-        <QuantityCounter cartItem={cartItem} />
-        {/* <div className={style.quantityCounter}>
-          <button className={style.increaseButton}>&#43;</button>
-          <p className={style.counter}>{cartItem.quantity}</p>
-          <button className={style.decreaseButton}>&#8722;</button>
-        </div> */}
+        <QuantityCounter
+          cartItem={cartItem}
+          onDecreaseButtonClick={onDecreaseButtonClick}
+          onIncreaseButtonClick={onIncreaseButtonClick}
+        />
+
         <p className={style.price}>
           {"$" + (cartItem.price * cartItem.quantity).toFixed(2)}
         </p>
@@ -65,12 +82,47 @@ const Item = ({ cartItem }: { cartItem: CartItem }) => {
 
 const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
+  const [cartItems, setCartItems] = useState(cart);
+
+  const handleQuantityIncrease = (id: number) => {
+    const updatedCart = cartItems.map((cartItem) => {
+      if (cartItem.id === id)
+        return {
+          ...cartItem,
+          quantity: ++cartItem.quantity,
+        };
+      else return cartItem;
+    });
+
+    setCartItems(updatedCart);
+  };
+
+  const handleQuantityDecrease = (id: number) => {
+    const currentCartItem = cartItems.find((cartItem) => cartItem.id);
+    if (currentCartItem?.quantity === 1) return;
+
+    const updatedCart = cartItems.map((cartItem) => {
+      if (cartItem.id === id)
+        return {
+          ...cartItem,
+          quantity: cartItem.quantity - 1,
+        };
+      else return cartItem;
+    });
+
+    setCartItems(updatedCart);
+  };
 
   return (
     <form className={style.shoppingCart}>
       <div className={style.cart}>
         {cart.map((cartItem) => (
-          <Item cartItem={cartItem} key={cartItem.id} />
+          <Item
+            cartItem={cartItem}
+            key={cartItem.id}
+            onDecreaseButtonClick={handleQuantityDecrease}
+            onIncreaseButtonClick={handleQuantityIncrease}
+          />
         ))}
       </div>
       <div className={style.rightSide}>

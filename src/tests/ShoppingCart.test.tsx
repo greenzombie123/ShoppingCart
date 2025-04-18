@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import ShoppingCart from "../components/ShoppingCart";
 import { mockCart, renderWithRouter } from "../utilities/testulit";
-import { findByRole, screen } from "@testing-library/dom";
+import { findByRole, screen, waitFor } from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
@@ -100,18 +100,18 @@ describe("ShoppingCart", () => {
       expect(decreaseButton).toBeInTheDocument()
   })
 
-  it.skip("changes quantity of cart items to 2 when quantity counter is clicked", async () => {
+  it("changes quantity of cart items to 2 when quantity counter is clicked", async () => {
     const route = {
       element: <ShoppingCart />,
       path: "/",
-      loader: () => ({
+      loader: () => ([{
         name: "LBJ Boom Box",
         id: 12,
         price: 59.99,
         style: "Red",
         picture: "/images/redjbl-boombox.jpeg",
         quantity: 2,
-      }),
+      }]),
     };
 
     const { user, findByRole } = renderWithRouter(route);
@@ -120,10 +120,14 @@ describe("ShoppingCart", () => {
     })) as HTMLButtonElement;
     const quantityCounter = await findByRole("status");
 
-    act(() => {
-      user.click(increaseButton);
-    });
+    // act(() => {
+    //   user.click(increaseButton);
+    // });
 
-    expect(quantityCounter.textContent).toBe(3);
+    await waitFor(async ()=>{
+        await user.click(increaseButton)
+    })
+
+    expect(quantityCounter.textContent).toBe("3");
   });
 });
