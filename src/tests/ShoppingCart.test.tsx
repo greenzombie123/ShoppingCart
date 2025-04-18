@@ -2,6 +2,15 @@ import { describe, expect, it } from "vitest";
 import ShoppingCart from "../components/ShoppingCart";
 import { mockCart, renderWithRouter } from "../utilities/testulit";
 import { screen } from "@testing-library/dom";
+import {
+  createMemoryRouter,
+  RouteObject,
+  RouteProps,
+  RouterProvider,
+} from "react-router-dom";
+import App from "../App";
+import userEvent from "@testing-library/user-event";
+import { render } from "@testing-library/react";
 
 describe("ShoppingCart", () => {
   it("renders cart item", async () => {
@@ -25,5 +34,38 @@ describe("ShoppingCart", () => {
     expect(cartItem1Quantity).toBeInTheDocument();
     expect(cartItem1Price).toBeInTheDocument();
     if (images[0]) expect(imgSrc.test(images[0].src)).toBe(true);
+  });
+
+  it("is rendered when the cart icon is clicked", async () => {
+    const route: RouteObject[] = [
+      {
+        element: <App />,
+        path: "/",
+        loader: () => mockCart,
+        children: [
+          {
+            element: <ShoppingCart />,
+            path: "/mycart",
+            loader: () => mockCart,
+          },
+          {
+            element: <div>Mock</div>,
+            index: true,
+          },
+        ],
+      },
+    ];
+    const user = userEvent.setup();
+    const router = createMemoryRouter(route);
+    render(<RouterProvider router={router} />);
+
+    const cartIcon = await screen.findByRole("link", { name: "cartIcon" });
+    await user.click(cartIcon);
+
+    const cartItem1Name1 = await screen.findByText("LBJ Boom Box");
+    expect(cartItem1Name1).toBeInTheDocument();
+
+    const cartItem1Name2 = await screen.findByText("Maggie Lo Blouse");
+    expect(cartItem1Name2).toBeInTheDocument();
   });
 });

@@ -67,9 +67,10 @@ exports[`Header component > renders links correctly 1`] = `
     </li>
   </ul>
   <a
+    aria-label="cartIcon"
     class="_shoppingCartIcon_1d983c"
     data-discover="true"
-    href="/cart"
+    href="/mycart"
   >
     <div
       class="_number_1d983c"

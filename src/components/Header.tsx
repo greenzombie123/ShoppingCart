@@ -8,7 +8,7 @@ export const CartIcon = ({cart}:{cart:Cart}) => {
   }, 0)
 
   return (
-    <Link to="/cart" className={style.shoppingCartIcon}>
+    <Link to="/mycart" className={style.shoppingCartIcon} aria-label="cartIcon">
       <div className={style.number}>{cartItemNumber}</div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <title>cart-outline</title>
