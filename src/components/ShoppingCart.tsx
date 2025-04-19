@@ -3,6 +3,7 @@ import { Cart, CartItem } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
 import { useState } from "react";
+import CartPopUp from "./CartPopUp";
 
 const QuantityCounter = ({
   cartItem,
@@ -50,11 +51,17 @@ const Item = ({
   cartItem,
   onIncreaseButtonClick,
   onDecreaseButtonClick,
+  setPopUp,
 }: {
   cartItem: CartItem;
   onIncreaseButtonClick: (id: number) => void;
   onDecreaseButtonClick: (id: number) => void;
+  setPopUp: React.Dispatch<React.SetStateAction<CartItem | null>>;
 }) => {
+  const handleRemoveButtonClick = () => {
+    setPopUp(cartItem);
+  };
+
   return (
     <div className={style.item}>
       <Link to={`/product/${cartItem.id}`}>
@@ -65,7 +72,14 @@ const Item = ({
       <div className={style.itemInfo_left}>
         <p className={style.name}>{cartItem.name}</p>
         {cartItem.style && <p className={style.style}>{cartItem.style}</p>}
-        <button className={style.removeButton}>Remove</button>
+        <button
+          type="button"
+          aria-label="remove Cartitem Button"
+          className={style.removeButton}
+          onClick={handleRemoveButtonClick}
+        >
+          Remove
+        </button>
       </div>
       <div className={style.itemInfo_right}>
         <QuantityCounter
@@ -85,12 +99,9 @@ const Item = ({
 const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
   const [cartItems, setCartItems] = useState(cart);
-
-  console.log(cartItems);
+  const [popUpData, setPopUpData] = useState<CartItem | null>(null);
 
   const handleQuantityIncrease = (id: number) => {
-    // console.log(cartItems)
-
     const updatedCart = cartItems.map((cartItem) => {
       if (cartItem.id === id)
         return {
@@ -99,8 +110,6 @@ const ShoppingCart = () => {
         };
       else return cartItem;
     });
-
-    // console.log(updatedCart)
 
     setCartItems(updatedCart);
   };
@@ -130,6 +139,7 @@ const ShoppingCart = () => {
             key={cartItem.id}
             onDecreaseButtonClick={handleQuantityDecrease}
             onIncreaseButtonClick={handleQuantityIncrease}
+            setPopUp={setPopUpData}
           />
         ))}
       </div>
@@ -213,6 +223,8 @@ const ShoppingCart = () => {
           </div> */}
         </div>
       </div>
+
+      <CartPopUp popUpData={popUpData} setPopUp={setPopUpData} />
     </form>
   );
 };

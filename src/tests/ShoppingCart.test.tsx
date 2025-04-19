@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import ShoppingCart from "../components/ShoppingCart";
 import { mockCart, renderWithRouter } from "../utilities/testulit";
 import { findByRole, screen, waitFor } from "@testing-library/dom";
@@ -69,49 +69,53 @@ describe("ShoppingCart", () => {
     expect(cartItem1Name2).toBeInTheDocument();
   });
 
-  it("renders a quantity counter that shows the quantity of a cart item", async ()=>{
+  it("renders a quantity counter that shows the quantity of a cart item", async () => {
     const route = {
-        element: <ShoppingCart />,
-        path: "/",
-        loader: () => ([{
+      element: <ShoppingCart />,
+      path: "/",
+      loader: () => [
+        {
           name: "LBJ Boom Box",
           id: 12,
           price: 59.99,
           style: "Red",
           picture: "/images/redjbl-boombox.jpeg",
           quantity: 10,
-        }]),
-      };
-  
-      const { findByRole } = renderWithRouter(route);
-      
-      const increaseButton = (await findByRole("button", {
-        name: "Increase quantity",
-      })) as HTMLButtonElement;
+        },
+      ],
+    };
 
-      const decreaseButton = (await findByRole("button", {
-        name: "Decrease quantity",
-      })) as HTMLButtonElement;
+    const { findByRole } = renderWithRouter(route);
 
-      const quantityCounter = await findByRole("status");
-  
-      expect(quantityCounter.textContent).toBe("10");
-      expect(increaseButton).toBeInTheDocument()
-      expect(decreaseButton).toBeInTheDocument()
-  })
+    const increaseButton = (await findByRole("button", {
+      name: "Increase quantity",
+    })) as HTMLButtonElement;
+
+    const decreaseButton = (await findByRole("button", {
+      name: "Decrease quantity",
+    })) as HTMLButtonElement;
+
+    const quantityCounter = await findByRole("status");
+
+    expect(quantityCounter.textContent).toBe("10");
+    expect(increaseButton).toBeInTheDocument();
+    expect(decreaseButton).toBeInTheDocument();
+  });
 
   it("changes quantity of cart items to 2 when quantity counter is clicked", async () => {
     const route = {
       element: <ShoppingCart />,
       path: "/",
-      loader: () => ([{
-        name: "LBJ Boom Box",
-        id: 12,
-        price: 59.99,
-        style: "Red",
-        picture: "/images/redjbl-boombox.jpeg",
-        quantity: 2,
-      }]),
+      loader: () => [
+        {
+          name: "LBJ Boom Box",
+          id: 12,
+          price: 59.99,
+          style: "Red",
+          picture: "/images/redjbl-boombox.jpeg",
+          quantity: 2,
+        },
+      ],
     };
 
     const { user, findByRole } = renderWithRouter(route);
@@ -120,21 +124,48 @@ describe("ShoppingCart", () => {
     })) as HTMLButtonElement;
     const quantityCounter = await findByRole("status");
 
-    // act(() => {
-    //   user.click(increaseButton);
-    // });
-
-    await waitFor(async ()=>{
-        await user.click(increaseButton)
-    })
+    await waitFor(async () => {
+      await user.click(increaseButton);
+    });
 
     expect(quantityCounter.textContent).toBe("3");
 
-    await waitFor(async ()=>{
-        await user.click(increaseButton)
-    })
-    
+    await waitFor(async () => {
+      await user.click(increaseButton);
+    });
+
     expect(quantityCounter.textContent).toBe("4");
   });
 
+  it("renders a popup confirming if you want to remove cart when remove button is clicked", async () => {
+    HTMLDialogElement.prototype.showModal = vi.fn();
+    HTMLDialogElement.prototype.close = vi.fn();
+
+    const route = {
+      element: <ShoppingCart />,
+      path: "/",
+      loader: () => [
+        {
+          name: "LBJ Boom Box",
+          id: 12,
+          price: 59.99,
+          style: "Red",
+          picture: "/images/redjbl-boombox.jpeg",
+          quantity: 2,
+        },
+      ],
+    };
+
+    const { user, findByRole } = renderWithRouter(route);
+
+    const removeButton = (await findByRole("button", {
+      name: "remove Cartitem Button",
+    })) as HTMLButtonElement;
+
+    await user.click(removeButton);
+
+    expect(HTMLDialogElement.prototype.showModal).toBeCalled()
+
+    vi.resetAllMocks();
+  });
 });
