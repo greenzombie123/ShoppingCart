@@ -1,4 +1,4 @@
-import { Link, useFetcher, useLoaderData } from "react-router-dom";
+import { Form, Link, useFetcher, useLoaderData } from "react-router-dom";
 import { Cart, CartItem } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
@@ -100,7 +100,7 @@ const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
   const [cartItems, setCartItems] = useState(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
-  const fetcher =useFetcher() 
+  const fetcher = useFetcher();
 
   const handleQuantityIncrease = (id: number) => {
     const updatedCart = cartItems.map((cartItem) => {
@@ -132,8 +132,8 @@ const ShoppingCart = () => {
   };
 
   return (
-    <fetcher.Form className={style.shoppingCart}>
-      <div className={style.cart}>
+    <div className={style.shoppingCart}>
+      <fetcher.Form className={style.cart}>
         {cartItems.map((cartItem) => (
           <Item
             cartItem={cartItem}
@@ -143,9 +143,9 @@ const ShoppingCart = () => {
             setPopUp={setPopUpData}
           />
         ))}
-      </div>
+      </fetcher.Form>
       <div className={style.rightSide}>
-        <div className={style.priceContainer}>
+        <Form className={style.priceContainer}>
           <div className={style.topPrice}>
             <p>Subtotal</p>
             <p>$1200</p>
@@ -155,7 +155,7 @@ const ShoppingCart = () => {
             <p>$1222</p>
           </div>
           <button className={style.checkoutButton}>Checkout</button>
-        </div>
+        </Form>
         <div className={style.viewedList}>
           <p className={style.heading}>Viewed Items</p>
           {/* <div className={style.viewedItem}>
@@ -226,7 +226,7 @@ const ShoppingCart = () => {
       </div>
 
       <CartPopUp popUpData={popUpData} setPopUp={setPopUpData} />
-    </fetcher.Form>
+    </div>
   );
 };
 
