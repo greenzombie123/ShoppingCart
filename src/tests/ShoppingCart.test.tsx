@@ -168,4 +168,36 @@ describe("ShoppingCart", () => {
 
     vi.resetAllMocks();
   });
+
+  it.skip("removes the cart item from server when ok button of cart popup is clicked", async () => {
+    HTMLDialogElement.prototype.showModal = vi.fn();
+    HTMLDialogElement.prototype.close = vi.fn();
+
+    const route = {
+      element: <ShoppingCart />,
+      path: "/",
+      loader: () => [
+        {
+          name: "LBJ Boom Box",
+          id: 12,
+          price: 59.99,
+          style: "Red",
+          picture: "/images/redjbl-boombox.jpeg",
+          quantity: 2,
+        },
+      ],
+    };
+
+    const { user, findByRole } = renderWithRouter(route);
+
+    const removeButton = (await findByRole("button", {
+      name: "remove Cartitem Button",
+    })) as HTMLButtonElement;
+
+    await user.click(removeButton);
+
+    expect(HTMLDialogElement.prototype.showModal).toBeCalled()
+
+    vi.resetAllMocks();
+  });
 });

@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useFetcher, useLoaderData } from "react-router-dom";
 import { Cart, CartItem } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
@@ -100,6 +100,7 @@ const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
   const [cartItems, setCartItems] = useState(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
+  const fetcher =useFetcher() 
 
   const handleQuantityIncrease = (id: number) => {
     const updatedCart = cartItems.map((cartItem) => {
@@ -131,7 +132,7 @@ const ShoppingCart = () => {
   };
 
   return (
-    <form className={style.shoppingCart}>
+    <fetcher.Form className={style.shoppingCart}>
       <div className={style.cart}>
         {cartItems.map((cartItem) => (
           <Item
@@ -225,7 +226,7 @@ const ShoppingCart = () => {
       </div>
 
       <CartPopUp popUpData={popUpData} setPopUp={setPopUpData} />
-    </form>
+    </fetcher.Form>
   );
 };
 

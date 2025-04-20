@@ -6,6 +6,7 @@ import {
   getProductsByCategory,
   getRandomProducts,
   getStoreItems,
+  removeCartItem,
 } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
 import {
@@ -223,7 +224,7 @@ describe("getCart", () => {
       style: "",
       name: product.name,
       price: product.price,
-      picture:product.styles[0].picture
+      picture: product.styles[0].picture,
     };
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(
@@ -480,7 +481,10 @@ describe("addToCart", () => {
     formData.append("id", "1");
     formData.append("quantity", "2");
     formData.append("style", "red");
-    formData.append("picture", "http://localhost:3000/images/poloshirtblack.webp");
+    formData.append(
+      "picture",
+      "http://localhost:3000/images/poloshirtblack.webp"
+    );
 
     const request: Request = new Request("http://localhost:3000/product/1", {
       method: "POST",
@@ -501,5 +505,49 @@ describe("addToCart", () => {
       body: '{"name":"stuff","price":222,"id":1,"quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp"}',
       method: "POST",
     });
+  });
+});
+
+describe("removeCartItem", () => {
+  it("removes a cartitem from the database", async () => {
+    const cartItem: CartItem = {
+      name: "LBJ Boom Box",
+      id: 12,
+      price: 59.99,
+      style: "Red",
+      picture: "/images/redjbl-boombox.jpeg",
+      quantity: 2,
+    };
+
+    const formData = new FormData()
+    formData.append("id", `${cartItem.id}`)
+
+    const request: Request = new Request("http://localhost:3000/mycart", {
+      method:"POST",
+      body: formData
+    });
+
+    const mockFetch = vi.fn(
+      () => {
+        return Promise.resolve({
+          json: () => Promise.resolve({ok:true}),
+          ok:true
+        });
+      }
+    );
+
+    const mockParam: ActionFunctionArgs = {
+      params: { path: "mycart" },
+      request: request,
+      context: null,
+    };
+
+    const spy = vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock);
+
+    const status = await removeCartItem(mockParam)
+
+    expect(mockFetch).toBeCalled()
+    expect(mockFetch).toBeCalledWith("http://localhost:3000/cart/12", {method:"DELETE"})
+    expect(status).toStrictEqual({ok:true})
   });
 });

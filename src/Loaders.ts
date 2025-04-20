@@ -6,6 +6,20 @@ import {
 } from "react-router-dom";
 import { Cart, CartItem, Product, ProductCategory } from "./products";
 
+const removeCartItem: ActionFunction = async ({
+  request,
+}: ActionFunctionArgs) => {
+  const formData = await request.formData();
+  const cartItemId = formData.get("id");
+
+  const response = await fetch(`http://localhost:3000/cart/${cartItemId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) return { ok: true };
+  else throw new Error("There was an error when attempting to remove cart item from database");
+};
+
 const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const name = formData.get("name");
@@ -13,8 +27,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const id = Number(formData.get("id"));
   const quantity = Number(formData.get("quantity"));
   const style = formData.get("style");
-  const picture = formData.get("picture")
-
+  const picture = formData.get("picture");
 
   if (name && price && id && quantity && picture) {
     const cartItem: CartItem = {
@@ -22,8 +35,8 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
       price: price,
       id: id,
       quantity: quantity,
-      style: style ? style as string : undefined,
-      picture:picture as string
+      style: style ? (style as string) : undefined,
+      picture: picture as string,
     };
 
     const data = JSON.stringify(cartItem);
@@ -33,7 +46,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
       body: data,
     });
 
-    if (response.ok) return {productInfo:cartItem};
+    if (response.ok) return { productInfo: cartItem };
   } else throw new Error("Cartitem is invalid");
 };
 
@@ -75,7 +88,6 @@ const getCart = async (): Promise<Cart> => {
 };
 
 const getRandomProducts = async (): Promise<Product[]> => {
-
   const data = await fetch("http://localhost:3000/products");
   const products: Product[] = await data.json();
 
@@ -102,4 +114,5 @@ export {
   getProductsByCategory,
   getStoreItems,
   addToCart,
+  removeCartItem,
 };
