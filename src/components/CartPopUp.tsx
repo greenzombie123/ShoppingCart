@@ -4,11 +4,18 @@ import style from "./CartPopUp.module.css";
 
 interface CartPopUpProps {
   popUpData: CartItem | null;
-  setPopUp:React.Dispatch<React.SetStateAction<CartItem|null>>
+  setPopUp: React.Dispatch<React.SetStateAction<CartItem | null>>;
 }
 
 const CartPopUp = ({ popUpData, setPopUp }: CartPopUpProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const handleCancelButtonClick = () => {
+    if (dialogRef.current) {
+      setPopUp(null);
+      dialogRef.current.close();
+    }
+  };
 
   useEffect(() => {
     if (dialogRef.current && popUpData) {
@@ -19,13 +26,19 @@ const CartPopUp = ({ popUpData, setPopUp }: CartPopUpProps) => {
   if (!popUpData) return;
 
   return (
-    <dialog ref={dialogRef}>
+    <dialog ref={dialogRef} onClick={handleCancelButtonClick}>
       <p>Remove the following item from your cart?</p>
       <p>{popUpData.name}</p>
-      <button aria-label="removeCartItem"></button>
+      <button aria-label="removeCartItem">Yes</button>
+      <button
+        type="button"
+        aria-label="cancel"
+        onClick={handleCancelButtonClick}
+      >
+        Cancel
+      </button>
     </dialog>
   );
 };
 
-export default CartPopUp
-
+export default CartPopUp;
