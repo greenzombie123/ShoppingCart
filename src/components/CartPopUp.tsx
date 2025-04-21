@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { CartItem } from "../products";
 import style from "./CartPopUp.module.css";
+import { useFetcher } from "react-router-dom";
 
 interface CartPopUpProps {
   popUpData: CartItem | null;
@@ -9,6 +10,7 @@ interface CartPopUpProps {
 
 const CartPopUp = ({ popUpData, setPopUp }: CartPopUpProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const fetcher = useFetcher();
 
   const handleCancelButtonClick = () => {
     if (dialogRef.current) {
@@ -27,16 +29,19 @@ const CartPopUp = ({ popUpData, setPopUp }: CartPopUpProps) => {
 
   return (
     <dialog ref={dialogRef} onClick={handleCancelButtonClick}>
-      <p>Remove the following item from your cart?</p>
-      <p>{popUpData.name}</p>
-      <button aria-label="removeCartItem">Yes</button>
-      <button
-        type="button"
-        aria-label="cancel"
-        onClick={handleCancelButtonClick}
-      >
-        Cancel
-      </button>
+      <fetcher.Form method="DELETE" action="/mycart">
+        <input type="hidden" name="id" value={popUpData.id} />
+        <p>Remove the following item from your cart?</p>
+        <p>{popUpData.name}</p>
+        <button aria-label="removeCartItem">Yes</button>
+        <button
+          type="button"
+          aria-label="cancel"
+          onClick={handleCancelButtonClick}
+        >
+          Cancel
+        </button>
+      </fetcher.Form>
     </dialog>
   );
 };

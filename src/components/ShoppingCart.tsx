@@ -100,7 +100,6 @@ const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
   const [cartItems, setCartItems] = useState(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
-  const fetcher = useFetcher();
 
   const handleQuantityIncrease = (id: number) => {
     const updatedCart = cartItems.map((cartItem) => {
@@ -133,7 +132,7 @@ const ShoppingCart = () => {
 
   return (
     <div className={style.shoppingCart}>
-      <fetcher.Form className={style.cart}>
+      <div className={style.cart}>
         {cartItems.map((cartItem) => (
           <Item
             cartItem={cartItem}
@@ -143,7 +142,7 @@ const ShoppingCart = () => {
             setPopUp={setPopUpData}
           />
         ))}
-      </fetcher.Form>
+      </div>
       <div className={style.rightSide}>
         <Form className={style.priceContainer}>
           <div className={style.topPrice}>
