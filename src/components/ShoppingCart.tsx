@@ -6,6 +6,11 @@ import { useState } from "react";
 import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
 
+export const ViewedItems = ()=>{
+  return <>
+  </>
+}
+
 const QuantityCounter = ({
   cartItem,
   onIncreaseButtonClick,

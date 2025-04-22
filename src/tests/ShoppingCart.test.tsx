@@ -191,8 +191,8 @@ describe("ShoppingCart", () => {
     // const { user, findByRole } = renderWithRouter(route);
 
     const user = userEvent.setup();
-    
-    const {findByRole} = render(
+
+    const { findByRole } = render(
       <RouterProvider
         router={createMemoryRouter([route], { initialEntries: ["/mycart"] })}
       />
@@ -214,5 +214,13 @@ describe("ShoppingCart", () => {
     // expect(mockAction).toBeCalled()
   });
 
-  it("");
+  it.skip("renders the viewed items container", () => {
+    const ViewedItemsRoute:RouteObject = {
+      element: <ShoppingCart />,
+      path: "/",
+      loader: () => mockCart,
+    };
+
+    const { user, findByRole } = renderWithRouter(route);
+  });
 });

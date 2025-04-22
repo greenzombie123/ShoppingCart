@@ -502,7 +502,7 @@ describe("addToCart", () => {
     expect(spy).toBeCalled();
 
     expect(spy).toBeCalledWith("http://localhost:3000/cart", {
-      body: '{"name":"stuff","price":222,"id":1,"quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp"}',
+      body: '{"name":"stuff","price":222,"id":"1","quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp"}',
       method: "POST",
     });
   });
