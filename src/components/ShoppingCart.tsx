@@ -4,6 +4,7 @@ import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
 import { useState } from "react";
 import CartPopUp from "./CartPopUp";
+import useCartItems from "../custom_hooks/useCartItems";
 
 const QuantityCounter = ({
   cartItem,
@@ -98,44 +99,44 @@ const Item = ({
 
 const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
-  const [cartItems, setCartItems] = useState(cart);
+  const {cartItems, handleQuantityDecrease, handleQuantityIncrease} = useCartItems(cart) //useState(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
 
-  const handleQuantityIncrease = (id: number) => {
-    const updatedCart = cartItems.map((cartItem) => {
-      if (cartItem.id === id)
-        return {
-          ...cartItem,
-          quantity: cartItem.quantity + 1,
-        };
-      else return cartItem;
-    });
+  // const handleQuantityIncrease = (id: number) => {
+  //   const updatedCart = cartItems.map((cartItem) => {
+  //     if (cartItem.id === id)
+  //       return {
+  //         ...cartItem,
+  //         quantity: cartItem.quantity + 1,
+  //       };
+  //     else return cartItem;
+  //   });
 
-    setCartItems(updatedCart);
-  };
+  //   setCartItems(updatedCart);
+  // };
 
-  const handleQuantityDecrease = (id: number) => {
-    const currentCartItem = cartItems.find((cartItem) => cartItem.id === id);
-    if (currentCartItem?.quantity === 1) return;
+  // const handleQuantityDecrease = (id: number) => {
+  //   const currentCartItem = cartItems.find((cartItem) => cartItem.id === id);
+  //   if (currentCartItem?.quantity === 1) return;
 
-    const updatedCart = cartItems.map((cartItem) => {
-      if (cartItem.id === id)
-        return {
-          ...cartItem,
-          quantity: cartItem.quantity - 1,
-        };
-      else return cartItem;
-    });
+  //   const updatedCart = cartItems.map((cartItem) => {
+  //     if (cartItem.id === id)
+  //       return {
+  //         ...cartItem,
+  //         quantity: cartItem.quantity - 1,
+  //       };
+  //     else return cartItem;
+  //   });
 
-    setCartItems(updatedCart);
-  };
+  //   setCartItems(updatedCart);
+  // };
 
   return (
     <div className={style.shoppingCart}>
       <div className={style.cart}>
-        {cartItems.map((cartItem) => (
+        {cart.map((cartItem, index) => (
           <Item
-            cartItem={cartItem}
+            cartItem={{...cartItem, quantity:cartItems[index].quantity}}
             key={cartItem.id}
             onDecreaseButtonClick={handleQuantityDecrease}
             onIncreaseButtonClick={handleQuantityIncrease}

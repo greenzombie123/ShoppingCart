@@ -29,26 +29,28 @@
   ],
   "cart": [
     {
-      "id": "9",
-      "name": "Orvella Silver Twist Earrings",
-      "price": 59.99,
-      "quantity": 3,
-      "picture": "/images/twistearrings.webp"
-    },
-    {
-      "id": "17",
-      "name": "Mens Casual Slim Fit",
-      "price": 15.99,
-      "quantity": 2,
-      "picture": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
-    },
-    {
       "id": "11",
       "name": "Yuks Polo Shirt",
       "price": 59.99,
       "quantity": 1,
       "style": "Black",
       "picture": "/images/poloshirtblack.webp"
+    },
+    {
+      "id": "13",
+      "name": "Maggie Lo Blouse",
+      "price": 39.99,
+      "quantity": 3,
+      "style": "Blue",
+      "picture": "/images/blouseyellow.webp"
+    },
+    {
+      "id": "3",
+      "name": "Jupopo Leather Jacket",
+      "price": 129.99,
+      "quantity": 4,
+      "style": "Brown",
+      "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg"
     }
   ],
   "products": [
