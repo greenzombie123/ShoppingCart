@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import { Cart, CartItem, Product, ProductCategory } from "./products";
 
+const addViewedItem = ()=>{}
+
 const removeCartItem: ActionFunction = async ({
   request,
 }: ActionFunctionArgs) => {
@@ -123,4 +125,5 @@ export {
   getStoreItems,
   addToCart,
   removeCartItem,
+  addViewedItem
 };
