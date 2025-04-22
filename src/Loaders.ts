@@ -9,15 +9,19 @@ import { Cart, CartItem, Product, ProductCategory } from "./products";
 const removeCartItem: ActionFunction = async ({
   request,
 }: ActionFunctionArgs) => {
-  const formData = await request.formData();
-  const cartItemId = formData.get("id");
+  try {
+    const formData = await request.formData();
+    const cartItemId = formData.get("id");
+    console.log(formData.get("id"))
 
-  const response = await fetch(`http://localhost:3000/cart/${cartItemId}`, {
-    method: "DELETE",
-  });
-
-  if (response.ok) return { ok: true };
-  else throw new Error("There was an error when attempting to remove cart item from database");
+    const response = await fetch(`http://localhost:3000/cart/${cartItemId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) return { ok: true };
+  } catch (error) {
+    console.log("Something happend");
+    console.log(error);
+  }
 };
 
 const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {

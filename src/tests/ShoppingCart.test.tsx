@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import ShoppingCart from "../components/ShoppingCart";
 import { mockCart, renderWithRouter } from "../utilities/testulit";
-import { findByRole, screen, waitFor } from "@testing-library/dom";
+import { findByRole, screen, waitFor, within } from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
@@ -164,18 +164,17 @@ describe("ShoppingCart", () => {
 
     await user.click(removeButton);
 
-    expect(HTMLDialogElement.prototype.showModal).toBeCalled()
+    expect(HTMLDialogElement.prototype.showModal).toBeCalled();
 
     vi.resetAllMocks();
   });
 
   it.skip("removes the cart item from server when ok button of cart popup is clicked", async () => {
-    HTMLDialogElement.prototype.showModal = vi.fn();
-    HTMLDialogElement.prototype.close = vi.fn();
+    const mockAction = vi.fn();
 
     const route = {
       element: <ShoppingCart />,
-      path: "/",
+      path: "/mycart",
       loader: () => [
         {
           name: "LBJ Boom Box",
@@ -186,20 +185,34 @@ describe("ShoppingCart", () => {
           quantity: 2,
         },
       ],
+      action: mockAction,
     };
 
-    const { user, findByRole } = renderWithRouter(route);
+    // const { user, findByRole } = renderWithRouter(route);
+
+    const user = userEvent.setup();
+    
+    const {findByRole} = render(
+      <RouterProvider
+        router={createMemoryRouter([route], { initialEntries: ["/mycart"] })}
+      />
+    );
 
     const removeButton = (await findByRole("button", {
       name: "remove Cartitem Button",
     })) as HTMLButtonElement;
 
-    await user.click(removeButton);
+    await waitFor(async () => {
+      await user.click(removeButton);
+    });
 
-    expect(HTMLDialogElement.prototype.showModal).toBeCalled()
+    const dialog = await findByRole("dialog", { hidden: true });
+    const okButton = dialog.querySelector("button") as HTMLButtonElement;
 
-    vi.resetAllMocks();
+    await user.click(okButton);
+
+    // expect(mockAction).toBeCalled()
   });
 
-  it("")
+  it("");
 });

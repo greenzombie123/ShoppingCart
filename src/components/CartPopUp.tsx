@@ -14,7 +14,6 @@ const CartPopUp = ({ popUpData, setPopUp }: CartPopUpProps) => {
 
   const handleCancelButtonClick = () => {
     if (dialogRef.current) {
-      setPopUp(null);
       dialogRef.current.close();
     }
   };
@@ -25,15 +24,14 @@ const CartPopUp = ({ popUpData, setPopUp }: CartPopUpProps) => {
     }
   }, [dialogRef, popUpData]);
 
-  if (!popUpData) return;
 
   return (
     <dialog ref={dialogRef} onClick={handleCancelButtonClick}>
-      <fetcher.Form method="DELETE" action="/mycart">
-        <input type="hidden" name="id" value={popUpData.id} />
+      <fetcher.Form method="DELETE" action="/mycart" >
+        <input type="hidden" name="id" value={popUpData ? popUpData.id : ""} />
         <p>Remove the following item from your cart?</p>
-        <p>{popUpData.name}</p>
-        <button aria-label="removeCartItem">Yes</button>
+        <p>{popUpData? popUpData.name : ""}</p>
+        <button aria-label="removeCartItem" type="submit">Yes</button>
         <button
           type="button"
           aria-label="cancel"

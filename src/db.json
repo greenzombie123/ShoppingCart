@@ -29,14 +29,6 @@
   ],
   "cart": [
     {
-      "id": "2",
-      "name": "Nevolta UltraPhone X",
-      "price": 899.99,
-      "quantity": 3,
-      "style": "Blue",
-      "picture": "/images/s22-ultra-sky-blue-has-arrived-v0-ifgvi6j4qum81.jpg"
-    },
-    {
       "id": 9,
       "name": "Orvella Silver Twist Earrings",
       "price": 59.99,
@@ -49,6 +41,21 @@
       "price": 15.99,
       "quantity": 2,
       "picture": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Yuks Polo Shirt",
+      "price": 59.99,
+      "quantity": 1,
+      "style": "Black",
+      "picture": "/images/poloshirtblack.webp"
+    },
+    {
+      "id": 29,
+      "name": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+      "price": 29.95,
+      "quantity": 5,
+      "picture": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg"
     }
   ],
   "products": [
