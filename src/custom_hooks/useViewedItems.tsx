@@ -11,11 +11,10 @@ const getViewedItems: () => Promise<Product[]> = async () =>
   await (await fetch("http://localhost:3000/viewedItems")).json();
 
 const replaceViewedItems = (products: Product[], newProduct: Product) => {
-  const viewedItems = [];
+  const viewedItems = [newProduct];
 
   for (let index = 0; index < 4; index++) {
-    if (index === 0) viewedItems.push(newProduct);
-    else viewedItems.push(products[index - 1]);
+    viewedItems.push(products[index]);
   }
 
   return viewedItems;
