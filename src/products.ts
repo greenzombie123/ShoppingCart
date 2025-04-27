@@ -7,7 +7,7 @@ export type ProductCategory =
   | "Electronics";
 
 export type Product = {
-  id: number;
+  id: number | string;
   name: string;
   price: number;
   ratings: number;

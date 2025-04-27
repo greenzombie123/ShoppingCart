@@ -31,7 +31,7 @@ const routes: RouteObject[] = [
         loader:getCart,
         element:<ShoppingCart/>,
         path:"mycart",
-        action:removeCartItem
+        action:removeCartItem,
       }
     ],
   },

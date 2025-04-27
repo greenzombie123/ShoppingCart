@@ -519,22 +519,20 @@ describe("removeCartItem", () => {
       quantity: 2,
     };
 
-    const formData = new FormData()
-    formData.append("id", `${cartItem.id}`)
+    const formData = new FormData();
+    formData.append("id", `${cartItem.id}`);
 
     const request: Request = new Request("http://localhost:3000/mycart", {
-      method:"POST",
-      body: formData
+      method: "POST",
+      body: formData,
     });
 
-    const mockFetch = vi.fn(
-      () => {
-        return Promise.resolve({
-          json: () => Promise.resolve({ok:true}),
-          ok:true
-        });
-      }
-    );
+    const mockFetch = vi.fn(() => {
+      return Promise.resolve({
+        json: () => Promise.resolve({ ok: true }),
+        ok: true,
+      });
+    });
 
     const mockParam: ActionFunctionArgs = {
       params: { path: "mycart" },
@@ -544,10 +542,18 @@ describe("removeCartItem", () => {
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock);
 
-    const status = await removeCartItem(mockParam)
+    const status = await removeCartItem(mockParam);
 
-    expect(mockFetch).toBeCalled()
-    expect(mockFetch).toBeCalledWith("http://localhost:3000/cart/12", {method:"DELETE"})
-    expect(status).toStrictEqual({ok:true})
+    expect(mockFetch).toBeCalled();
+    expect(mockFetch).toBeCalledWith("http://localhost:3000/cart/12", {
+      method: "DELETE",
+    });
+    expect(status).toStrictEqual({ ok: true });
+  });
+});
+
+describe("addViewedItems", () => {
+  it("adds a product to the viewedItems", () => {
+    
   });
 });
