@@ -1,14 +1,19 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { Product } from "../products";
 
 const useViewedItems = (product: Product) => {
   useEffect(() => {
-    changeViewedItems(product)
+    changeViewedItems(product);
   }, []);
 };
 
-const getViewedItems: () => Promise<Product[]> = async () =>
-  await (await fetch("http://localhost:3000/viewedItems")).json();
+const getViewedItems: () => Promise<Product[]> = async () => {
+  const viewedItems: {
+    id: string;
+    products: Product[];
+  } = await (await fetch("http://localhost:3000/viewedItems/1")).json();
+  return viewedItems
+};
 
 const replaceViewedItems = (products: Product[], newProduct: Product) => {
   const viewedItems = [newProduct];
@@ -20,8 +25,9 @@ const replaceViewedItems = (products: Product[], newProduct: Product) => {
   return viewedItems;
 };
 
-const hasSameProduct = (products: Product[], newProduct: Product) =>
-  products.some((product) => product.id === newProduct.id);
+const hasSameProduct = (products: Product[], newProduct: Product) => {
+  return products.some((product) => product.id === newProduct.id);
+}
 
 const addViewedItem = (products: Product[], newProduct: Product) => {
   const newViewedItems = [...products];
@@ -30,15 +36,16 @@ const addViewedItem = (products: Product[], newProduct: Product) => {
 };
 
 const updateViewedItems = async (products: Product[]) => {
-  await fetch("http://localhost:3000/viewedItems", {
-    method: "PUT",
-    body: JSON.stringify(products),
+  await fetch("http://localhost:3000/viewedItems/1", {
+    method: "PATCH",
+    body: JSON.stringify({ products: products }),
   });
-}
+};
 
 const changeViewedItems = async (product: Product) => {
   let newViewedItems: Product[];
   const viewedItems = await getViewedItems();
+  // console.log(viewedItems, product)
   if (hasSameProduct(viewedItems, product)) return;
   if (viewedItems.length === 5)
     newViewedItems = replaceViewedItems(viewedItems, product);

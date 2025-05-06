@@ -104,37 +104,8 @@ const Item = ({
 
 const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
-  const {cartItems, handleQuantityDecrease, handleQuantityIncrease} = useCartItems(cart) //useState(cart);
+  const {cartItems, handleQuantityDecrease, handleQuantityIncrease} = useCartItems(cart) 
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
-
-  // const handleQuantityIncrease = (id: number) => {
-  //   const updatedCart = cartItems.map((cartItem) => {
-  //     if (cartItem.id === id)
-  //       return {
-  //         ...cartItem,
-  //         quantity: cartItem.quantity + 1,
-  //       };
-  //     else return cartItem;
-  //   });
-
-  //   setCartItems(updatedCart);
-  // };
-
-  // const handleQuantityDecrease = (id: number) => {
-  //   const currentCartItem = cartItems.find((cartItem) => cartItem.id === id);
-  //   if (currentCartItem?.quantity === 1) return;
-
-  //   const updatedCart = cartItems.map((cartItem) => {
-  //     if (cartItem.id === id)
-  //       return {
-  //         ...cartItem,
-  //         quantity: cartItem.quantity - 1,
-  //       };
-  //     else return cartItem;
-  //   });
-
-  //   setCartItems(updatedCart);
-  // };
 
   return (
     <div className={style.shoppingCart}>

@@ -215,7 +215,7 @@ describe("ShoppingCart", () => {
   });
 
   it.skip("renders the viewed items container", () => {
-    const ViewedItemsRoute:RouteObject = {
+    const ViewedItemsRoute = {
       element: <ShoppingCart />,
       path: "/",
       loader: () => mockCart,

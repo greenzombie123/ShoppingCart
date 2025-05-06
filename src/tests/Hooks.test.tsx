@@ -48,9 +48,9 @@ describe("useViewedItems", () => {
     render(<MockComponent />);
 
     await waitFor(() =>
-      expect(spy).lastCalledWith("http://localhost:3000/viewedItems", {
-        method: "PUT",
-        body: JSON.stringify([mockProduct]),
+      expect(spy).lastCalledWith("http://localhost:3000/viewedItems/1", {
+        method: "PATCH",
+        body: JSON.stringify({products:[mockProduct]}),
       })
     );
   });
@@ -117,9 +117,9 @@ describe("useViewedItems", () => {
     render(<MockComponent />);
 
     await waitFor(() =>
-      expect(spy).lastCalledWith("http://localhost:3000/viewedItems", {
-        method: "PUT",
-        body: JSON.stringify([newMockProduct, mockProduct, mockProduct, mockProduct, mockProduct]),
+      expect(spy).lastCalledWith("http://localhost:3000/viewedItems/1", {
+        method: "PATCH",
+        body: JSON.stringify({products:[newMockProduct, mockProduct, mockProduct, mockProduct, mockProduct]}),
       })
     );
   });

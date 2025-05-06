@@ -1,5 +1,4 @@
 import {
-  afterAll,
   beforeAll,
   beforeEach,
   describe,
@@ -15,6 +14,7 @@ import {
   createMemoryRouter,
   RouteObject,
   RouterProvider,
+  useLocation,
 } from "react-router-dom";
 import ShoppingProduct, {
   ProductDetails,
@@ -23,8 +23,12 @@ import ShoppingProduct, {
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import storePageStyle from "../components/ShoppingProduct.module.css";
-import { renderWithRouter } from "../utilities/testulit";
+import { renderWithRouter, RouteObjectProps } from "../utilities/testulit";
 import { PopUp } from "../components/PopUp";
+// import * as useViewedItems from "../custom_hooks/useViewedItems";
+import { V } from "vitest/dist/chunks/reporters.66aFHiyX.js";
+import { version } from "react";
+import useViewedItems from "../custom_hooks/useViewedItems";
 
 const product: Product = {
   id: 1,
@@ -58,6 +62,8 @@ const shoppingProductRoute: RouteObject = {
 };
 
 beforeAll(() => {
+  vi.resetAllMocks();
+
   HTMLElement.prototype.scrollIntoView = vi.fn();
 
   vi.spyOn(global, "fetch").mockImplementation(
@@ -93,10 +99,6 @@ beforeAll(() => {
   });
 });
 
-afterAll(() => {
-  vi.resetAllMocks();
-});
-
 describe("ShoppingProduct", () => {
   it("renders the product's image", async () => {
     const router = createMemoryRouter([shoppingProductRoute], {
@@ -111,6 +113,7 @@ describe("ShoppingProduct", () => {
 
     expect(img.src).toBe("http://localhost:3000/images/poloshirtblack.webp");
     expect(img).toMatchSnapshot();
+    // expect(useLocation).toBeCalledTimes(2)
   });
 
   it("renders style buttons", async () => {
@@ -149,6 +152,33 @@ describe("ShoppingProduct", () => {
     })) as HTMLImageElement;
 
     expect(img.src).toBe("http://localhost:3000/images/bluepoloshirt.jpg");
+  });
+
+  it("add the product to the viewItems database", async () => {
+    vi.restoreAllMocks();
+
+    const mockFunction = vi.hoisted(() => vi.fn());
+
+    vi.mock("react-router-dom", async () => {
+      const actualModule = await vi.importActual("react-router-dom");
+      return {
+        ...actualModule,
+        useLocation: () => ({ state: product }),
+      };
+    });
+
+    vi.mock("../custom_hooks/useViewedItems", () => ({
+      default: mockFunction,
+    }));
+
+    const route: RouteObjectProps = {
+      element: <ShoppingProduct />,
+      path: "/",
+    };
+
+    renderWithRouter(route);
+
+    await waitFor(() => expect(mockFunction).toBeCalledTimes(1));
   });
 });
 

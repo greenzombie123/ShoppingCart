@@ -5,6 +5,7 @@ import {  useFetcher, useLocation } from "react-router-dom";
 import { StarContainer } from "./StorePage";
 import { changeToPrice } from "../utilities/utility";
 import { PopUp } from "./PopUp";
+import useViewedItems from "../custom_hooks/useViewedItems";
 
 type PictureProps = {
   product: Product;
@@ -148,6 +149,7 @@ const ShoppingProduct = () => {
   const fetcher = useFetcher();
   const state = location.state as Product;
   const [product, setProduct] = useState<Product>(state);
+  useViewedItems(state)
 
   const handleChangeStyle = (index: number, product: Product) => () => {
     setProduct({

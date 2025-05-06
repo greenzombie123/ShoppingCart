@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { Cart, Product } from "../products";
 
-type RouteObjectProps = {
+export type RouteObjectProps = {
   element: ReactNode;
   path?: string;
   loader?: LoaderFunction;
