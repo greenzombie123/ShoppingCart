@@ -12,7 +12,7 @@ describe("useViewedItems", () => {
   it("adds a product to the viewedItems database", async () => {
     const firstFetch = () =>
       Promise.resolve({
-        json: () => Promise.resolve([]),
+        json: () => Promise.resolve({ id: 1, products: [] }),
       });
 
     const secondFetch: Mock = vi.fn();
@@ -50,7 +50,7 @@ describe("useViewedItems", () => {
     await waitFor(() =>
       expect(spy).lastCalledWith("http://localhost:3000/viewedItems/1", {
         method: "PATCH",
-        body: JSON.stringify({products:[mockProduct]}),
+        body: JSON.stringify({ products: [mockProduct] }),
       })
     );
   });
@@ -93,18 +93,22 @@ describe("useViewedItems", () => {
     const firstFetch = () =>
       Promise.resolve({
         json: () =>
-          Promise.resolve([
-            mockProduct,
-            mockProduct,
-            mockProduct,
-            mockProduct,
-            mockProduct,
-          ]),
+          Promise.resolve({
+            id: 1,
+            products: [
+              mockProduct,
+              mockProduct,
+              mockProduct,
+              mockProduct,
+              mockProduct,
+            ],
+          }),
       });
 
     const secondFetch: Mock = vi.fn();
 
-    const spy = vi.spyOn(global, "fetch")
+    const spy = vi
+      .spyOn(global, "fetch")
       .mockImplementationOnce(firstFetch as Mock)
       .mockImplementationOnce(secondFetch as Mock);
 
@@ -119,7 +123,15 @@ describe("useViewedItems", () => {
     await waitFor(() =>
       expect(spy).lastCalledWith("http://localhost:3000/viewedItems/1", {
         method: "PATCH",
-        body: JSON.stringify({products:[newMockProduct, mockProduct, mockProduct, mockProduct, mockProduct]}),
+        body: JSON.stringify({
+          products: [
+            newMockProduct,
+            mockProduct,
+            mockProduct,
+            mockProduct,
+            mockProduct,
+          ],
+        }),
       })
     );
   });

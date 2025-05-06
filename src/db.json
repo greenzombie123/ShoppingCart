@@ -628,6 +628,37 @@
       "id": "1",
       "products": [
         {
+          "id": "27",
+          "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
+          "price": 999.99,
+          "stars": 2,
+          "ratings": 140,
+          "category": "Electronics",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
+          "name": "XyberVision 4K Smart TV",
+          "id": "6",
+          "category": "Electronics",
+          "price": 1499.99,
+          "ratings": 632,
+          "stars": 5,
+          "likes": 2105,
+          "styles": [
+            {
+              "description": "",
+              "picture": "/images/smarttv.jpeg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
           "name": "Talimo 3DX Ruby Ring",
           "id": "1",
           "category": "Jewelry",
@@ -645,6 +676,42 @@
               "description": "Silver",
               "picture": "/images/silverring.webp",
               "isCurrentStyle": false
+            }
+          ]
+        },
+        {
+          "name": "Yuks Polo Shirt",
+          "id": "11",
+          "category": "Men's Clothing",
+          "price": 59.99,
+          "ratings": 345,
+          "stars": 2,
+          "likes": 3442,
+          "styles": [
+            {
+              "description": "Black",
+              "picture": "/images/poloshirtblack.webp",
+              "isCurrentStyle": true
+            },
+            {
+              "description": "Blue",
+              "picture": "/images/bluepoloshirt.jpg",
+              "isCurrentStyle": false
+            }
+          ]
+        },
+        {
+          "id": "15",
+          "name": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "stars": 4,
+          "ratings": 259,
+          "category": "Men's Clothing",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+              "isCurrentStyle": true
             }
           ]
         }

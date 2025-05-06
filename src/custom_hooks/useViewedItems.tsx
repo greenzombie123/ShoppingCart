@@ -12,7 +12,7 @@ const getViewedItems: () => Promise<Product[]> = async () => {
     id: string;
     products: Product[];
   } = await (await fetch("http://localhost:3000/viewedItems/1")).json();
-  return viewedItems
+  return viewedItems.products
 };
 
 const replaceViewedItems = (products: Product[], newProduct: Product) => {
@@ -45,7 +45,6 @@ const updateViewedItems = async (products: Product[]) => {
 const changeViewedItems = async (product: Product) => {
   let newViewedItems: Product[];
   const viewedItems = await getViewedItems();
-  // console.log(viewedItems, product)
   if (hasSameProduct(viewedItems, product)) return;
   if (viewedItems.length === 5)
     newViewedItems = replaceViewedItems(viewedItems, product);
