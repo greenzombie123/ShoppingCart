@@ -6,6 +6,7 @@ import {
   getProductsByCategory,
   getRandomProducts,
   getStoreItems,
+  getViewedItems,
   removeCartItem,
 } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
@@ -552,8 +553,21 @@ describe("removeCartItem", () => {
   });
 });
 
-describe("addViewedItems", () => {
-  it("adds a product to the viewedItems", () => {
-    
+describe("getViewedItems", () => {
+  it("return viewedItems", async () => {
+
+    const request = new Request("http://localhost:3000/viewedItems/1")
+    const loaderFunctionArgs:LoaderFunctionArgs = {request:request, params:{i:undefined}, context:undefined}
+
+
+    const viewItems:Product[] = mockProducts
+
+    const mockFetch = vi.fn(()=>Promise.resolve({json:()=>Promise.resolve(viewItems)}))
+
+    vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock)
+
+    const items = await getViewedItems(loaderFunctionArgs)
+
+    expect(items).toEqual(mockProducts)
   });
 });

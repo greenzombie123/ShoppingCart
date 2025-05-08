@@ -6,7 +6,9 @@ import {
 } from "react-router-dom";
 import { Cart, CartItem, Product, ProductCategory } from "./products";
 
-const addViewedItem = ()=>{}
+const getViewedItems : LoaderFunction = async (): Promise<Product[]> => {
+  return await (await fetch("http://localhost:3000/viewedItems/1")).json();
+};
 
 const removeCartItem: ActionFunction = async ({
   request,
@@ -46,7 +48,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
         picture: picture as string,
       };
 
-      const data = JSON.stringify({...cartItem, id:id.toString()});
+      const data = JSON.stringify({ ...cartItem, id: id.toString() });
 
       const response = await fetch("http://localhost:3000/cart", {
         method: "POST",
@@ -125,5 +127,5 @@ export {
   getStoreItems,
   addToCart,
   removeCartItem,
-  addViewedItem
+  getViewedItems,
 };

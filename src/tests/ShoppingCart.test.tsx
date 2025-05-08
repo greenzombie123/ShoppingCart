@@ -11,6 +11,7 @@ import {
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { act, render } from "@testing-library/react";
+import useViewedItems from "../custom_hooks/useViewedItems";
 
 describe("ShoppingCart", () => {
   it("renders cart item", async () => {
@@ -215,6 +216,8 @@ describe("ShoppingCart", () => {
   });
 
   it.skip("renders the viewed items container", () => {
+    vi.mock("../custom_hooks/useViewedItems", ()=>vi.fn())
+
     const ViewedItemsRoute = {
       element: <ShoppingCart />,
       path: "/",
@@ -222,5 +225,6 @@ describe("ShoppingCart", () => {
     };
 
     const { user, findByRole } = renderWithRouter(route);
+
   });
 });
