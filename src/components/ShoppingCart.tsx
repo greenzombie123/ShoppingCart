@@ -1,4 +1,10 @@
-import { Form, Link, Outlet, useFetcher, useLoaderData } from "react-router-dom";
+import {
+  Form,
+  Link,
+  Outlet,
+  useFetcher,
+  useLoaderData,
+} from "react-router-dom";
 import { Cart, CartItem, Product } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
@@ -7,23 +13,23 @@ import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
 
 export const ViewedItemsContainer = () => {
-  const viewedItems = useLoaderData<Product[]>()
-
-  console.log(viewedItems)
+  const viewedItems = useLoaderData<Product[]>();
 
   return (
     <div className={style.viewedList}>
       <p className={style.heading}>Viewed Items</p>
-      {viewedItems.map(product=><ViewedItem key={product.id} product={product}/>)}
+      {viewedItems.map((product) => (
+        <ViewedItem key={product.id} product={product} />
+      ))}
     </div>
   );
 };
 
 type ViewedItemProp = {
-  product:Product
-}
+  product: Product;
+};
 
-const ViewedItem = ({product}:ViewedItemProp) => {
+const ViewedItem = ({ product }: ViewedItemProp) => {
   return (
     <div className={style.viewedItem}>
       <Link to={`product/${product.id}`}>
@@ -166,8 +172,9 @@ const ShoppingCart = () => {
           </div>
           <button className={style.checkoutButton}>Checkout</button>
         </Form>
+
+        <Outlet />
       </div>
-      <Outlet/>
 
       <CartPopUp popUpData={popUpData} setPopUp={setPopUpData} />
     </div>
