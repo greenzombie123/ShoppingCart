@@ -1,15 +1,48 @@
-import { Form, Link, useFetcher, useLoaderData } from "react-router-dom";
-import { Cart, CartItem } from "../products";
+import { Form, Link, Outlet, useFetcher, useLoaderData } from "react-router-dom";
+import { Cart, CartItem, Product } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
 import { useState } from "react";
 import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
 
-export const ViewedItems = ()=>{
-  return <>
-  </>
+export const ViewedItemsContainer = () => {
+  const viewedItems = useLoaderData<Product[]>()
+
+  console.log(viewedItems)
+
+  return (
+    <div className={style.viewedList}>
+      <p className={style.heading}>Viewed Items</p>
+      {viewedItems.map(product=><ViewedItem key={product.id} product={product}/>)}
+    </div>
+  );
+};
+
+type ViewedItemProp = {
+  product:Product
 }
+
+const ViewedItem = ({product}:ViewedItemProp) => {
+  return (
+    <div className={style.viewedItem}>
+      <Link to={`product/${product.id}`}>
+        <div className={style.imgContainer}>
+          <img src={product.styles[0].picture} alt={product.name} />
+        </div>
+      </Link>
+      <div className={style.infoContainer}>
+        <div className={style.name}>{product.name}</div>
+        <div className={style.stars}>
+          <StarContainer stars={product.stars} style={style} />
+          <div className={style.ratings}>({product.ratings})</div>
+        </div>
+        <div className={style.price}>${product.price}</div>
+        <button className={style.addButton}>Add to Cart</button>
+      </div>
+    </div>
+  );
+};
 
 const QuantityCounter = ({
   cartItem,
@@ -104,7 +137,8 @@ const Item = ({
 
 const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
-  const {cartItems, handleQuantityDecrease, handleQuantityIncrease} = useCartItems(cart) 
+  const { cartItems, handleQuantityDecrease, handleQuantityIncrease } =
+    useCartItems(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
 
   return (
@@ -112,7 +146,7 @@ const ShoppingCart = () => {
       <div className={style.cart}>
         {cart.map((cartItem, index) => (
           <Item
-            cartItem={{...cartItem, quantity:cartItems[index].quantity}}
+            cartItem={{ ...cartItem, quantity: cartItems[index].quantity }}
             key={cartItem.id}
             onDecreaseButtonClick={handleQuantityDecrease}
             onIncreaseButtonClick={handleQuantityIncrease}
@@ -132,74 +166,8 @@ const ShoppingCart = () => {
           </div>
           <button className={style.checkoutButton}>Checkout</button>
         </Form>
-        <div className={style.viewedList}>
-          <p className={style.heading}>Viewed Items</p>
-          {/* <div className={style.viewedItem}>
-            <a href="">
-              <div className={style.imgContainer}>
-                <img src="./assets/dufflebag.webp" alt="" />
-              </div>
-            </a>
-            <div className={style.infoContainer}>
-              <div className={style.name}>dufflebag</div>
-              <div className={style.stars}>
-                <StarContainer stars={3} style={style} />
-                <div className={style.ratings}>({3})</div>
-              </div>
-              <div className={style.price}>${1000}</div>
-              <button className={style.addButton}>Add to Cart</button>
-            </div>
-          </div>
-          <div className={style.viewedItem}>
-            <a href="">
-              <div className={style.imgContainer}>
-                <img src="./assets/dufflebag.webp" alt="" />
-              </div>
-            </a>
-            <div className={style.infoContainer}>
-              <div className={style.name}>dufflebag</div>
-              <div className={style.stars}>
-                <StarContainer stars={3} style={style} />
-                <div className={style.ratings}>({3})</div>
-              </div>
-              <div className={style.price}>${1000}</div>
-              <button className={style.addButton}>Add to Cart</button>
-            </div>
-          </div>
-          <div className={style.viewedItem}>
-            <a href="">
-              <div className={style.imgContainer}>
-                <img src="./assets/dufflebag.webp" alt="" />
-              </div>
-            </a>
-            <div className={style.infoContainer}>
-              <div className={style.name}>dufflebag</div>
-              <div className={style.stars}>
-                <StarContainer stars={3} style={style} />
-                <div className={style.ratings}>({3})</div>
-              </div>
-              <div className={style.price}>${1000}</div>
-              <button className={style.addButton}>Add to Cart</button>
-            </div>
-          </div>
-          <div className={style.viewedItem}>
-            <a href="">
-              <div className={style.imgContainer}>
-                <img src="./assets/dufflebag.webp" alt="" />
-              </div>
-            </a>
-            <div className={style.infoContainer}>
-              <div className={style.name}>dufflebag</div>
-              <div className={style.stars}>
-                <StarContainer stars={3} style={style} />
-                <div className={style.ratings}>({3})</div>
-              </div>
-              <div className={style.price}>${1000}</div>
-              <button className={style.addButton}>Add to Cart</button>
-            </div>
-          </div> */}
-        </div>
       </div>
+      <Outlet/>
 
       <CartPopUp popUpData={popUpData} setPopUp={setPopUpData} />
     </div>

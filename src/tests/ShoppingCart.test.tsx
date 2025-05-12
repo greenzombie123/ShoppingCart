@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import ShoppingCart from "../components/ShoppingCart";
-import { mockCart, renderWithRouter } from "../utilities/testulit";
+import ShoppingCart, { ViewedItemsContainer } from "../components/ShoppingCart";
+import { mockCart, mockProduct, mockProducts, renderWithRouter, RouteObjectProps } from "../utilities/testulit";
 import { findByRole, screen, waitFor, within } from "@testing-library/dom";
 import {
   createMemoryRouter,
@@ -189,8 +189,6 @@ describe("ShoppingCart", () => {
       action: mockAction,
     };
 
-    // const { user, findByRole } = renderWithRouter(route);
-
     const user = userEvent.setup();
 
     const { findByRole } = render(
@@ -215,16 +213,19 @@ describe("ShoppingCart", () => {
     // expect(mockAction).toBeCalled()
   });
 
-  it.skip("renders the viewed items container", () => {
-    vi.mock("../custom_hooks/useViewedItems", ()=>vi.fn())
+  it("renders the viewed items container", async () => {
 
-    const ViewedItemsRoute = {
-      element: <ShoppingCart />,
+    const viewedItemsRoute:RouteObjectProps = {
+      element: <ViewedItemsContainer />,
       path: "/",
-      loader: () => mockCart,
+      loader: () => mockProducts, 
     };
 
-    const { user, findByRole } = renderWithRouter(route);
+    const { findAllByRole } = renderWithRouter(viewedItemsRoute);
+
+    const links = await findAllByRole("link") as HTMLImageElement[]
+
+    expect(links.length).toBe(4)
 
   });
 });

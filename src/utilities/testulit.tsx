@@ -59,7 +59,7 @@ export const mockCart: Cart = [
   },
 ];
 
-export const mockProduct: Product[] = [
+export const mockProducts: Product[] = [
   {
     name: "Jupopo AirFlex Running Shoes",
     id: 7,

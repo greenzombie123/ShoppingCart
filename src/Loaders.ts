@@ -6,8 +6,16 @@ import {
 } from "react-router-dom";
 import { Cart, CartItem, Product, ProductCategory } from "./products";
 
-const getViewedItems : LoaderFunction = async (): Promise<Product[]> => {
-  return await (await fetch("http://localhost:3000/viewedItems/1")).json();
+type ViewedItemsData = {
+  id: string;
+  products: Product[];
+};
+
+const getViewedItems: LoaderFunction = async (): Promise<Product[]> => {
+  const viewItems: ViewedItemsData = await (
+    await fetch("http://localhost:3000/viewedItems/1")
+  ).json();
+  return viewItems.products;
 };
 
 const removeCartItem: ActionFunction = async ({

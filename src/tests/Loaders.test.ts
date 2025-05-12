@@ -560,7 +560,7 @@ describe("getViewedItems", () => {
     const loaderFunctionArgs:LoaderFunctionArgs = {request:request, params:{i:undefined}, context:undefined}
 
 
-    const viewItems:Product[] = mockProducts
+    const viewItems = {id:"1",products: mockProducts}
 
     const mockFetch = vi.fn(()=>Promise.resolve({json:()=>Promise.resolve(viewItems)}))
 

@@ -1,10 +1,17 @@
 import { RouteObject } from "react-router-dom";
 import App from "./App";
-import { addToCart, getCart, getRandomProducts, getStoreItems, removeCartItem } from "./Loaders";
+import {
+  addToCart,
+  getCart,
+  getRandomProducts,
+  getStoreItems,
+  getViewedItems,
+  removeCartItem,
+} from "./Loaders";
 import Carousel from "./components/Carousel";
 import StorePage from "./components/StorePage";
 import ShoppingProduct from "./components/ShoppingProduct";
-import ShoppingCart from "./components/ShoppingCart";
+import ShoppingCart, { ViewedItemsContainer } from "./components/ShoppingCart";
 
 const routes: RouteObject[] = [
   {
@@ -13,26 +20,33 @@ const routes: RouteObject[] = [
     loader: getCart,
     children: [
       {
-        loader:getRandomProducts,
+        loader: getRandomProducts,
         element: <Carousel />,
-        index:true,
+        index: true,
       },
       {
-        loader:getStoreItems,
-        element:<StorePage/>,
-        path:"store/:category"
+        loader: getStoreItems,
+        element: <StorePage />,
+        path: "store/:category",
       },
       {
-        action:addToCart,
-        element:<ShoppingProduct/>,
-        path:"product/:id"
+        action: addToCart,
+        element: <ShoppingProduct />,
+        path: "product/:id",
       },
       {
-        loader:getCart,
-        element:<ShoppingCart/>,
-        path:"mycart",
-        action:removeCartItem,
-      }
+        loader: getCart,
+        element: <ShoppingCart />,
+        path: "mycart",
+        action: removeCartItem,
+        children: [
+          {
+            loader: getViewedItems,
+            index: true,
+            element: <ViewedItemsContainer />,
+          },
+        ],
+      },
     ],
   },
 ];
