@@ -45,6 +45,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
     const quantity = Number(formData.get("quantity"));
     const style = formData.get("style");
     const picture = formData.get("picture");
+    const product:Product = JSON.parse(formData.get("product") as string)
 
     if (name && price && id && quantity && picture) {
       const cartItem: CartItem = {
@@ -54,6 +55,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
         quantity: quantity,
         style: style ? (style as string) : undefined,
         picture: picture as string,
+        product:product
       };
 
       const data = JSON.stringify({ ...cartItem, id: id.toString() });

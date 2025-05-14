@@ -628,6 +628,37 @@
       "id": "1",
       "products": [
         {
+          "name": "Jupopo AirFlex Running Shoes",
+          "id": "7",
+          "category": "Men's Clothing",
+          "price": 89.99,
+          "ratings": 198,
+          "stars": 4,
+          "likes": 431,
+          "styles": [
+            {
+              "description": "",
+              "picture": "/images/ID3692_HM5.avif",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
+          "id": "19",
+          "name": "Solid Gold Petite Micropave",
+          "price": 168,
+          "stars": 4,
+          "ratings": 70,
+          "category": "Jewelry",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
           "id": "27",
           "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
           "price": 999.99,
@@ -676,42 +707,6 @@
               "description": "Silver",
               "picture": "/images/silverring.webp",
               "isCurrentStyle": false
-            }
-          ]
-        },
-        {
-          "name": "Yuks Polo Shirt",
-          "id": "11",
-          "category": "Men's Clothing",
-          "price": 59.99,
-          "ratings": 345,
-          "stars": 2,
-          "likes": 3442,
-          "styles": [
-            {
-              "description": "Black",
-              "picture": "/images/poloshirtblack.webp",
-              "isCurrentStyle": true
-            },
-            {
-              "description": "Blue",
-              "picture": "/images/bluepoloshirt.jpg",
-              "isCurrentStyle": false
-            }
-          ]
-        },
-        {
-          "id": "15",
-          "name": "Mens Casual Premium Slim Fit T-Shirts ",
-          "price": 22.3,
-          "stars": 4,
-          "ratings": 259,
-          "category": "Men's Clothing",
-          "styles": [
-            {
-              "description": "",
-              "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-              "isCurrentStyle": true
             }
           ]
         }

@@ -486,6 +486,10 @@ describe("addToCart", () => {
       "picture",
       "http://localhost:3000/images/poloshirtblack.webp"
     );
+    const mockProduct:Product = {name:"stuff", price:222, id:1, ratings:1, stars:1, styles:[], likes:1, category:"Men's Clothing"}
+    const productString = JSON.stringify(mockProduct)
+    formData.append("product", productString)
+
 
     const request: Request = new Request("http://localhost:3000/product/1", {
       method: "POST",
@@ -503,7 +507,7 @@ describe("addToCart", () => {
     expect(spy).toBeCalled();
 
     expect(spy).toBeCalledWith("http://localhost:3000/cart", {
-      body: '{"name":"stuff","price":222,"id":"1","quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp"}',
+      body: `{"name":"stuff","price":222,"id":"1","quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp","product":${productString}}`,
       method: "POST",
     });
   });

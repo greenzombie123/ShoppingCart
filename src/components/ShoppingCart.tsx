@@ -147,6 +147,8 @@ const ShoppingCart = () => {
     useCartItems(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
 
+  console.log(cart)
+
   return (
     <div className={style.shoppingCart}>
       <div className={style.cart}>
