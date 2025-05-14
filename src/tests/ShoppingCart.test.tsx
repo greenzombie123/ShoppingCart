@@ -1,17 +1,15 @@
 import { describe, expect, it, vi } from "vitest";
 import ShoppingCart, { ViewedItemsContainer } from "../components/ShoppingCart";
-import { mockCart, mockProduct, mockProducts, renderWithRouter, RouteObjectProps } from "../utilities/testulit";
-import { findByRole, screen, waitFor, within } from "@testing-library/dom";
+import { mockCart,  mockProducts, renderWithRouter, RouteObjectProps } from "../utilities/testulit";
+import { screen, waitFor, } from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
-  RouteProps,
   RouterProvider,
 } from "react-router-dom";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
-import { act, render } from "@testing-library/react";
-import useViewedItems from "../custom_hooks/useViewedItems";
+import { render } from "@testing-library/react";
 
 describe("ShoppingCart", () => {
   it("renders cart item", async () => {

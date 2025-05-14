@@ -40,6 +40,7 @@ export const mockCart: Cart = [
     style: "Red",
     picture: "/images/redjbl-boombox.jpeg",
     quantity: 2,
+    product:{} as Product
   },
   {
     name: "Maggie Lo Blouse",
@@ -48,6 +49,7 @@ export const mockCart: Cart = [
     style: "Black",
     picture: "/images/brownblouse.jpg",
     quantity: 1,
+    product:{} as Product
   },
   {
     name: "Mens Cotton Jacket",
@@ -56,6 +58,7 @@ export const mockCart: Cart = [
     style: undefined,
     picture: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
     quantity: 4,
+    product:{} as Product
   },
 ];
 
@@ -75,6 +78,7 @@ export const mockProducts: Product[] = [
         isCurrentStyle: true,
       },
     ],
+    
   },
   {
     name: "Velmora Elegance Handbag",

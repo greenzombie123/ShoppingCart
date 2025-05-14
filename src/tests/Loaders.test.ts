@@ -220,12 +220,13 @@ describe("getCart", () => {
     };
 
     const cartItem: CartItem = {
-      id: product.id,
+      id: product.id as number,
       quantity: 2,
       style: "",
       name: product.name,
       price: product.price,
       picture: product.styles[0].picture,
+      product: {} as Product,
     };
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(
@@ -460,7 +461,7 @@ describe("getStoreItems", () => {
       request: undefined as unknown as Request,
     };
 
-    const products: Product[] = await getStoreItems(mockParam);
+    const products: Product[] = await getStoreItems(mockParam) as Product[]
 
     expect(products[0]).toEqual(mockProducts[0]);
     expect(products[1]).toEqual(mockProducts[2]);
@@ -469,9 +470,7 @@ describe("getStoreItems", () => {
 
 describe("addToCart", () => {
   it("adds customer's request to the cart", async () => {
-    const mock = vi.fn(
-      (input: string, init: { method: string; body: string }) => ({ ok: true })
-    );
+    const mock = vi.fn();
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(mock as Mock);
 
@@ -486,10 +485,18 @@ describe("addToCart", () => {
       "picture",
       "http://localhost:3000/images/poloshirtblack.webp"
     );
-    const mockProduct:Product = {name:"stuff", price:222, id:1, ratings:1, stars:1, styles:[], likes:1, category:"Men's Clothing"}
-    const productString = JSON.stringify(mockProduct)
-    formData.append("product", productString)
-
+    const mockProduct: Product = {
+      name: "stuff",
+      price: 222,
+      id: 1,
+      ratings: 1,
+      stars: 1,
+      styles: [],
+      likes: 1,
+      category: "Men's Clothing",
+    };
+    const productString = JSON.stringify(mockProduct);
+    formData.append("product", productString);
 
     const request: Request = new Request("http://localhost:3000/product/1", {
       method: "POST",
@@ -522,6 +529,7 @@ describe("removeCartItem", () => {
       style: "Red",
       picture: "/images/redjbl-boombox.jpeg",
       quantity: 2,
+      product: {} as Product,
     };
 
     const formData = new FormData();
@@ -545,7 +553,7 @@ describe("removeCartItem", () => {
       context: null,
     };
 
-    const spy = vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock);
+    vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock);
 
     const status = await removeCartItem(mockParam);
 
@@ -559,19 +567,23 @@ describe("removeCartItem", () => {
 
 describe("getViewedItems", () => {
   it("return viewedItems", async () => {
+    const request = new Request("http://localhost:3000/viewedItems/1");
+    const loaderFunctionArgs: LoaderFunctionArgs = {
+      request: request,
+      params: { i: undefined },
+      context: undefined,
+    };
 
-    const request = new Request("http://localhost:3000/viewedItems/1")
-    const loaderFunctionArgs:LoaderFunctionArgs = {request:request, params:{i:undefined}, context:undefined}
+    const viewItems = { id: "1", products: mockProducts };
 
+    const mockFetch = vi.fn(() =>
+      Promise.resolve({ json: () => Promise.resolve(viewItems) })
+    );
 
-    const viewItems = {id:"1",products: mockProducts}
+    vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock);
 
-    const mockFetch = vi.fn(()=>Promise.resolve({json:()=>Promise.resolve(viewItems)}))
+    const items = await getViewedItems(loaderFunctionArgs);
 
-    vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock)
-
-    const items = await getViewedItems(loaderFunctionArgs)
-
-    expect(items).toEqual(mockProducts)
+    expect(items).toEqual(mockProducts);
   });
 });
