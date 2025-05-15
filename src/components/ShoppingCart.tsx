@@ -32,7 +32,7 @@ type ViewedItemProp = {
 const ViewedItem = ({ product }: ViewedItemProp) => {
   return (
     <div className={style.viewedItem}>
-      <Link to={`product/${product.id}`}>
+      <Link to={`/product/${product.id}`} state={product}>
         <div className={style.imgContainer}>
           <img src={product.styles[0].picture} alt={product.name} />
         </div>

@@ -30,9 +30,40 @@
   "cart": [
     {
       "id": "3",
+      "cartItemId": "191bfc3d-625a-4bad-9b4e-bce7bf40f33b",
       "name": "Jupopo Leather Jacket",
       "price": 129.99,
-      "quantity": 2,
+      "quantity": 3,
+      "style": "Black",
+      "picture": "/images/asos-leather-jackets.webp",
+      "product": {
+        "name": "Jupopo Leather Jacket",
+        "id": "3",
+        "category": "Men's Clothing",
+        "price": 129.99,
+        "ratings": 342,
+        "stars": 5,
+        "likes": 765,
+        "styles": [
+          {
+            "description": "Brown",
+            "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
+            "isCurrentStyle": false
+          },
+          {
+            "description": "Black",
+            "picture": "/images/asos-leather-jackets.webp",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "cartItemId": "6b51123d-4c3c-4a33-9f5d-3a88a82bd5a5",
+      "name": "Jupopo Leather Jacket",
+      "price": 129.99,
+      "quantity": 1,
       "style": "Brown",
       "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
       "product": {
@@ -58,23 +89,46 @@
       }
     },
     {
-      "id": "9",
-      "name": "Orvella Silver Twist Earrings",
-      "price": 59.99,
-      "quantity": 4,
-      "picture": "/images/twistearrings.webp",
+      "id": "27",
+      "cartItemId": "f0e409f6-c839-47f4-b951-55925ad4fff6",
+      "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
+      "price": 999.99,
+      "quantity": 1,
+      "picture": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
       "product": {
-        "name": "Orvella Silver Twist Earrings",
-        "id": "9",
-        "category": "Jewelry",
-        "price": 59.99,
-        "ratings": 310,
-        "stars": 4,
-        "likes": 720,
+        "id": "27",
+        "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
+        "price": 999.99,
+        "stars": 2,
+        "ratings": 140,
+        "category": "Electronics",
         "styles": [
           {
             "description": "",
-            "picture": "/images/twistearrings.webp",
+            "picture": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "19",
+      "cartItemId": "6a3b2e63-60c2-432d-9ad3-de46df0f4b64",
+      "name": "Solid Gold Petite Micropave",
+      "price": 168,
+      "quantity": 1,
+      "picture": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+      "product": {
+        "id": "19",
+        "name": "Solid Gold Petite Micropave",
+        "price": 168,
+        "stars": 4,
+        "ratings": 70,
+        "category": "Jewelry",
+        "styles": [
+          {
+            "description": "",
+            "picture": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
             "isCurrentStyle": true
           }
         ]
