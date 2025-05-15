@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from "uuid"
+
 export const changeToPrice = (price: number) => {
   const string = (price / 100).toFixed(2).toString();
   if (string.length >= 8 && string.length <= 9) {
@@ -7,4 +9,4 @@ export const changeToPrice = (price: number) => {
   } else return "$" + string;
 };
 
-// 00.22   0000.22
+export const createCartItemId = ()=>  uuidv4()

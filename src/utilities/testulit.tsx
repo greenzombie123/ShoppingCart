@@ -34,6 +34,7 @@ export const renderWithRouter = ({
 
 export const mockCart: Cart = [
   {
+    cartItemId:"asd",
     name: "LBJ Boom Box",
     id: 12,
     price: 59.99,
@@ -43,6 +44,7 @@ export const mockCart: Cart = [
     product:{} as Product
   },
   {
+    cartItemId:"asd",
     name: "Maggie Lo Blouse",
     id: 13,
     price: 39.99,
@@ -52,6 +54,7 @@ export const mockCart: Cart = [
     product:{} as Product
   },
   {
+    cartItemId:"asd",
     name: "Mens Cotton Jacket",
     id: 16,
     price: 55.99,

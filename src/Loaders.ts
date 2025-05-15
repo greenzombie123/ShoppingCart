@@ -5,6 +5,7 @@ import {
   LoaderFunctionArgs,
 } from "react-router-dom";
 import { Cart, CartItem, Product, ProductCategory } from "./products";
+import { createCartItemId } from "./utilities/utility";
 
 type ViewedItemsData = {
   id: string;
@@ -49,6 +50,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
 
     if (name && price && id && quantity && picture) {
       const cartItem: CartItem = {
+        cartItemId:createCartItemId(),
         name: name as string,
         price: price,
         id: id,

@@ -3,7 +3,6 @@ import { Product, Style } from "../products";
 import style from "./ShoppingProduct.module.css";
 import {  useFetcher, useLocation } from "react-router-dom";
 import { StarContainer } from "./StorePage";
-import { changeToPrice } from "../utilities/utility";
 import { PopUp } from "./PopUp";
 import useViewedItems from "../custom_hooks/useViewedItems";
 
@@ -139,7 +138,7 @@ export const ProductToCart = ({ product }: { product: Product }) => {
       <input type="hidden" name="price" value={product.price} />
       <input type="hidden" name="quantity" value={quantity} />
       <input type="hidden" name="picture" value={productStyle?.picture} />
-
+      <input type="hidden" name="product" value={JSON.stringify(product)}/>
     </div>
   );
 };

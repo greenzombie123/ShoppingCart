@@ -109,7 +109,7 @@ const Item = ({
 
   return (
     <div className={style.item}>
-      <Link to={`/product/${cartItem.id}`}>
+      <Link to={`/product/${cartItem.id}`} state={cartItem.product}>
         <div className={style.imgContainer}>
           <img src={cartItem.picture} alt={cartItem.name} />
         </div>
@@ -147,15 +147,13 @@ const ShoppingCart = () => {
     useCartItems(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
 
-  console.log(cart)
-
   return (
     <div className={style.shoppingCart}>
       <div className={style.cart}>
         {cart.map((cartItem, index) => (
           <Item
             cartItem={{ ...cartItem, quantity: cartItems[index].quantity }}
-            key={cartItem.id}
+            key={cartItem.cartItemId}
             onDecreaseButtonClick={handleQuantityDecrease}
             onIncreaseButtonClick={handleQuantityIncrease}
             setPopUp={setPopUpData}

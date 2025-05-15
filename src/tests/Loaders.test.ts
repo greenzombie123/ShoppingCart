@@ -11,7 +11,6 @@ import {
 } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
 import {
-  ActionFunction,
   ActionFunctionArgs,
   LoaderFunctionArgs,
 } from "react-router-dom";
@@ -220,6 +219,7 @@ describe("getCart", () => {
     };
 
     const cartItem: CartItem = {
+      cartItemId:"abc",
       id: product.id as number,
       quantity: 2,
       style: "",
@@ -470,12 +470,16 @@ describe("getStoreItems", () => {
 
 describe("addToCart", () => {
   it("adds customer's request to the cart", async () => {
+
+    vi.mock("uuid", ()=>({v4:()=>"abc"}))
+
     const mock = vi.fn();
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(mock as Mock);
 
     const formData: FormData = new FormData();
 
+    formData.append("cartItemId", "abc")
     formData.append("name", "stuff");
     formData.append("price", "222");
     formData.append("id", "1");
@@ -514,7 +518,7 @@ describe("addToCart", () => {
     expect(spy).toBeCalled();
 
     expect(spy).toBeCalledWith("http://localhost:3000/cart", {
-      body: `{"name":"stuff","price":222,"id":"1","quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp","product":${productString}}`,
+      body: `{"cartItemId":"abc","name":"stuff","price":222,"id":"1","quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp","product":${productString}}`,
       method: "POST",
     });
   });
@@ -523,6 +527,7 @@ describe("addToCart", () => {
 describe("removeCartItem", () => {
   it("removes a cartitem from the database", async () => {
     const cartItem: CartItem = {
+      cartItemId:"abc",
       name: "LBJ Boom Box",
       id: 12,
       price: 59.99,
