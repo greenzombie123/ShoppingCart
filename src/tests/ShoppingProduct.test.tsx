@@ -132,9 +132,6 @@ describe("ShoppingProduct", () => {
   });
 
   test("change picture when a color tab button is pushed", async () => {
-    // const user = userEvent.setup();
-
-    // render(<ShoppingProduct />, { wrapper: BrowserRouter });
 
     const { user } = renderWithRouter({
       element: <ShoppingProduct />,

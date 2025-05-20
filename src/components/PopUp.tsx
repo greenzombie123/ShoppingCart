@@ -25,7 +25,7 @@ export const PopUp = ({
         <span>{cartItem?.price}</span>
         <span>{cartItem?.style}</span>
         <span>Quantity: {cartItem?.quantity}</span>
-        <button type="button" onClick={()=>{dialogRef.current?.close()}} data-testId="g">1</button>
+        <button type="button" onClick={()=>{dialogRef.current?.close()}} data-testId="g">Ok</button>
       </dialog>
     );
   };

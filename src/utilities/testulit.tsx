@@ -5,6 +5,7 @@ import {
   ActionFunction,
   createMemoryRouter,
   LoaderFunction,
+  RouteObject,
   RouterProvider,
 } from "react-router-dom";
 import { Cart, Product } from "../products";
@@ -14,6 +15,7 @@ export type RouteObjectProps = {
   path?: string;
   loader?: LoaderFunction;
   action?: ActionFunction;
+  children?:RouteObject[]
 };
 
 export const renderWithRouter = ({
@@ -21,8 +23,9 @@ export const renderWithRouter = ({
   path = "/",
   loader,
   action,
+  children = []
 }: RouteObjectProps) => {
-  const router = createMemoryRouter([{ element, path, loader, action }], {
+  const router = createMemoryRouter([{ element, path, loader, action, children }], {
     initialEntries: [path],
   });
 
@@ -34,7 +37,7 @@ export const renderWithRouter = ({
 
 export const mockCart: Cart = [
   {
-    cartItemId:"asd",
+    cartItemId:"asd1",
     name: "LBJ Boom Box",
     id: 12,
     price: 59.99,
@@ -44,7 +47,7 @@ export const mockCart: Cart = [
     product:{} as Product
   },
   {
-    cartItemId:"asd",
+    cartItemId:"asd2",
     name: "Maggie Lo Blouse",
     id: 13,
     price: 39.99,
@@ -54,7 +57,7 @@ export const mockCart: Cart = [
     product:{} as Product
   },
   {
-    cartItemId:"asd",
+    cartItemId:"asd3",
     name: "Mens Cotton Jacket",
     id: 16,
     price: 55.99,

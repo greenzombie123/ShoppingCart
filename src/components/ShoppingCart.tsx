@@ -4,6 +4,7 @@ import {
   Outlet,
   useFetcher,
   useLoaderData,
+  useParams,
 } from "react-router-dom";
 import { Cart, CartItem, Product } from "../products";
 import style from "./ShoppingCart.module.css";
@@ -13,15 +14,16 @@ import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
 
 export const ViewedItemsContainer = () => {
+  const fetcher = useFetcher();
   const viewedItems = useLoaderData<Product[]>();
 
   return (
-    <div className={style.viewedList}>
+    <fetcher.Form className={style.viewedList} method="POST" key={"viewItems"}>
       <p className={style.heading}>Viewed Items</p>
       {viewedItems.map((product) => (
         <ViewedItem key={product.id} product={product} />
       ))}
-    </div>
+    </fetcher.Form>
   );
 };
 

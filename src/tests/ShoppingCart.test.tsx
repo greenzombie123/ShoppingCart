@@ -1,15 +1,28 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import ShoppingCart, { ViewedItemsContainer } from "../components/ShoppingCart";
-import { mockCart,  mockProducts, renderWithRouter, RouteObjectProps } from "../utilities/testulit";
-import { screen, waitFor, } from "@testing-library/dom";
+import {
+  mockCart,
+  mockProducts,
+  renderWithRouter,
+  RouteObjectProps,
+} from "../utilities/testulit";
+import { fireEvent, screen, waitFor } from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
   RouterProvider,
+  useRouteError,
 } from "react-router-dom";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
+import { addToCart } from "../Loaders";
+import url from "node:url";
+
+beforeAll(() => {
+  globalThis.URLSearchParams =
+    url.URLSearchParams as typeof globalThis.URLSearchParams;
+});
 
 describe("ShoppingCart", () => {
   it("renders cart item", async () => {
@@ -212,18 +225,93 @@ describe("ShoppingCart", () => {
   });
 
   it("renders the viewed items container", async () => {
-
-    const viewedItemsRoute:RouteObjectProps = {
+    const viewedItemsRoute: RouteObjectProps = {
       element: <ViewedItemsContainer />,
       path: "/",
-      loader: () => mockProducts, 
+      loader: () => mockProducts,
     };
 
     const { findAllByRole } = renderWithRouter(viewedItemsRoute);
 
-    const links = await findAllByRole("link") as HTMLImageElement[]
+    const links = (await findAllByRole("link")) as HTMLImageElement[];
 
-    expect(links.length).toBe(4)
+    expect(links.length).toBe(4);
+  });
 
+  it("calls the action function", async () => {
+    const mockRemoveFromCart = vi.fn();
+    const mockAddToCart = vi.fn()
+
+    const route: RouteObjectProps = {
+      element: <ShoppingCart />,
+      path: "/mycart",
+      loader: () => mockCart,
+      action: () => mockRemoveFromCart(),
+      children: [
+        {
+          element: <ViewedItemsContainer />,
+          loader: () => mockProducts,
+          index: true,
+          action: () => mockAddToCart(),
+        },
+      ],
+    };
+
+    const { user, findAllByRole, container } = renderWithRouter(route);      
+
+    const addToCartButtons = (await findAllByRole("button", {
+      name: "Add to Cart",
+    })) as HTMLButtonElement[];
+
+    const firstAddToCartButton = addToCartButtons[0];
+
+    await user.click(firstAddToCartButton);
+
+    expect(container).toMatchSnapshot();
+    expect(mockAddToCart).toBeCalled()
+  });
+
+  it.skip("calls addToCart", async () => {
+
+   const mockAction = vi.hoisted(()=>vi.fn())
+
+   const mockAction2 = vi.fn()
+
+    vi.mock("Loaders.ts", async ()=>{
+      const originalModule = await vi.importActual("Loader.ts")
+
+      return {
+        ...originalModule,
+       addToCart:mockAction
+      }
+    })
+
+    const route: RouteObjectProps = {
+      element: <ShoppingCart />,
+      path: "/cart",
+      loader: () => mockCart,
+      action: () => mockAction2(),
+      children: [
+        {
+          element: <ViewedItemsContainer />,
+          loader: () => mockProducts,
+          index: true,
+          action: addToCart,
+        },
+      ],
+    };
+
+    const { user, findAllByRole, container } = renderWithRouter(route);      
+
+    const addToCartButtons = (await findAllByRole("button", {
+      name: "Add to Cart",
+    })) as HTMLButtonElement[];
+
+    const firstAddToCartButton = addToCartButtons[0];
+
+    await user.click(firstAddToCartButton);
+
+    expect(container).toMatchSnapshot();
+    expect(mockAction).toBeCalled()
   });
 });
