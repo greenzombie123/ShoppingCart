@@ -238,47 +238,14 @@ describe("ShoppingCart", () => {
     expect(links.length).toBe(4);
   });
 
-  it("calls the action function", async () => {
-    const mockRemoveFromCart = vi.fn();
-    const mockAddToCart = vi.fn()
-
-    const route: RouteObjectProps = {
-      element: <ShoppingCart />,
-      path: "/mycart",
-      loader: () => mockCart,
-      action: () => mockRemoveFromCart(),
-      children: [
-        {
-          element: <ViewedItemsContainer />,
-          loader: () => mockProducts,
-          index: true,
-          action: () => mockAddToCart(),
-        },
-      ],
-    };
-
-    const { user, findAllByRole, container } = renderWithRouter(route);      
-
-    const addToCartButtons = (await findAllByRole("button", {
-      name: "Add to Cart",
-    })) as HTMLButtonElement[];
-
-    const firstAddToCartButton = addToCartButtons[0];
-
-    await user.click(firstAddToCartButton);
-
-    expect(container).toMatchSnapshot();
-    expect(mockAddToCart).toBeCalled()
-  });
-
-  it.skip("calls addToCart", async () => {
+  it("calls addToCart", async () => {
 
    const mockAction = vi.hoisted(()=>vi.fn())
 
    const mockAction2 = vi.fn()
 
-    vi.mock("Loaders.ts", async ()=>{
-      const originalModule = await vi.importActual("Loader.ts")
+    vi.mock("../Loaders.ts", async ()=>{
+      const originalModule = await vi.importActual("../Loaders.ts")
 
       return {
         ...originalModule,
@@ -288,7 +255,7 @@ describe("ShoppingCart", () => {
 
     const route: RouteObjectProps = {
       element: <ShoppingCart />,
-      path: "/cart",
+      path: "/mycart",
       loader: () => mockCart,
       action: () => mockAction2(),
       children: [
@@ -311,7 +278,7 @@ describe("ShoppingCart", () => {
 
     await user.click(firstAddToCartButton);
 
-    expect(container).toMatchSnapshot();
     expect(mockAction).toBeCalled()
+    expect(container).toMatchSnapshot();
   });
 });

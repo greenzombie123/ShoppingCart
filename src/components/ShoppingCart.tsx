@@ -4,7 +4,6 @@ import {
   Outlet,
   useFetcher,
   useLoaderData,
-  useParams,
 } from "react-router-dom";
 import { Cart, CartItem, Product } from "../products";
 import style from "./ShoppingCart.module.css";

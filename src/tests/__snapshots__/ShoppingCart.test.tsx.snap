@@ -230,7 +230,7 @@ exports[`ShoppingCart > calls addToCart 1`] = `
       class="_rightSide_fa5548"
     >
       <form
-        action="/cart"
+        action="/mycart"
         class="_priceContainer_fa5548"
         data-discover="true"
         method="get"
@@ -262,7 +262,7 @@ exports[`ShoppingCart > calls addToCart 1`] = `
         </button>
       </form>
       <form
-        action="/cart"
+        action="/mycart?index"
         class="_viewedList_fa5548"
         data-discover="true"
         method="post"
