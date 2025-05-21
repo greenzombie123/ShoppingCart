@@ -8,14 +8,15 @@ import {
   RouteObject,
   RouterProvider,
 } from "react-router-dom";
-import { Cart, Product } from "../products";
+import { Cart, CartItem, Product } from "../products";
+import { vi } from "vitest";
 
 export type RouteObjectProps = {
   element: ReactNode;
   path?: string;
   loader?: LoaderFunction;
   action?: ActionFunction;
-  children?:RouteObject[]
+  children?: RouteObject[];
 };
 
 export const renderWithRouter = ({
@@ -23,11 +24,14 @@ export const renderWithRouter = ({
   path = "/",
   loader,
   action,
-  children = []
+  children = [],
 }: RouteObjectProps) => {
-  const router = createMemoryRouter([{ element, path, loader, action, children }], {
-    initialEntries: [path],
-  });
+  const router = createMemoryRouter(
+    [{ element, path, loader, action, children }],
+    {
+      initialEntries: [path],
+    }
+  );
 
   return {
     user: userEvent.setup(),
@@ -37,34 +41,34 @@ export const renderWithRouter = ({
 
 export const mockCart: Cart = [
   {
-    cartItemId:"asd1",
+    cartItemId: "asd1",
     name: "LBJ Boom Box",
     id: 12,
     price: 59.99,
     style: "Red",
     picture: "/images/redjbl-boombox.jpeg",
     quantity: 2,
-    product:{} as Product
+    product: {} as Product,
   },
   {
-    cartItemId:"asd2",
+    cartItemId: "asd2",
     name: "Maggie Lo Blouse",
     id: 13,
     price: 39.99,
     style: "Black",
     picture: "/images/brownblouse.jpg",
     quantity: 1,
-    product:{} as Product
+    product: {} as Product,
   },
   {
-    cartItemId:"asd3",
+    cartItemId: "asd3",
     name: "Mens Cotton Jacket",
     id: 16,
     price: 55.99,
     style: undefined,
     picture: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
     quantity: 4,
-    product:{} as Product
+    product: {} as Product,
   },
 ];
 
@@ -84,7 +88,6 @@ export const mockProducts: Product[] = [
         isCurrentStyle: true,
       },
     ],
-    
   },
   {
     name: "Velmora Elegance Handbag",
@@ -145,3 +148,60 @@ export const mockProducts: Product[] = [
     ],
   },
 ];
+
+// export const mockModule = async <U, T extends Partial<U>>(
+//   path: string,
+//   newProps: T
+// ): Promise<void> => {
+
+//   vi.mock(path, async () => {
+//     const originalModule = (await vi.importActual(path)) as U;
+
+//     return {
+//       ...originalModule,
+//       ...newProps,
+//     };
+//   });
+// };
+
+export const mockGetOneViewedItem: () => Product[] = () => [
+  {
+    name: "Jupopo AirFlex Running Shoes",
+    id: 7,
+    category: "Men's Clothing",
+    price: 89.99,
+    ratings: 198,
+    stars: 4,
+    likes: 431,
+    styles: [
+      {
+        description: "",
+        picture: "/images/ID3692_HM5.avif",
+        isCurrentStyle: true,
+      },
+    ],
+  }
+];
+
+export const mockGetEmptyCart:()=>[] = () => [];
+
+export const mockAddOneItemToCart: () => { productInfo: CartItem } = () => ({
+  productInfo: {
+    cartItemId: "111",
+    name: "Red Boom Box",
+    id: 1,
+    price: 59.99,
+    style: "Red",
+    picture: "/images/redjbl-boombox.jpeg",
+    quantity: 3,
+    product: {} as Product,
+  },
+});
+
+export const setUpMockShowModal = () => {
+  const mockShowModal = vi.fn();
+
+  HTMLDialogElement.prototype.showModal = mockShowModal;
+
+  return mockShowModal;
+};

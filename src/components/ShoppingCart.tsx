@@ -11,18 +11,22 @@ import { StarContainer } from "./StorePage";
 import { useState } from "react";
 import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
+import { PopUp } from "./PopUp";
 
 export const ViewedItemsContainer = () => {
   const fetcher = useFetcher();
   const viewedItems = useLoaderData<Product[]>();
 
   return (
-    <fetcher.Form className={style.viewedList} method="POST" key={"viewItems"}>
-      <p className={style.heading}>Viewed Items</p>
-      {viewedItems.map((product) => (
-        <ViewedItem key={product.id} product={product} />
-      ))}
-    </fetcher.Form>
+    <>
+      <div className={style.viewedList}>
+        <p className={style.heading}>Viewed Items</p>
+        {viewedItems.map((product) => (
+          <ViewedItem key={product.id} product={product} />
+        ))}
+      </div>
+      <PopUp status={fetcher.state} data={fetcher.data} />
+    </>
   );
 };
 
@@ -31,6 +35,8 @@ type ViewedItemProp = {
 };
 
 const ViewedItem = ({ product }: ViewedItemProp) => {
+  const fetcher = useFetcher();
+
   return (
     <div className={style.viewedItem}>
       <Link to={`/product/${product.id}`} state={product}>
@@ -38,7 +44,7 @@ const ViewedItem = ({ product }: ViewedItemProp) => {
           <img src={product.styles[0].picture} alt={product.name} />
         </div>
       </Link>
-      <div className={style.infoContainer}>
+      <fetcher.Form className={style.infoContainer} method="POST">
         <div className={style.name}>{product.name}</div>
         <div className={style.stars}>
           <StarContainer stars={product.stars} style={style} />
@@ -46,7 +52,14 @@ const ViewedItem = ({ product }: ViewedItemProp) => {
         </div>
         <div className={style.price}>${product.price}</div>
         <button className={style.addButton}>Add to Cart</button>
-      </div>
+        <input type="hidden" name="id" value={product.id} />
+        <input type="hidden" name="name" value={product.name} />
+        <input type="hidden" name="style" value={product.styles[0].description} />
+        <input type="hidden" name="price" value={product.price} />
+        <input type="hidden" name="quantity" value={1} />
+        <input type="hidden" name="picture" value={product.styles[0].picture} />
+        <input type="hidden" name="product" value={JSON.stringify(product)} />
+      </fetcher.Form>
     </div>
   );
 };
@@ -60,8 +73,6 @@ const QuantityCounter = ({
   onIncreaseButtonClick: (id: number) => void;
   onDecreaseButtonClick: (id: number) => void;
 }) => {
-  // console.log(cartItem.quantity)
-
   return (
     <div className={style.quantityCounter}>
       <button

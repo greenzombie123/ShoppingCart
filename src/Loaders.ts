@@ -38,6 +38,7 @@ const removeCartItem: ActionFunction = async ({
 };
 
 const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
+
   try {
     const formData = await request.formData();
     const name = formData.get("name");

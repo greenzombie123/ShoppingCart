@@ -1,17 +1,20 @@
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import ShoppingCart, { ViewedItemsContainer } from "../components/ShoppingCart";
 import {
+  mockAddOneItemToCart,
   mockCart,
+  mockGetEmptyCart,
+  mockGetOneViewedItem,
   mockProducts,
   renderWithRouter,
   RouteObjectProps,
+  setUpMockShowModal,
 } from "../utilities/testulit";
-import { fireEvent, screen, waitFor } from "@testing-library/dom";
+import { screen, waitFor } from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
   RouterProvider,
-  useRouteError,
 } from "react-router-dom";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
@@ -181,49 +184,6 @@ describe("ShoppingCart", () => {
     vi.resetAllMocks();
   });
 
-  it.skip("removes the cart item from server when ok button of cart popup is clicked", async () => {
-    const mockAction = vi.fn();
-
-    const route = {
-      element: <ShoppingCart />,
-      path: "/mycart",
-      loader: () => [
-        {
-          name: "LBJ Boom Box",
-          id: 12,
-          price: 59.99,
-          style: "Red",
-          picture: "/images/redjbl-boombox.jpeg",
-          quantity: 2,
-        },
-      ],
-      action: mockAction,
-    };
-
-    const user = userEvent.setup();
-
-    const { findByRole } = render(
-      <RouterProvider
-        router={createMemoryRouter([route], { initialEntries: ["/mycart"] })}
-      />
-    );
-
-    const removeButton = (await findByRole("button", {
-      name: "remove Cartitem Button",
-    })) as HTMLButtonElement;
-
-    await waitFor(async () => {
-      await user.click(removeButton);
-    });
-
-    const dialog = await findByRole("dialog", { hidden: true });
-    const okButton = dialog.querySelector("button") as HTMLButtonElement;
-
-    await user.click(okButton);
-
-    // expect(mockAction).toBeCalled()
-  });
-
   it("renders the viewed items container", async () => {
     const viewedItemsRoute: RouteObjectProps = {
       element: <ViewedItemsContainer />,
@@ -239,19 +199,18 @@ describe("ShoppingCart", () => {
   });
 
   it("calls addToCart", async () => {
+    const mockAction = vi.hoisted(() => vi.fn());
 
-   const mockAction = vi.hoisted(()=>vi.fn())
+    const mockAction2 = vi.fn();
 
-   const mockAction2 = vi.fn()
-
-    vi.mock("../Loaders.ts", async ()=>{
-      const originalModule = await vi.importActual("../Loaders.ts")
+    vi.mock("../Loaders.ts", async () => {
+      const originalModule = await vi.importActual("../Loaders.ts");
 
       return {
         ...originalModule,
-       addToCart:mockAction
-      }
-    })
+        addToCart: mockAction,
+      };
+    });
 
     const route: RouteObjectProps = {
       element: <ShoppingCart />,
@@ -268,7 +227,7 @@ describe("ShoppingCart", () => {
       ],
     };
 
-    const { user, findAllByRole, container } = renderWithRouter(route);      
+    const { user, findAllByRole, container } = renderWithRouter(route);
 
     const addToCartButtons = (await findAllByRole("button", {
       name: "Add to Cart",
@@ -278,7 +237,54 @@ describe("ShoppingCart", () => {
 
     await user.click(firstAddToCartButton);
 
-    expect(mockAction).toBeCalled()
+    expect(mockAction).toBeCalled();
+
+    const secondAddToCartButton = addToCartButtons[1];
+
+    await user.click(secondAddToCartButton);
+
+    expect(mockAction).toBeCalledTimes(2)
     expect(container).toMatchSnapshot();
+  });
+
+  it.skip("renders PopUp when the add to cart button on a viewed item is clicked", async () => {
+    const mockShowModal = vi.fn();
+    const mockAction = vi.fn()
+
+    HTMLDialogElement.prototype.showModal = mockShowModal;
+
+    const route: RouteObjectProps = {
+      element: <ShoppingCart />,
+      path: "/mycart",
+      loader: mockGetEmptyCart,
+      action:()=>console.log("WHAT!?"),
+      children: [
+        {
+          element: <ViewedItemsContainer />,
+          loader: mockGetOneViewedItem,
+          index: true,
+          action: mockAction//mockAddOneItemToCart,
+        },
+      ],
+    };
+
+    const { user, findByRole } = renderWithRouter(route);
+
+    const addToCartButtons = (await findByRole("button", {
+      name: "Add to Cart",
+    })) as HTMLButtonElement;
+
+    const firstAddToCartButton = addToCartButtons;
+
+    await user.click(firstAddToCartButton);
+
+    await waitFor(()=>expect(mockAction).toBeCalled)
+
+    // await waitFor(() =>
+    //   expect(HTMLDialogElement.prototype.showModal).toBeCalled()
+    // );
+    // await waitFor(() =>
+    //   expect(HTMLDialogElement.prototype.showModal).not.toBeCalledTimes(2)
+    // );
   });
 });

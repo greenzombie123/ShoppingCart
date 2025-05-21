@@ -44,7 +44,7 @@ const routes: RouteObject[] = [
             loader: getViewedItems,
             index: true,
             element: <ViewedItemsContainer />,
-            action:()=>{console.log(12)}
+            action:addToCart
           },
         ],
       },

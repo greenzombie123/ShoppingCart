@@ -14,7 +14,6 @@ import {
   createMemoryRouter,
   RouteObject,
   RouterProvider,
-  useLocation,
 } from "react-router-dom";
 import ShoppingProduct, {
   ProductDetails,
@@ -25,10 +24,6 @@ import userEvent from "@testing-library/user-event";
 import storePageStyle from "../components/ShoppingProduct.module.css";
 import { renderWithRouter, RouteObjectProps } from "../utilities/testulit";
 import { PopUp } from "../components/PopUp";
-// import * as useViewedItems from "../custom_hooks/useViewedItems";
-import { V } from "vitest/dist/chunks/reporters.66aFHiyX.js";
-import { version } from "react";
-import useViewedItems from "../custom_hooks/useViewedItems";
 
 const product: Product = {
   id: 1,
@@ -252,7 +247,6 @@ describe("ProductToCart", () => {
     expect(quantityLabel.textContent).not.toBe("0");
   });
 
-  it("renders a pop up when the add to cart button is clicked", async () => {});
 });
 
 describe("PopUp", () => {

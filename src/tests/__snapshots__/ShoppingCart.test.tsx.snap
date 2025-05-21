@@ -261,11 +261,8 @@ exports[`ShoppingCart > calls addToCart 1`] = `
           Checkout
         </button>
       </form>
-      <form
-        action="/mycart?index"
+      <div
         class="_viewedList_fa5548"
-        data-discover="true"
-        method="post"
       >
         <p
           class="_heading_fa5548"
@@ -288,8 +285,11 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               />
             </div>
           </a>
-          <div
+          <form
+            action="/mycart?index"
             class="_infoContainer_fa5548"
+            data-discover="true"
+            method="post"
           >
             <div
               class="_name_fa5548"
@@ -347,7 +347,42 @@ exports[`ShoppingCart > calls addToCart 1`] = `
             >
               Add to Cart
             </button>
-          </div>
+            <input
+              name="id"
+              type="hidden"
+              value="7"
+            />
+            <input
+              name="name"
+              type="hidden"
+              value="Jupopo AirFlex Running Shoes"
+            />
+            <input
+              name="style"
+              type="hidden"
+              value=""
+            />
+            <input
+              name="price"
+              type="hidden"
+              value="89.99"
+            />
+            <input
+              name="quantity"
+              type="hidden"
+              value="1"
+            />
+            <input
+              name="picture"
+              type="hidden"
+              value="/images/ID3692_HM5.avif"
+            />
+            <input
+              name="product"
+              type="hidden"
+              value="{"name":"Jupopo AirFlex Running Shoes","id":7,"category":"Men's Clothing","price":89.99,"ratings":198,"stars":4,"likes":431,"styles":[{"description":"","picture":"/images/ID3692_HM5.avif","isCurrentStyle":true}]}"
+            />
+          </form>
         </div>
         <div
           class="_viewedItem_fa5548"
@@ -365,8 +400,11 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               />
             </div>
           </a>
-          <div
+          <form
+            action="/mycart?index"
             class="_infoContainer_fa5548"
+            data-discover="true"
+            method="post"
           >
             <div
               class="_name_fa5548"
@@ -424,7 +462,42 @@ exports[`ShoppingCart > calls addToCart 1`] = `
             >
               Add to Cart
             </button>
-          </div>
+            <input
+              name="id"
+              type="hidden"
+              value="8"
+            />
+            <input
+              name="name"
+              type="hidden"
+              value="Velmora Elegance Handbag"
+            />
+            <input
+              name="style"
+              type="hidden"
+              value="Black"
+            />
+            <input
+              name="price"
+              type="hidden"
+              value="120"
+            />
+            <input
+              name="quantity"
+              type="hidden"
+              value="1"
+            />
+            <input
+              name="picture"
+              type="hidden"
+              value="/images/handbagblack.webp"
+            />
+            <input
+              name="product"
+              type="hidden"
+              value="{"name":"Velmora Elegance Handbag","id":8,"category":"Women's Clothing","price":120,"ratings":564,"stars":5,"likes":1201,"styles":[{"description":"Black","picture":"/images/handbagblack.webp","isCurrentStyle":true},{"description":"Beige","picture":"/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp","isCurrentStyle":false}]}"
+            />
+          </form>
         </div>
         <div
           class="_viewedItem_fa5548"
@@ -442,8 +515,11 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               />
             </div>
           </a>
-          <div
+          <form
+            action="/mycart?index"
             class="_infoContainer_fa5548"
+            data-discover="true"
+            method="post"
           >
             <div
               class="_name_fa5548"
@@ -501,7 +577,42 @@ exports[`ShoppingCart > calls addToCart 1`] = `
             >
               Add to Cart
             </button>
-          </div>
+            <input
+              name="id"
+              type="hidden"
+              value="9"
+            />
+            <input
+              name="name"
+              type="hidden"
+              value="Orvella Silver Twist Earrings"
+            />
+            <input
+              name="style"
+              type="hidden"
+              value=""
+            />
+            <input
+              name="price"
+              type="hidden"
+              value="59.99"
+            />
+            <input
+              name="quantity"
+              type="hidden"
+              value="1"
+            />
+            <input
+              name="picture"
+              type="hidden"
+              value="/images/twistearrings.webp"
+            />
+            <input
+              name="product"
+              type="hidden"
+              value="{"name":"Orvella Silver Twist Earrings","id":9,"category":"Jewelry","price":59.99,"ratings":310,"stars":4,"likes":720,"styles":[{"description":"","picture":"/images/twistearrings.webp","isCurrentStyle":true}]}"
+            />
+          </form>
         </div>
         <div
           class="_viewedItem_fa5548"
@@ -519,8 +630,11 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               />
             </div>
           </a>
-          <div
+          <form
+            action="/mycart?index"
             class="_infoContainer_fa5548"
+            data-discover="true"
+            method="post"
           >
             <div
               class="_name_fa5548"
@@ -578,624 +692,61 @@ exports[`ShoppingCart > calls addToCart 1`] = `
             >
               Add to Cart
             </button>
-          </div>
+            <input
+              name="id"
+              type="hidden"
+              value="10"
+            />
+            <input
+              name="name"
+              type="hidden"
+              value="AxionBeat Wireless Headphones"
+            />
+            <input
+              name="style"
+              type="hidden"
+              value="Blue"
+            />
+            <input
+              name="price"
+              type="hidden"
+              value="199.99"
+            />
+            <input
+              name="quantity"
+              type="hidden"
+              value="1"
+            />
+            <input
+              name="picture"
+              type="hidden"
+              value="/images/headlessblue.webp"
+            />
+            <input
+              name="product"
+              type="hidden"
+              value="{"name":"AxionBeat Wireless Headphones","id":10,"category":"Electronics","price":199.99,"ratings":785,"stars":5,"likes":1532,"styles":[{"description":"Blue","picture":"/images/headlessblue.webp","isCurrentStyle":true},{"description":"White","picture":"/images/headlesswhite.webp","isCurrentStyle":false}]}"
+            />
+          </form>
         </div>
-      </form>
-    </div>
-    <dialog>
-      <form
-        action="/mycart"
-        data-discover="true"
-        method="post"
+      </div>
+      <dialog
+        role="dialog"
       >
-        <input
-          name="id"
-          type="hidden"
-          value=""
-        />
-        <p>
-          Remove the following item from your cart?
-        </p>
-        <p />
+        <img />
+        <h2 />
+        <span />
+        <span />
+        <span>
+          Quantity: 
+        </span>
         <button
-          aria-label="removeCartItem"
-          type="submit"
-        >
-          Yes
-        </button>
-        <button
-          aria-label="cancel"
+          data-testid="g"
           type="button"
         >
-          Cancel
+          Ok
         </button>
-      </form>
-    </dialog>
-  </div>
-</div>
-`;
-
-exports[`ShoppingCart > calls the action function 1`] = `
-<div>
-  <div
-    class="_shoppingCart_fa5548"
-  >
-    <div
-      class="_cart_fa5548"
-    >
-      <div
-        class="_item_fa5548"
-      >
-        <a
-          data-discover="true"
-          href="/product/12"
-        >
-          <div
-            class="_imgContainer_fa5548"
-          >
-            <img
-              alt="LBJ Boom Box"
-              src="/images/redjbl-boombox.jpeg"
-            />
-          </div>
-        </a>
-        <div
-          class="_itemInfo_left_fa5548"
-        >
-          <p
-            class="_name_fa5548"
-          >
-            LBJ Boom Box
-          </p>
-          <p
-            class="_style_fa5548"
-          >
-            Red
-          </p>
-          <button
-            aria-label="remove Cartitem Button"
-            class="_removeButton_fa5548"
-            type="button"
-          >
-            Remove
-          </button>
-        </div>
-        <div
-          class="_itemInfo_right_fa5548"
-        >
-          <div
-            class="_quantityCounter_fa5548"
-          >
-            <button
-              aria-label="Increase quantity"
-              class="_increaseButton_fa5548"
-              id="increaseButton"
-              type="button"
-            >
-              +
-            </button>
-            <output
-              class="_counter_fa5548"
-              for="increaseButton decreaseButton"
-              name="quantity"
-            >
-              2
-            </output>
-            <button
-              aria-label="Decrease quantity"
-              class="_decreaseButton_fa5548"
-              id="decreaseButton"
-              type="button"
-            >
-              −
-            </button>
-          </div>
-          <p
-            class="_price_fa5548"
-          >
-            $119.98
-          </p>
-        </div>
-      </div>
-      <div
-        class="_item_fa5548"
-      >
-        <a
-          data-discover="true"
-          href="/product/13"
-        >
-          <div
-            class="_imgContainer_fa5548"
-          >
-            <img
-              alt="Maggie Lo Blouse"
-              src="/images/brownblouse.jpg"
-            />
-          </div>
-        </a>
-        <div
-          class="_itemInfo_left_fa5548"
-        >
-          <p
-            class="_name_fa5548"
-          >
-            Maggie Lo Blouse
-          </p>
-          <p
-            class="_style_fa5548"
-          >
-            Black
-          </p>
-          <button
-            aria-label="remove Cartitem Button"
-            class="_removeButton_fa5548"
-            type="button"
-          >
-            Remove
-          </button>
-        </div>
-        <div
-          class="_itemInfo_right_fa5548"
-        >
-          <div
-            class="_quantityCounter_fa5548"
-          >
-            <button
-              aria-label="Increase quantity"
-              class="_increaseButton_fa5548"
-              id="increaseButton"
-              type="button"
-            >
-              +
-            </button>
-            <output
-              class="_counter_fa5548"
-              for="increaseButton decreaseButton"
-              name="quantity"
-            >
-              1
-            </output>
-            <button
-              aria-label="Decrease quantity"
-              class="_decreaseButton_fa5548"
-              id="decreaseButton"
-              type="button"
-            >
-              −
-            </button>
-          </div>
-          <p
-            class="_price_fa5548"
-          >
-            $39.99
-          </p>
-        </div>
-      </div>
-      <div
-        class="_item_fa5548"
-      >
-        <a
-          data-discover="true"
-          href="/product/16"
-        >
-          <div
-            class="_imgContainer_fa5548"
-          >
-            <img
-              alt="Mens Cotton Jacket"
-              src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
-            />
-          </div>
-        </a>
-        <div
-          class="_itemInfo_left_fa5548"
-        >
-          <p
-            class="_name_fa5548"
-          >
-            Mens Cotton Jacket
-          </p>
-          <button
-            aria-label="remove Cartitem Button"
-            class="_removeButton_fa5548"
-            type="button"
-          >
-            Remove
-          </button>
-        </div>
-        <div
-          class="_itemInfo_right_fa5548"
-        >
-          <div
-            class="_quantityCounter_fa5548"
-          >
-            <button
-              aria-label="Increase quantity"
-              class="_increaseButton_fa5548"
-              id="increaseButton"
-              type="button"
-            >
-              +
-            </button>
-            <output
-              class="_counter_fa5548"
-              for="increaseButton decreaseButton"
-              name="quantity"
-            >
-              4
-            </output>
-            <button
-              aria-label="Decrease quantity"
-              class="_decreaseButton_fa5548"
-              id="decreaseButton"
-              type="button"
-            >
-              −
-            </button>
-          </div>
-          <p
-            class="_price_fa5548"
-          >
-            $223.96
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      class="_rightSide_fa5548"
-    >
-      <form
-        action="/mycart"
-        class="_priceContainer_fa5548"
-        data-discover="true"
-        method="get"
-      >
-        <div
-          class="_topPrice_fa5548"
-        >
-          <p>
-            Subtotal
-          </p>
-          <p>
-            $1200
-          </p>
-        </div>
-        <div
-          class="_bottomPrice_fa5548"
-        >
-          <p>
-            Total Incl. Tax
-          </p>
-          <p>
-            $1222
-          </p>
-        </div>
-        <button
-          class="_checkoutButton_fa5548"
-        >
-          Checkout
-        </button>
-      </form>
-      <form
-        action="/mycart?index"
-        class="_viewedList_fa5548"
-        data-discover="true"
-        method="post"
-      >
-        <p
-          class="_heading_fa5548"
-        >
-          Viewed Items
-        </p>
-        <div
-          class="_viewedItem_fa5548"
-        >
-          <a
-            data-discover="true"
-            href="/product/7"
-          >
-            <div
-              class="_imgContainer_fa5548"
-            >
-              <img
-                alt="Jupopo AirFlex Running Shoes"
-                src="/images/ID3692_HM5.avif"
-              />
-            </div>
-          </a>
-          <div
-            class="_infoContainer_fa5548"
-          >
-            <div
-              class="_name_fa5548"
-            >
-              Jupopo AirFlex Running Shoes
-            </div>
-            <div
-              class="_stars_fa5548"
-            >
-              <div
-                class="_stars_container_fa5548"
-              >
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548"
-                  role="img"
-                />
-              </div>
-              <div
-                class="_ratings_fa5548"
-              >
-                (
-                198
-                )
-              </div>
-            </div>
-            <div
-              class="_price_fa5548"
-            >
-              $
-              89.99
-            </div>
-            <button
-              class="_addButton_fa5548"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-        <div
-          class="_viewedItem_fa5548"
-        >
-          <a
-            data-discover="true"
-            href="/product/8"
-          >
-            <div
-              class="_imgContainer_fa5548"
-            >
-              <img
-                alt="Velmora Elegance Handbag"
-                src="/images/handbagblack.webp"
-              />
-            </div>
-          </a>
-          <div
-            class="_infoContainer_fa5548"
-          >
-            <div
-              class="_name_fa5548"
-            >
-              Velmora Elegance Handbag
-            </div>
-            <div
-              class="_stars_fa5548"
-            >
-              <div
-                class="_stars_container_fa5548"
-              >
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-              </div>
-              <div
-                class="_ratings_fa5548"
-              >
-                (
-                564
-                )
-              </div>
-            </div>
-            <div
-              class="_price_fa5548"
-            >
-              $
-              120
-            </div>
-            <button
-              class="_addButton_fa5548"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-        <div
-          class="_viewedItem_fa5548"
-        >
-          <a
-            data-discover="true"
-            href="/product/9"
-          >
-            <div
-              class="_imgContainer_fa5548"
-            >
-              <img
-                alt="Orvella Silver Twist Earrings"
-                src="/images/twistearrings.webp"
-              />
-            </div>
-          </a>
-          <div
-            class="_infoContainer_fa5548"
-          >
-            <div
-              class="_name_fa5548"
-            >
-              Orvella Silver Twist Earrings
-            </div>
-            <div
-              class="_stars_fa5548"
-            >
-              <div
-                class="_stars_container_fa5548"
-              >
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548"
-                  role="img"
-                />
-              </div>
-              <div
-                class="_ratings_fa5548"
-              >
-                (
-                310
-                )
-              </div>
-            </div>
-            <div
-              class="_price_fa5548"
-            >
-              $
-              59.99
-            </div>
-            <button
-              class="_addButton_fa5548"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-        <div
-          class="_viewedItem_fa5548"
-        >
-          <a
-            data-discover="true"
-            href="/product/10"
-          >
-            <div
-              class="_imgContainer_fa5548"
-            >
-              <img
-                alt="AxionBeat Wireless Headphones"
-                src="/images/headlessblue.webp"
-              />
-            </div>
-          </a>
-          <div
-            class="_infoContainer_fa5548"
-          >
-            <div
-              class="_name_fa5548"
-            >
-              AxionBeat Wireless Headphones
-            </div>
-            <div
-              class="_stars_fa5548"
-            >
-              <div
-                class="_stars_container_fa5548"
-              >
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-                <span
-                  aria-label="star"
-                  class="_star_fa5548 _on_fa5548"
-                  role="img"
-                />
-              </div>
-              <div
-                class="_ratings_fa5548"
-              >
-                (
-                785
-                )
-              </div>
-            </div>
-            <div
-              class="_price_fa5548"
-            >
-              $
-              199.99
-            </div>
-            <button
-              class="_addButton_fa5548"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      </form>
+      </dialog>
     </div>
     <dialog>
       <form

@@ -89,46 +89,46 @@
       }
     },
     {
-      "id": "27",
-      "cartItemId": "f0e409f6-c839-47f4-b951-55925ad4fff6",
-      "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
-      "price": 999.99,
+      "id": "15",
+      "cartItemId": "fa549e16-28dd-4759-9b47-0c76ba7622ec",
+      "name": "Mens Casual Premium Slim Fit T-Shirts ",
+      "price": 22.3,
       "quantity": 1,
-      "picture": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+      "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
       "product": {
-        "id": "27",
-        "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
-        "price": 999.99,
-        "stars": 2,
-        "ratings": 140,
-        "category": "Electronics",
+        "id": "15",
+        "name": "Mens Casual Premium Slim Fit T-Shirts ",
+        "price": 22.3,
+        "stars": 4,
+        "ratings": 259,
+        "category": "Men's Clothing",
         "styles": [
           {
             "description": "",
-            "picture": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+            "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
             "isCurrentStyle": true
           }
         ]
       }
     },
     {
-      "id": "19",
-      "cartItemId": "6a3b2e63-60c2-432d-9ad3-de46df0f4b64",
-      "name": "Solid Gold Petite Micropave",
-      "price": 168,
-      "quantity": 1,
-      "picture": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+      "id": "16",
+      "cartItemId": "8c7e01e9-0f7c-41ff-ba80-78b2edcd7a57",
+      "name": "Mens Cotton Jacket",
+      "price": 55.99,
+      "quantity": 2,
+      "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
       "product": {
-        "id": "19",
-        "name": "Solid Gold Petite Micropave",
-        "price": 168,
-        "stars": 4,
-        "ratings": 70,
-        "category": "Jewelry",
+        "id": "16",
+        "name": "Mens Cotton Jacket",
+        "price": 55.99,
+        "stars": 5,
+        "ratings": 500,
+        "category": "Men's Clothing",
         "styles": [
           {
             "description": "",
-            "picture": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+            "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
             "isCurrentStyle": true
           }
         ]
@@ -710,6 +710,36 @@
       "id": "1",
       "products": [
         {
+          "id": "16",
+          "name": "Mens Cotton Jacket",
+          "price": 55.99,
+          "stars": 5,
+          "ratings": 500,
+          "category": "Men's Clothing",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
+          "id": "15",
+          "name": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "stars": 4,
+          "ratings": 259,
+          "category": "Men's Clothing",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
           "name": "Orvella Silver Twist Earrings",
           "id": "9",
           "category": "Jewelry",
@@ -758,36 +788,6 @@
             {
               "description": "",
               "picture": "/images/ID3692_HM5.avif",
-              "isCurrentStyle": true
-            }
-          ]
-        },
-        {
-          "id": "19",
-          "name": "Solid Gold Petite Micropave",
-          "price": 168,
-          "stars": 4,
-          "ratings": 70,
-          "category": "Jewelry",
-          "styles": [
-            {
-              "description": "",
-              "picture": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-              "isCurrentStyle": true
-            }
-          ]
-        },
-        {
-          "id": "27",
-          "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
-          "price": 999.99,
-          "stars": 2,
-          "ratings": 140,
-          "category": "Electronics",
-          "styles": [
-            {
-              "description": "",
-              "picture": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
               "isCurrentStyle": true
             }
           ]
