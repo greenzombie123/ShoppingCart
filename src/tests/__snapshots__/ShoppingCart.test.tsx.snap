@@ -383,6 +383,23 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               value="{"name":"Jupopo AirFlex Running Shoes","id":7,"category":"Men's Clothing","price":89.99,"ratings":198,"stars":4,"likes":431,"styles":[{"description":"","picture":"/images/ID3692_HM5.avif","isCurrentStyle":true}]}"
             />
           </form>
+          <dialog
+            role="dialog"
+          >
+            <img />
+            <h2 />
+            <span />
+            <span />
+            <span>
+              Quantity: 
+            </span>
+            <button
+              data-testid="g"
+              type="button"
+            >
+              Ok
+            </button>
+          </dialog>
         </div>
         <div
           class="_viewedItem_fa5548"
@@ -498,6 +515,23 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               value="{"name":"Velmora Elegance Handbag","id":8,"category":"Women's Clothing","price":120,"ratings":564,"stars":5,"likes":1201,"styles":[{"description":"Black","picture":"/images/handbagblack.webp","isCurrentStyle":true},{"description":"Beige","picture":"/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp","isCurrentStyle":false}]}"
             />
           </form>
+          <dialog
+            role="dialog"
+          >
+            <img />
+            <h2 />
+            <span />
+            <span />
+            <span>
+              Quantity: 
+            </span>
+            <button
+              data-testid="g"
+              type="button"
+            >
+              Ok
+            </button>
+          </dialog>
         </div>
         <div
           class="_viewedItem_fa5548"
@@ -613,6 +647,23 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               value="{"name":"Orvella Silver Twist Earrings","id":9,"category":"Jewelry","price":59.99,"ratings":310,"stars":4,"likes":720,"styles":[{"description":"","picture":"/images/twistearrings.webp","isCurrentStyle":true}]}"
             />
           </form>
+          <dialog
+            role="dialog"
+          >
+            <img />
+            <h2 />
+            <span />
+            <span />
+            <span>
+              Quantity: 
+            </span>
+            <button
+              data-testid="g"
+              type="button"
+            >
+              Ok
+            </button>
+          </dialog>
         </div>
         <div
           class="_viewedItem_fa5548"
@@ -728,25 +779,25 @@ exports[`ShoppingCart > calls addToCart 1`] = `
               value="{"name":"AxionBeat Wireless Headphones","id":10,"category":"Electronics","price":199.99,"ratings":785,"stars":5,"likes":1532,"styles":[{"description":"Blue","picture":"/images/headlessblue.webp","isCurrentStyle":true},{"description":"White","picture":"/images/headlesswhite.webp","isCurrentStyle":false}]}"
             />
           </form>
+          <dialog
+            role="dialog"
+          >
+            <img />
+            <h2 />
+            <span />
+            <span />
+            <span>
+              Quantity: 
+            </span>
+            <button
+              data-testid="g"
+              type="button"
+            >
+              Ok
+            </button>
+          </dialog>
         </div>
       </div>
-      <dialog
-        role="dialog"
-      >
-        <img />
-        <h2 />
-        <span />
-        <span />
-        <span>
-          Quantity: 
-        </span>
-        <button
-          data-testid="g"
-          type="button"
-        >
-          Ok
-        </button>
-      </dialog>
     </div>
     <dialog>
       <form

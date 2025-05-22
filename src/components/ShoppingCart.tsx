@@ -14,7 +14,6 @@ import useCartItems from "../custom_hooks/useCartItems";
 import { PopUp } from "./PopUp";
 
 export const ViewedItemsContainer = () => {
-  const fetcher = useFetcher();
   const viewedItems = useLoaderData<Product[]>();
 
   return (
@@ -25,7 +24,6 @@ export const ViewedItemsContainer = () => {
           <ViewedItem key={product.id} product={product} />
         ))}
       </div>
-      <PopUp status={fetcher.state} data={fetcher.data} />
     </>
   );
 };
@@ -60,6 +58,7 @@ const ViewedItem = ({ product }: ViewedItemProp) => {
         <input type="hidden" name="picture" value={product.styles[0].picture} />
         <input type="hidden" name="product" value={JSON.stringify(product)} />
       </fetcher.Form>
+      <PopUp status={fetcher.state} data={fetcher.data} />
     </div>
   );
 };

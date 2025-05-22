@@ -221,7 +221,6 @@ describe("StorePage", () => {
         .getAllByRole("img", { name: "star" })
         .filter((star) => star.classList.contains(storePageStyle.on))
     );
-    // console.log(await screen.getByRole("img", {name:"star"}).classList)
     expect(stars.length).toBe(4);
   });
 

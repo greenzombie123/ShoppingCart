@@ -30,37 +30,7 @@
   "cart": [
     {
       "id": "3",
-      "cartItemId": "191bfc3d-625a-4bad-9b4e-bce7bf40f33b",
-      "name": "Jupopo Leather Jacket",
-      "price": 129.99,
-      "quantity": 3,
-      "style": "Black",
-      "picture": "/images/asos-leather-jackets.webp",
-      "product": {
-        "name": "Jupopo Leather Jacket",
-        "id": "3",
-        "category": "Men's Clothing",
-        "price": 129.99,
-        "ratings": 342,
-        "stars": 5,
-        "likes": 765,
-        "styles": [
-          {
-            "description": "Brown",
-            "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
-            "isCurrentStyle": false
-          },
-          {
-            "description": "Black",
-            "picture": "/images/asos-leather-jackets.webp",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "3",
-      "cartItemId": "6b51123d-4c3c-4a33-9f5d-3a88a82bd5a5",
+      "cartItemId": "dde57664-e9d7-4e9c-be49-407949c33fe9",
       "name": "Jupopo Leather Jacket",
       "price": 129.99,
       "quantity": 1,
@@ -89,8 +59,80 @@
       }
     },
     {
+      "id": "16",
+      "cartItemId": "a5b95106-0249-4193-b929-4ebca7ee6b16",
+      "name": "Mens Cotton Jacket",
+      "price": 55.99,
+      "quantity": 1,
+      "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "product": {
+        "id": "16",
+        "name": "Mens Cotton Jacket",
+        "price": 55.99,
+        "stars": 5,
+        "ratings": 500,
+        "category": "Men's Clothing",
+        "styles": [
+          {
+            "description": "",
+            "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "9",
+      "cartItemId": "6083e88a-b368-4255-b046-3651ebf1a4c2",
+      "name": "Orvella Silver Twist Earrings",
+      "price": 59.99,
+      "quantity": 1,
+      "picture": "/images/twistearrings.webp",
+      "product": {
+        "name": "Orvella Silver Twist Earrings",
+        "id": "9",
+        "category": "Jewelry",
+        "price": 59.99,
+        "ratings": 310,
+        "stars": 4,
+        "likes": 720,
+        "styles": [
+          {
+            "description": "",
+            "picture": "/images/twistearrings.webp",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
       "id": "15",
-      "cartItemId": "fa549e16-28dd-4759-9b47-0c76ba7622ec",
+      "cartItemId": "d910c5b3-1b2d-422c-be93-4175ba071869",
       "name": "Mens Casual Premium Slim Fit T-Shirts ",
       "price": 22.3,
       "quantity": 1,
@@ -112,23 +154,225 @@
       }
     },
     {
-      "id": "16",
-      "cartItemId": "8c7e01e9-0f7c-41ff-ba80-78b2edcd7a57",
-      "name": "Mens Cotton Jacket",
-      "price": 55.99,
-      "quantity": 2,
-      "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
       "product": {
-        "id": "16",
-        "name": "Mens Cotton Jacket",
-        "price": 55.99,
-        "stars": 5,
-        "ratings": 500,
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
         "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
         "styles": [
           {
-            "description": "",
-            "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
+            "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "cartItemId": "2",
+      "name": "Jupopo AirFlex Running Shoes",
+      "price": 89.99,
+      "quantity": 1,
+      "style": "blue",
+      "picture": "/images/ID3692_HM5.avif",
+      "product": {
+        "name": "Jupopo AirFlex Running Shoes",
+        "id": 7,
+        "category": "Men's Clothing",
+        "price": 89.99,
+        "ratings": 198,
+        "stars": 4,
+        "likes": 431,
+        "styles": [
+          {
+            "description": "blue",
+            "picture": "/images/ID3692_HM5.avif",
             "isCurrentStyle": true
           }
         ]
@@ -710,6 +954,27 @@
       "id": "1",
       "products": [
         {
+          "name": "Velmora Elegance Handbag",
+          "id": "8",
+          "category": "Women's Clothing",
+          "price": 120,
+          "ratings": 564,
+          "stars": 5,
+          "likes": 1201,
+          "styles": [
+            {
+              "description": "Black",
+              "picture": "/images/handbagblack.webp",
+              "isCurrentStyle": true
+            },
+            {
+              "description": "Beige",
+              "picture": "/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp",
+              "isCurrentStyle": false
+            }
+          ]
+        },
+        {
           "id": "16",
           "name": "Mens Cotton Jacket",
           "price": 55.99,
@@ -773,22 +1038,6 @@
               "description": "Black",
               "picture": "/images/asos-leather-jackets.webp",
               "isCurrentStyle": false
-            }
-          ]
-        },
-        {
-          "name": "Jupopo AirFlex Running Shoes",
-          "id": "7",
-          "category": "Men's Clothing",
-          "price": 89.99,
-          "ratings": 198,
-          "stars": 4,
-          "likes": 431,
-          "styles": [
-            {
-              "description": "",
-              "picture": "/images/ID3692_HM5.avif",
-              "isCurrentStyle": true
             }
           ]
         }

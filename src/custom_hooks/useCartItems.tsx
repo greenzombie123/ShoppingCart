@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Cart } from "../products";
+import { Cart, CartItem } from "../products";
 
 type CartItemQuantity = {
   id: number;
