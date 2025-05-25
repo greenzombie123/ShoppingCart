@@ -2,13 +2,14 @@ import {
   Form,
   Link,
   Outlet,
+  RouteProps,
   useFetcher,
   useLoaderData,
 } from "react-router-dom";
 import { Cart, CartItem, Product } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
-import { useState } from "react";
+import { ComponentProps, useState } from "react";
 import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
 import { PopUp } from "./PopUp";

@@ -18,7 +18,8 @@ import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 import url from "node:url";
-import { CartItem, Product } from "../products";
+import { CartItem, Product, Style } from "../products";
+import { Mock } from "node:test";
 
 beforeAll(() => {
   globalThis.URLSearchParams =
@@ -116,19 +117,21 @@ describe("ShoppingCart", () => {
   });
 
   it("changes quantity of cart items to 2 when quantity counter is clicked", async () => {
+    const mockCartItem: CartItem = {
+      cartItemId: "fff",
+      name: "LBJ Boom Box",
+      id: 12,
+      price: 59.99,
+      style: "Red",
+      picture: "/images/redjbl-boombox.jpeg",
+      quantity: 2,
+      product: {} as Product,
+    };
+
     const route = {
       element: <ShoppingCart />,
       path: "/",
-      loader: () => [
-        {
-          name: "LBJ Boom Box",
-          id: 12,
-          price: 59.99,
-          style: "Red",
-          picture: "/images/redjbl-boombox.jpeg",
-          quantity: 2,
-        },
-      ],
+      loader: () => [mockCartItem],
     };
 
     const { user, findByRole } = renderWithRouter(route);
@@ -137,15 +140,11 @@ describe("ShoppingCart", () => {
     })) as HTMLButtonElement;
     const quantityCounter = await findByRole("status");
 
-    await waitFor(async () => {
-      await user.click(increaseButton);
-    });
+    await user.click(increaseButton);
 
     expect(quantityCounter.textContent).toBe("3");
 
-    await waitFor(async () => {
-      await user.click(increaseButton);
-    });
+    await user.click(increaseButton);
 
     expect(quantityCounter.textContent).toBe("4");
   });
@@ -197,17 +196,16 @@ describe("ShoppingCart", () => {
   });
 
   it("calls addToCart", async () => {
-
     vi.mock(import("../Loaders.ts"), async (mod) => {
       const originalModule = await mod();
 
       return {
         ...originalModule,
-        addToCart: vi.fn()
+        addToCart: vi.fn(),
       };
     });
 
-    const {addToCart} = await import("../Loaders.ts")
+    const { addToCart } = await import("../Loaders.ts");
 
     const route: RouteObjectProps = {
       element: <ShoppingCart />,
@@ -241,26 +239,23 @@ describe("ShoppingCart", () => {
 
     expect(addToCart).toBeCalledTimes(2);
     expect(container).toMatchSnapshot();
-
-   
   });
 
   it("sends the product data to addToCart", async () => {
+    vi.doUnmock("../Loaders.ts");
+    const { addToCart } = await import("../Loaders.ts");
+    const spy = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue({ ok: true } as Response);
 
-    vi.doUnmock("../Loaders.ts")
-    const {addToCart} = await import("../Loaders.ts")
-    const spy = vi.spyOn(globalThis, "fetch")
-
-     console.log(addToCart)
-
-    vi.mock(import("../utilities/utility"), async(module)=>{
-      const mod = await module()
+    vi.mock(import("../utilities/utility"), async (module) => {
+      const mod = await module();
 
       return {
         ...mod,
-        createCartItemId:()=>"2"
-      }
-    })
+        createCartItemId: () => "2",
+      };
+    });
 
     const mockViewedItem: Product = {
       name: "Jupopo AirFlex Running Shoes",
@@ -280,14 +275,14 @@ describe("ShoppingCart", () => {
     };
 
     const mockCartItem: CartItem = {
-      cartItemId:"2",
+      cartItemId: "2",
       name: "Jupopo AirFlex Running Shoes",
       price: 89.99,
       id: 7,
-      quantity:1,
-      style:"blue",
-      picture:"/images/ID3692_HM5.avif",
-      product:mockViewedItem
+      quantity: 1,
+      style: "blue",
+      picture: "/images/ID3692_HM5.avif",
+      product: mockViewedItem,
     };
 
     const route: RouteObjectProps = {
@@ -300,7 +295,7 @@ describe("ShoppingCart", () => {
           element: <ViewedItemsContainer />,
           loader: () => [mockViewedItem],
           index: true,
-          action:addToCart,
+          action: addToCart,
         },
       ],
     };
@@ -315,10 +310,10 @@ describe("ShoppingCart", () => {
 
     await user.click(firstAddToCartButton);
 
-    expect(spy).toBeCalled()
+    expect(spy).toBeCalled();
     expect(spy).toBeCalledWith("http://localhost:3000/cart", {
       method: "POST",
-      body: JSON.stringify({ ...mockCartItem, id:"7"})
+      body: JSON.stringify({ ...mockCartItem, id: "7" }),
     });
   });
 

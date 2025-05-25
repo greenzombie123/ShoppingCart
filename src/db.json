@@ -29,30 +29,30 @@
   ],
   "cart": [
     {
-      "id": "3",
-      "cartItemId": "dde57664-e9d7-4e9c-be49-407949c33fe9",
-      "name": "Jupopo Leather Jacket",
-      "price": 129.99,
+      "id": "8",
+      "cartItemId": "8ab119ca-c1d5-4def-90a1-96b6e636c0e8",
+      "name": "Velmora Elegance Handbag",
+      "price": 120,
       "quantity": 1,
-      "style": "Brown",
-      "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
+      "style": "Black",
+      "picture": "/images/handbagblack.webp",
       "product": {
-        "name": "Jupopo Leather Jacket",
-        "id": "3",
-        "category": "Men's Clothing",
-        "price": 129.99,
-        "ratings": 342,
+        "name": "Velmora Elegance Handbag",
+        "id": "8",
+        "category": "Women's Clothing",
+        "price": 120,
+        "ratings": 564,
         "stars": 5,
-        "likes": 765,
+        "likes": 1201,
         "styles": [
           {
-            "description": "Brown",
-            "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
+            "description": "Black",
+            "picture": "/images/handbagblack.webp",
             "isCurrentStyle": true
           },
           {
-            "description": "Black",
-            "picture": "/images/asos-leather-jackets.webp",
+            "description": "Beige",
+            "picture": "/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp",
             "isCurrentStyle": false
           }
         ]
@@ -60,7 +60,7 @@
     },
     {
       "id": "16",
-      "cartItemId": "a5b95106-0249-4193-b929-4ebca7ee6b16",
+      "cartItemId": "df07fb2b-7ed6-46bc-8ea2-b19d521d608a",
       "name": "Mens Cotton Jacket",
       "price": 55.99,
       "quantity": 1,
@@ -82,298 +82,96 @@
       }
     },
     {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
+      "id": "4",
+      "cartItemId": "efed690a-b947-4f65-9672-7ced23f23381",
+      "name": "Zinolia Floral Summer Dress",
+      "price": 49.99,
       "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
+      "style": "Blue",
+      "picture": "/images/dress.webp",
       "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
+        "name": "Zinolia Floral Summer Dress",
+        "id": "4",
+        "category": "Women's Clothing",
+        "price": 49.99,
+        "ratings": 432,
         "stars": 4,
-        "likes": 431,
+        "likes": 890,
         "styles": [
           {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
+            "description": "Blue",
+            "picture": "/images/dress.webp",
             "isCurrentStyle": true
+          },
+          {
+            "description": "Yellow",
+            "picture": "/images/LC225156-7-13.webp",
+            "isCurrentStyle": false
+          },
+          {
+            "description": "Red",
+            "picture": "public/images/web_2303_108_s21dj151rdsp01_108_029.jpg",
+            "isCurrentStyle": false
           }
         ]
       }
     },
     {
-      "id": "9",
-      "cartItemId": "6083e88a-b368-4255-b046-3651ebf1a4c2",
-      "name": "Orvella Silver Twist Earrings",
+      "id": "12",
+      "cartItemId": "813365c6-4d85-420b-ab7c-0380617f6c39",
+      "name": "LBJ Boom Box",
       "price": 59.99,
       "quantity": 1,
-      "picture": "/images/twistearrings.webp",
+      "style": "Black",
+      "picture": "/images/blackjblboombox.avif",
       "product": {
-        "name": "Orvella Silver Twist Earrings",
-        "id": "9",
-        "category": "Jewelry",
+        "name": "LBJ Boom Box",
+        "id": "12",
+        "category": "Electronics",
         "price": 59.99,
-        "ratings": 310,
+        "ratings": 345,
         "stars": 4,
-        "likes": 720,
+        "likes": 42,
         "styles": [
           {
-            "description": "",
-            "picture": "/images/twistearrings.webp",
+            "description": "Black",
+            "picture": "/images/blackjblboombox.avif",
             "isCurrentStyle": true
+          },
+          {
+            "description": "Red",
+            "picture": "/images/redjbl-boombox.jpeg",
+            "isCurrentStyle": false
           }
         ]
       }
     },
     {
-      "id": "15",
-      "cartItemId": "d910c5b3-1b2d-422c-be93-4175ba071869",
-      "name": "Mens Casual Premium Slim Fit T-Shirts ",
-      "price": 22.3,
+      "id": "12",
+      "cartItemId": "01495005-ef53-4910-acfd-ef05a25dde43",
+      "name": "LBJ Boom Box",
+      "price": 59.99,
       "quantity": 1,
-      "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "style": "Black",
+      "picture": "/images/blackjblboombox.avif",
       "product": {
-        "id": "15",
-        "name": "Mens Casual Premium Slim Fit T-Shirts ",
-        "price": 22.3,
+        "name": "LBJ Boom Box",
+        "id": "12",
+        "category": "Electronics",
+        "price": 59.99,
+        "ratings": 345,
         "stars": 4,
-        "ratings": 259,
-        "category": "Men's Clothing",
+        "likes": 42,
         "styles": [
           {
-            "description": "",
-            "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+            "description": "Black",
+            "picture": "/images/blackjblboombox.avif",
             "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
+          },
           {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
-          }
-        ]
-      }
-    },
-    {
-      "id": "7",
-      "cartItemId": "2",
-      "name": "Jupopo AirFlex Running Shoes",
-      "price": 89.99,
-      "quantity": 1,
-      "style": "blue",
-      "picture": "/images/ID3692_HM5.avif",
-      "product": {
-        "name": "Jupopo AirFlex Running Shoes",
-        "id": 7,
-        "category": "Men's Clothing",
-        "price": 89.99,
-        "ratings": 198,
-        "stars": 4,
-        "likes": 431,
-        "styles": [
-          {
-            "description": "blue",
-            "picture": "/images/ID3692_HM5.avif",
-            "isCurrentStyle": true
+            "description": "Red",
+            "picture": "/images/redjbl-boombox.jpeg",
+            "isCurrentStyle": false
           }
         ]
       }
@@ -954,6 +752,68 @@
       "id": "1",
       "products": [
         {
+          "name": "LBJ Boom Box",
+          "id": "12",
+          "category": "Electronics",
+          "price": 59.99,
+          "ratings": 345,
+          "stars": 4,
+          "likes": 42,
+          "styles": [
+            {
+              "description": "Black",
+              "picture": "/images/blackjblboombox.avif",
+              "isCurrentStyle": true
+            },
+            {
+              "description": "Red",
+              "picture": "/images/redjbl-boombox.jpeg",
+              "isCurrentStyle": false
+            }
+          ]
+        },
+        {
+          "id": "30",
+          "name": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+          "price": 39.99,
+          "stars": 4,
+          "ratings": 679,
+          "category": "Women's Clothing",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
+          "name": "Zinolia Floral Summer Dress",
+          "id": "4",
+          "category": "Women's Clothing",
+          "price": 49.99,
+          "ratings": 432,
+          "stars": 4,
+          "likes": 890,
+          "styles": [
+            {
+              "description": "Blue",
+              "picture": "/images/dress.webp",
+              "isCurrentStyle": true
+            },
+            {
+              "description": "Yellow",
+              "picture": "/images/LC225156-7-13.webp",
+              "isCurrentStyle": false
+            },
+            {
+              "description": "Red",
+              "picture": "public/images/web_2303_108_s21dj151rdsp01_108_029.jpg",
+              "isCurrentStyle": false
+            }
+          ]
+        },
+        {
           "name": "Velmora Elegance Handbag",
           "id": "8",
           "category": "Women's Clothing",
@@ -986,58 +846,6 @@
               "description": "",
               "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
               "isCurrentStyle": true
-            }
-          ]
-        },
-        {
-          "id": "15",
-          "name": "Mens Casual Premium Slim Fit T-Shirts ",
-          "price": 22.3,
-          "stars": 4,
-          "ratings": 259,
-          "category": "Men's Clothing",
-          "styles": [
-            {
-              "description": "",
-              "picture": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-              "isCurrentStyle": true
-            }
-          ]
-        },
-        {
-          "name": "Orvella Silver Twist Earrings",
-          "id": "9",
-          "category": "Jewelry",
-          "price": 59.99,
-          "ratings": 310,
-          "stars": 4,
-          "likes": 720,
-          "styles": [
-            {
-              "description": "",
-              "picture": "/images/twistearrings.webp",
-              "isCurrentStyle": true
-            }
-          ]
-        },
-        {
-          "name": "Jupopo Leather Jacket",
-          "id": "3",
-          "category": "Men's Clothing",
-          "price": 129.99,
-          "ratings": 342,
-          "stars": 5,
-          "likes": 765,
-          "styles": [
-            {
-              "description": "Brown",
-              "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
-              "isCurrentStyle": true
-            },
-            {
-              "description": "Black",
-              "picture": "/images/asos-leather-jackets.webp",
-              "isCurrentStyle": false
             }
           ]
         }

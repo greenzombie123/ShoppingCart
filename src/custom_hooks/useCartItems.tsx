@@ -1,18 +1,9 @@
 import { useState } from "react";
 import { Cart, CartItem } from "../products";
 
-type CartItemQuantity = {
-  id: number;
-  quantity: number;
-};
-
 const useCartItems = (cart: Cart ) => {
-  const newCart: CartItemQuantity[] = cart.map((cartItem) => ({
-    id: cartItem.id,
-    quantity: cartItem.quantity,
-  }));
 
-  const [cartItems, setCartItems] = useState<CartItemQuantity[]>(newCart);
+  const [cartItems, setCartItems] = useState<Cart>(cart);
 
   const handleQuantityIncrease = (id: number) => {
     const updatedCart = cartItems.map((cartItem) => {
