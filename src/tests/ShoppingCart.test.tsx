@@ -4,11 +4,12 @@ import {
   mockCart,
   mockGetEmptyCart,
   mockGetOneViewedItem,
+  mockOneCartItem,
   mockProducts,
   renderWithRouter,
   RouteObjectProps,
 } from "../utilities/testulit";
-import { screen, waitFor } from "@testing-library/dom";
+import { screen, waitFor, within } from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
@@ -20,6 +21,7 @@ import { render } from "@testing-library/react";
 import url from "node:url";
 import { CartItem, Product, Style } from "../products";
 import { Mock } from "node:test";
+import { use } from "react";
 
 beforeAll(() => {
   globalThis.URLSearchParams =
@@ -180,6 +182,28 @@ describe("ShoppingCart", () => {
 
     vi.resetAllMocks();
   });
+
+   it.skip("removes a cartItem when remove button is pressed", async ()=>{
+      const route = {
+      element: <ShoppingCart />,
+      path: "/mycart",
+      loader: () => [mockOneCartItem],
+    };
+
+    const { user, findByRole, findByText } = renderWithRouter(route);
+    const removeButton = (await findByRole("button", {
+      name:"remove Cartitem Button",
+    })) as HTMLButtonElement;
+
+    await user.click(removeButton);
+
+    const dialog = await findByRole("dialog")
+    const dialogButton = await waitFor(()=>within(dialog).findByRole("button", {name:"Yes"})) as HTMLButtonElement
+
+    await user.click(dialogButton)
+
+    await waitFor(async ()=>expect(await findByText("Jupopo AirFlex Running Shoes")).not.toBeInTheDocument())
+   })
 
   it("renders the viewed items container", async () => {
     const viewedItemsRoute: RouteObjectProps = {

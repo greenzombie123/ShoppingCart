@@ -72,6 +72,34 @@ export const mockCart: Cart = [
   },
 ];
 
+export const mockOneProduct: Product = {
+  name: "Jupopo AirFlex Running Shoes",
+  id: "7",
+  category: "Men's Clothing",
+  price: 89.99,
+  ratings: 198,
+  stars: 4,
+  likes: 431,
+  styles: [
+    {
+      description: "",
+      picture: "/images/ID3692_HM5.avif",
+      isCurrentStyle: true,
+    },
+  ],
+};
+
+export const mockOneCartItem: CartItem = {
+  cartItemId: "123",
+  name: "Jupopo AirFlex Running Shoes",
+  price: 89.99,
+  id: "7",
+  quantity: 2,
+  style: "",
+  picture: "/images/ID3692_HM5.avif",
+  product: mockOneProduct,
+};
+
 export const mockProducts: Product[] = [
   {
     name: "Jupopo AirFlex Running Shoes",
@@ -180,10 +208,10 @@ export const mockGetOneViewedItem: () => Product[] = () => [
         isCurrentStyle: true,
       },
     ],
-  }
+  },
 ];
 
-export const mockGetEmptyCart:()=>[] = () => [];
+export const mockGetEmptyCart: () => [] = () => [];
 
 export const mockAddOneItemToCart: () => { productInfo: CartItem } = () => ({
   productInfo: {

@@ -7,6 +7,40 @@ import {
 import { Cart, CartItem, Product, ProductCategory } from "./products";
 import { createCartItemId } from "./utilities/utility";
 
+const updateCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
+  const formData = await request.formData();
+  const deleteRequests = [];
+
+  for (const key of formData.keys()) {
+    const promise = fetch(`http://localhost:3000/cart/${key}`, {
+      method: "DELETE",
+    });
+    deleteRequests.push(promise);
+  }
+
+  try {
+    await Promise.all(deleteRequests);
+  } catch (error) {
+    console.log(error);
+  }
+
+   const postRequests = [];
+
+  for (const pair of formData.entries()) {
+    const promise = fetch(`http://localhost:3000/cart/${pair[0]}`, {
+      method: "POST",
+      body:pair[1]
+    });
+    postRequests.push(promise);
+  }
+
+  try {
+    await Promise.all(postRequests);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 type ViewedItemsData = {
   id: string;
   products: Product[];
@@ -25,7 +59,6 @@ const removeCartItem: ActionFunction = async ({
   try {
     const formData = await request.formData();
     const cartItemId = formData.get("id");
-    console.log(formData.get("id"));
 
     const response = await fetch(`http://localhost:3000/cart/${cartItemId}`, {
       method: "DELETE",
@@ -38,7 +71,6 @@ const removeCartItem: ActionFunction = async ({
 };
 
 const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
-
   try {
     const formData = await request.formData();
     const name = formData.get("name");
@@ -47,18 +79,18 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
     const quantity = Number(formData.get("quantity"));
     const style = formData.get("style");
     const picture = formData.get("picture");
-    const product:Product = JSON.parse(formData.get("product") as string)
+    const product: Product = JSON.parse(formData.get("product") as string);
 
     if (name && price && id && quantity && picture) {
       const cartItem: CartItem = {
-        cartItemId:createCartItemId(),
+        cartItemId: createCartItemId(),
         name: name as string,
         price: price,
         id: id,
         quantity: quantity,
         style: style ? (style as string) : undefined,
         picture: picture as string,
-        product:product
+        product: product,
       };
 
       const data = JSON.stringify({ ...cartItem, id: id.toString() });
@@ -141,4 +173,5 @@ export {
   addToCart,
   removeCartItem,
   getViewedItems,
+  updateCart,
 };

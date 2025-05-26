@@ -53,7 +53,11 @@ const ViewedItem = ({ product }: ViewedItemProp) => {
         <button className={style.addButton}>Add to Cart</button>
         <input type="hidden" name="id" value={product.id} />
         <input type="hidden" name="name" value={product.name} />
-        <input type="hidden" name="style" value={product.styles[0].description} />
+        <input
+          type="hidden"
+          name="style"
+          value={product.styles[0].description}
+        />
         <input type="hidden" name="price" value={product.price} />
         <input type="hidden" name="quantity" value={1} />
         <input type="hidden" name="picture" value={product.styles[0].picture} />

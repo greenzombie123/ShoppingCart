@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Cart, CartItem } from "../products";
+import { Cart } from "../products";
 
 const useCartItems = (cart: Cart ) => {
 

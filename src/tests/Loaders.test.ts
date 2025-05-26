@@ -8,12 +8,11 @@ import {
   getStoreItems,
   getViewedItems,
   removeCartItem,
+  updateCart,
 } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
-import {
-  ActionFunctionArgs,
-  LoaderFunctionArgs,
-} from "react-router-dom";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "react-router-dom";
+import { mockOneCartItem, mockOneProduct } from "../utilities/testulit.js";
 
 //Pre setup
 
@@ -219,7 +218,7 @@ describe("getCart", () => {
     };
 
     const cartItem: CartItem = {
-      cartItemId:"abc",
+      cartItemId: "abc",
       id: product.id as number,
       quantity: 2,
       style: "",
@@ -461,7 +460,7 @@ describe("getStoreItems", () => {
       request: undefined as unknown as Request,
     };
 
-    const products: Product[] = await getStoreItems(mockParam) as Product[]
+    const products: Product[] = (await getStoreItems(mockParam)) as Product[];
 
     expect(products[0]).toEqual(mockProducts[0]);
     expect(products[1]).toEqual(mockProducts[2]);
@@ -470,8 +469,7 @@ describe("getStoreItems", () => {
 
 describe("addToCart", () => {
   it("adds customer's request to the cart", async () => {
-
-    vi.mock("uuid", ()=>({v4:()=>"abc"}))
+    vi.mock("uuid", () => ({ v4: () => "abc" }));
 
     const mock = vi.fn();
 
@@ -479,7 +477,7 @@ describe("addToCart", () => {
 
     const formData: FormData = new FormData();
 
-    formData.append("cartItemId", "abc")
+    formData.append("cartItemId", "abc");
     formData.append("name", "stuff");
     formData.append("price", "222");
     formData.append("id", "1");
@@ -527,7 +525,7 @@ describe("addToCart", () => {
 describe("removeCartItem", () => {
   it("removes a cartitem from the database", async () => {
     const cartItem: CartItem = {
-      cartItemId:"abc",
+      cartItemId: "abc",
       name: "LBJ Boom Box",
       id: 12,
       price: 59.99,
@@ -590,5 +588,45 @@ describe("getViewedItems", () => {
     const items = await getViewedItems(loaderFunctionArgs);
 
     expect(items).toEqual(mockProducts);
+  });
+});
+
+describe("updateCart", () => {
+  it("removes deleted cart items and changes quantity of cartitems", async () => {
+    const mockCartItem1: CartItem = mockOneCartItem;
+    const mockCartItem2: CartItem = {
+      ...mockCartItem1,
+      quantity: 2,
+      cartItemId: "ttt",
+    };
+
+    const mockDelete = vi.fn().mockResolvedValue({ ok: true });
+    const mockPost = vi.fn().mockResolvedValue({ ok: true });
+
+    const spy = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementationOnce(mockDelete)
+      .mockImplementationOnce(mockDelete)
+      .mockImplementationOnce(mockPost)
+      .mockImplementationOnce(mockPost);
+
+    const formData: FormData = new FormData();
+    formData.set(mockCartItem1.cartItemId, JSON.stringify(mockCartItem1));
+    formData.set(mockCartItem2.cartItemId, JSON.stringify(mockCartItem2));
+
+    const request: Request = new Request(`http://localhost:3000/cart/`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const mockActionFuncArgs: ActionFunctionArgs = {
+      params: {},
+      request: request,
+      context: null,
+    };
+
+    await updateCart(mockActionFuncArgs);
+
+    expect(spy).toBeCalledTimes(4);
   });
 });
