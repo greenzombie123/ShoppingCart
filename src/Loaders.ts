@@ -27,7 +27,7 @@ const updateCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
    const postRequests = [];
 
   for (const pair of formData.entries()) {
-    const promise = fetch(`http://localhost:3000/cart/${pair[0]}`, {
+    const promise = fetch(`http://localhost:3000/cart`, {
       method: "POST",
       body:pair[1]
     });

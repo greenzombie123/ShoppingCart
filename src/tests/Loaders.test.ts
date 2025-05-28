@@ -628,5 +628,9 @@ describe("updateCart", () => {
     await updateCart(mockActionFuncArgs);
 
     expect(spy).toBeCalledTimes(4);
+    expect(spy.mock.calls[0]).toEqual([`http://localhost:3000/cart/123`, {method:"DELETE"}])
+    expect(spy.mock.calls[1]).toEqual([`http://localhost:3000/cart/ttt`, {method:"DELETE"}])
+    expect(spy.mock.calls[2]).toEqual([`http://localhost:3000/cart`, {method:"POST", body:JSON.stringify(mockCartItem1)}])
+    expect(spy.mock.calls[3]).toEqual([`http://localhost:3000/cart`, {method:"POST", body:JSON.stringify(mockCartItem2)}])
   });
 });
