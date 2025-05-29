@@ -74,8 +74,8 @@ const QuantityCounter = ({
   onDecreaseButtonClick,
 }: {
   cartItem: CartItem;
-  onIncreaseButtonClick: (id: number) => void;
-  onDecreaseButtonClick: (id: number) => void;
+  onIncreaseButtonClick: (id: string) => void;
+  onDecreaseButtonClick: (id: string) => void;
 }) => {
   return (
     <div className={style.quantityCounter}>
@@ -84,7 +84,7 @@ const QuantityCounter = ({
         id="increaseButton"
         aria-label="Increase quantity"
         className={style.increaseButton}
-        onClick={() => onIncreaseButtonClick(cartItem.id)}
+        onClick={() => onIncreaseButtonClick(cartItem.cartItemId)}
       >
         &#43;
       </button>
@@ -100,7 +100,7 @@ const QuantityCounter = ({
         id="decreaseButton"
         aria-label="Decrease quantity"
         className={style.decreaseButton}
-        onClick={() => onDecreaseButtonClick(cartItem.id)}
+        onClick={() => onDecreaseButtonClick(cartItem.cartItemId)}
       >
         &#8722;
       </button>
@@ -115,8 +115,8 @@ const Item = ({
   setPopUp,
 }: {
   cartItem: CartItem;
-  onIncreaseButtonClick: (id: number) => void;
-  onDecreaseButtonClick: (id: number) => void;
+  onIncreaseButtonClick: (id: string) => void;
+  onDecreaseButtonClick: (id: string) => void;
   setPopUp: React.Dispatch<React.SetStateAction<CartItem | null>>;
 }) => {
   const handleRemoveButtonClick = () => {

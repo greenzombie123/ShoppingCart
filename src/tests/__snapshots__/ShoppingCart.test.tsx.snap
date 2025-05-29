@@ -815,12 +815,6 @@ exports[`ShoppingCart > calls addToCart 1`] = `
         </p>
         <p />
         <button
-          aria-label="removeCartItem"
-          type="submit"
-        >
-          Yes
-        </button>
-        <button
           aria-label="cancel"
           type="button"
         >

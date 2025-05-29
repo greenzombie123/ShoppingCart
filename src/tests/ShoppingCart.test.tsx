@@ -19,9 +19,7 @@ import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 import url from "node:url";
-import { CartItem, Product, Style } from "../products";
-import { Mock } from "node:test";
-import { use } from "react";
+import { CartItem, Product} from "../products";
 
 beforeAll(() => {
   globalThis.URLSearchParams =
@@ -183,7 +181,7 @@ describe("ShoppingCart", () => {
     vi.resetAllMocks();
   });
 
-   it.skip("removes a cartItem when remove button is pressed", async ()=>{
+   it("removes a cartItem when remove button is pressed", async ()=>{
       const route = {
       element: <ShoppingCart />,
       path: "/mycart",

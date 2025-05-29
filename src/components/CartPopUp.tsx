@@ -35,7 +35,7 @@ const CartPopUp = ({ popUpData, cartItems }: CartPopUpProps) => {
         {/* <input type="hidden" name="" /> */}
         <p>Remove the following item from your cart?</p>
         <p>{popUpData? popUpData.name : ""}</p>
-        <button aria-label="removeCartItem" type="submit">Yes</button>
+        {/* <button aria-label="removeCartItem" type="submit">Yes</button> */}
         <button
           type="button"
           aria-label="cancel"
