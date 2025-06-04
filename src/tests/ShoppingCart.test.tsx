@@ -339,7 +339,7 @@ describe("ShoppingCart", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("sends the product data to addToCart", async () => {
+  it("sends the product data to addToCart when add to cart button on a viewedItem is pressed", async () => {
     vi.doUnmock("../Loaders.ts");
     const { addToCart } = await import("../Loaders.ts");
     const spy = vi
@@ -351,7 +351,7 @@ describe("ShoppingCart", () => {
 
       return {
         ...mod,
-        createCartItemId: () => "2",
+        createCartItemId: () => "123",
       };
     });
 
@@ -373,10 +373,9 @@ describe("ShoppingCart", () => {
     };
 
     const mockCartItem: CartItem = {
-      cartItemId: "2",
       name: "Jupopo AirFlex Running Shoes",
       price: 89.99,
-      id: 7,
+      id: "123",
       quantity: 1,
       style: "blue",
       picture: "/images/ID3692_HM5.avif",
@@ -411,7 +410,7 @@ describe("ShoppingCart", () => {
     expect(spy).toBeCalled();
     expect(spy).toBeCalledWith("http://localhost:3000/cart", {
       method: "POST",
-      body: JSON.stringify({ ...mockCartItem, id: "7" }),
+      body: JSON.stringify({ ...mockCartItem, id: "123" }),
     });
   });
 

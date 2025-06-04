@@ -75,25 +75,23 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData();
     const name = formData.get("name");
     const price = Number(formData.get("price"));
-    const id = Number(formData.get("id"));
     const quantity = Number(formData.get("quantity"));
     const style = formData.get("style");
     const picture = formData.get("picture");
     const product: Product = JSON.parse(formData.get("product") as string);
 
-    if (name && price && id && quantity && picture) {
+    if (name && price && product && quantity && picture) {
       const cartItem: CartItem = {
-        cartItemId: createCartItemId(),
         name: name as string,
         price: price,
-        id: id,
+        id: createCartItemId(),
         quantity: quantity,
         style: style ? (style as string) : undefined,
         picture: picture as string,
         product: product,
       };
 
-      const data = JSON.stringify({ ...cartItem, id: id.toString() });
+      const data = JSON.stringify({ ...cartItem});
 
       const response = await fetch("http://localhost:3000/cart", {
         method: "POST",

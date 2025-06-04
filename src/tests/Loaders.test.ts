@@ -477,10 +477,10 @@ describe("addToCart", () => {
 
     const formData: FormData = new FormData();
 
-    formData.append("cartItemId", "abc");
+    //formData.append("cartItemId", "abc");
     formData.append("name", "stuff");
     formData.append("price", "222");
-    formData.append("id", "1");
+    //formData.append("id", "1");
     formData.append("quantity", "2");
     formData.append("style", "red");
     formData.append(
@@ -500,7 +500,7 @@ describe("addToCart", () => {
     const productString = JSON.stringify(mockProduct);
     formData.append("product", productString);
 
-    const request: Request = new Request("http://localhost:3000/product/1", {
+    const request: Request = new Request("http://localhost:3000/cart", {
       method: "POST",
       body: formData,
     });
@@ -516,7 +516,7 @@ describe("addToCart", () => {
     expect(spy).toBeCalled();
 
     expect(spy).toBeCalledWith("http://localhost:3000/cart", {
-      body: `{"cartItemId":"abc","name":"stuff","price":222,"id":"1","quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp","product":${productString}}`,
+      body: `{"name":"stuff","price":222,"id":"abc","quantity":2,"style":"red","picture":"http://localhost:3000/images/poloshirtblack.webp","product":${productString}}`,
       method: "POST",
     });
   });
