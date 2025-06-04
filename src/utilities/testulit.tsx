@@ -90,10 +90,9 @@ export const mockOneProduct: Product = {
 };
 
 export const mockOneCartItem: CartItem = {
-  cartItemId: "123",
   name: "Jupopo AirFlex Running Shoes",
   price: 89.99,
-  id: "7",
+  id: "123",
   quantity: 2,
   style: "",
   picture: "/images/ID3692_HM5.avif",

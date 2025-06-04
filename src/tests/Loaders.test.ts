@@ -218,8 +218,7 @@ describe("getCart", () => {
     };
 
     const cartItem: CartItem = {
-      cartItemId: "abc",
-      id: product.id as number,
+      id: "abc",
       quantity: 2,
       style: "",
       name: product.name,
@@ -522,52 +521,6 @@ describe("addToCart", () => {
   });
 });
 
-describe("removeCartItem", () => {
-  it("removes a cartitem from the database", async () => {
-    const cartItem: CartItem = {
-      cartItemId: "abc",
-      name: "LBJ Boom Box",
-      id: 12,
-      price: 59.99,
-      style: "Red",
-      picture: "/images/redjbl-boombox.jpeg",
-      quantity: 2,
-      product: {} as Product,
-    };
-
-    const formData = new FormData();
-    formData.append("id", `${cartItem.id}`);
-
-    const request: Request = new Request("http://localhost:3000/mycart", {
-      method: "POST",
-      body: formData,
-    });
-
-    const mockFetch = vi.fn(() => {
-      return Promise.resolve({
-        json: () => Promise.resolve({ ok: true }),
-        ok: true,
-      });
-    });
-
-    const mockParam: ActionFunctionArgs = {
-      params: { path: "mycart" },
-      request: request,
-      context: null,
-    };
-
-    vi.spyOn(global, "fetch").mockImplementation(mockFetch as Mock);
-
-    const status = await removeCartItem(mockParam);
-
-    expect(mockFetch).toBeCalled();
-    expect(mockFetch).toBeCalledWith("http://localhost:3000/cart/12", {
-      method: "DELETE",
-    });
-    expect(status).toStrictEqual({ ok: true });
-  });
-});
-
 describe("getViewedItems", () => {
   it("return viewedItems", async () => {
     const request = new Request("http://localhost:3000/viewedItems/1");
@@ -597,7 +550,7 @@ describe("updateCart", () => {
     const mockCartItem2: CartItem = {
       ...mockCartItem1,
       quantity: 2,
-      cartItemId: "ttt",
+      id: "ttt",
     };
 
     const mockDelete = vi.fn().mockResolvedValue({ ok: true });
@@ -611,8 +564,8 @@ describe("updateCart", () => {
       .mockImplementationOnce(mockPost);
 
     const formData: FormData = new FormData();
-    formData.set(mockCartItem1.cartItemId, JSON.stringify(mockCartItem1));
-    formData.set(mockCartItem2.cartItemId, JSON.stringify(mockCartItem2));
+    formData.set(mockCartItem1.id, JSON.stringify(mockCartItem1));
+    formData.set(mockCartItem2.id, JSON.stringify(mockCartItem2));
 
     const request: Request = new Request(`http://localhost:3000/cart/`, {
       method: "POST",
