@@ -50,7 +50,7 @@ const product: Product = {
 const emptyCart: Cart = [];
 const productsURL = "http://localhost:3000/products";
 const cartURL = "http://localhost:3000/cart";
-const menClothingURL = "http://localhost:3000/products?category=Men's Clothing";
+//const menClothingURL = "http://localhost:3000/products?category=Men's Clothing";
 const shoppingProductRoute: RouteObject = {
   path: "/product/:id",
   element: <ShoppingProduct />,
@@ -127,7 +127,6 @@ describe("ShoppingProduct", () => {
   });
 
   test("change picture when a color tab button is pushed", async () => {
-
     const { user } = renderWithRouter({
       element: <ShoppingProduct />,
       path: "/product/1",
@@ -246,7 +245,6 @@ describe("ProductToCart", () => {
 
     expect(quantityLabel.textContent).not.toBe("0");
   });
-
 });
 
 describe("PopUp", () => {
@@ -265,7 +263,8 @@ describe("PopUp", () => {
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
-        product: {} as Product
+        product: {} as Product,
+        cartItemId: "",
       },
     };
     const status = "idle";
@@ -285,7 +284,8 @@ describe("PopUp", () => {
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
-        product: {} as Product
+        product: {} as Product,
+        cartItemId: "",
       },
     };
     const status = "idle";
@@ -315,7 +315,8 @@ describe("PopUp", () => {
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
-        product: {} as Product
+        product: {} as Product,
+        cartItemId: "",
       },
     };
     const status = "idle";
