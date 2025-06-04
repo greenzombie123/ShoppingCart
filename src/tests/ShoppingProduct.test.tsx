@@ -265,6 +265,7 @@ describe("PopUp", () => {
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
+        product: {} as Product
       },
     };
     const status = "idle";
@@ -284,6 +285,7 @@ describe("PopUp", () => {
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
+        product: {} as Product
       },
     };
     const status = "idle";
@@ -313,6 +315,7 @@ describe("PopUp", () => {
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
+        product: {} as Product
       },
     };
     const status = "idle";

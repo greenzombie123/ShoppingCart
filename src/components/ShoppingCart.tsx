@@ -2,14 +2,13 @@ import {
   Form,
   Link,
   Outlet,
-  RouteProps,
   useFetcher,
   useLoaderData,
 } from "react-router-dom";
 import { Cart, CartItem, Product } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
-import { ComponentProps, useState } from "react";
+import {  useEffect, useState } from "react";
 import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
 import { PopUp } from "./PopUp";
@@ -159,16 +158,28 @@ const Item = ({
 
 const ShoppingCart = () => {
   const cart = useLoaderData<Cart>();
-  const { cartItems, handleQuantityDecrease, handleQuantityIncrease } =
-    useCartItems(cart);
+  const {
+    cartItems,
+    handleQuantityDecrease,
+    handleQuantityIncrease,
+    handleUpdateCart,
+  } = useCartItems(cart);
   const [popUpData, setPopUpData] = useState<CartItem | null>(null);
+
+  useEffect(() => {
+    const isCartsUnmatched = cart.length !== cartItems.length;
+
+    if (isCartsUnmatched) {
+      handleUpdateCart(cart);
+    }
+  }, [cart]);
 
   return (
     <div className={style.shoppingCart}>
-      <div className={style.cart}>
-        {cart.map((cartItem, index) => (
+      <div className={style.cart} role="cart">
+        {cartItems.map((cartItem) => (
           <Item
-            cartItem={{ ...cartItem, quantity: cartItems[index].quantity }}
+            cartItem={cartItem}
             key={cartItem.cartItemId}
             onDecreaseButtonClick={handleQuantityDecrease}
             onIncreaseButtonClick={handleQuantityIncrease}
@@ -192,7 +203,11 @@ const ShoppingCart = () => {
         <Outlet />
       </div>
 
-      <CartPopUp popUpData={popUpData} setPopUp={setPopUpData} />
+      <CartPopUp
+        popUpData={popUpData}
+        setPopUp={setPopUpData}
+        cartItems={cartItems}
+      />
     </div>
   );
 };

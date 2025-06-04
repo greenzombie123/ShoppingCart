@@ -31,11 +31,12 @@ const CartPopUp = ({ popUpData, cartItems }: CartPopUpProps) => {
   return (
     <dialog ref={dialogRef} onClick={handleCancelButtonClick}>
       <fetcher.Form method="DELETE" action="/mycart" >
-        <input type="hidden" name="id" value={popUpData ? popUpData.id : ""} />
+        {/* <input type="hidden" name="id" value={popUpData ? popUpData.id : ""} /> */}
         {/* <input type="hidden" name="" /> */}
+        {cartItems.map(cartItem=><input type="hidden" key={cartItem.cartItemId} name={cartItem.cartItemId} value={JSON.stringify(cartItem)}/>)}
         <p>Remove the following item from your cart?</p>
         <p>{popUpData? popUpData.name : ""}</p>
-        {/* <button aria-label="removeCartItem" type="submit">Yes</button> */}
+        <button aria-label="removeCartItem" type="submit">Yes</button>
         <button
           type="button"
           aria-label="cancel"

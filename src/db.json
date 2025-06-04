@@ -29,149 +29,47 @@
   ],
   "cart": [
     {
-      "id": "8",
-      "cartItemId": "8ab119ca-c1d5-4def-90a1-96b6e636c0e8",
-      "name": "Velmora Elegance Handbag",
-      "price": 120,
-      "quantity": 1,
-      "style": "Black",
-      "picture": "/images/handbagblack.webp",
+      "id": "23",
+      "cartItemId": "68393b49-edd5-4416-8b25-48cdfddfb1ab",
+      "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+      "price": 109,
+      "quantity": 3,
+      "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
       "product": {
-        "name": "Velmora Elegance Handbag",
-        "id": "8",
-        "category": "Women's Clothing",
-        "price": 120,
-        "ratings": 564,
-        "stars": 5,
-        "likes": 1201,
-        "styles": [
-          {
-            "description": "Black",
-            "picture": "/images/handbagblack.webp",
-            "isCurrentStyle": true
-          },
-          {
-            "description": "Beige",
-            "picture": "/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp",
-            "isCurrentStyle": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "16",
-      "cartItemId": "df07fb2b-7ed6-46bc-8ea2-b19d521d608a",
-      "name": "Mens Cotton Jacket",
-      "price": 55.99,
-      "quantity": 1,
-      "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-      "product": {
-        "id": "16",
-        "name": "Mens Cotton Jacket",
-        "price": 55.99,
-        "stars": 5,
-        "ratings": 500,
-        "category": "Men's Clothing",
+        "id": "23",
+        "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+        "price": 109,
+        "stars": 3,
+        "ratings": 470,
+        "category": "Electronics",
         "styles": [
           {
             "description": "",
-            "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+            "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
             "isCurrentStyle": true
           }
         ]
       }
     },
     {
-      "id": "4",
-      "cartItemId": "efed690a-b947-4f65-9672-7ced23f23381",
-      "name": "Zinolia Floral Summer Dress",
-      "price": 49.99,
-      "quantity": 1,
-      "style": "Blue",
-      "picture": "/images/dress.webp",
+      "id": "23",
+      "cartItemId": "68393b49-edd5-4416-8b25-48cdfddfb1ab",
+      "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+      "price": 109,
+      "quantity": 3,
+      "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
       "product": {
-        "name": "Zinolia Floral Summer Dress",
-        "id": "4",
-        "category": "Women's Clothing",
-        "price": 49.99,
-        "ratings": 432,
-        "stars": 4,
-        "likes": 890,
-        "styles": [
-          {
-            "description": "Blue",
-            "picture": "/images/dress.webp",
-            "isCurrentStyle": true
-          },
-          {
-            "description": "Yellow",
-            "picture": "/images/LC225156-7-13.webp",
-            "isCurrentStyle": false
-          },
-          {
-            "description": "Red",
-            "picture": "public/images/web_2303_108_s21dj151rdsp01_108_029.jpg",
-            "isCurrentStyle": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "12",
-      "cartItemId": "813365c6-4d85-420b-ab7c-0380617f6c39",
-      "name": "LBJ Boom Box",
-      "price": 59.99,
-      "quantity": 1,
-      "style": "Black",
-      "picture": "/images/blackjblboombox.avif",
-      "product": {
-        "name": "LBJ Boom Box",
-        "id": "12",
+        "id": "23",
+        "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+        "price": 109,
+        "stars": 3,
+        "ratings": 470,
         "category": "Electronics",
-        "price": 59.99,
-        "ratings": 345,
-        "stars": 4,
-        "likes": 42,
         "styles": [
           {
-            "description": "Black",
-            "picture": "/images/blackjblboombox.avif",
+            "description": "",
+            "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
             "isCurrentStyle": true
-          },
-          {
-            "description": "Red",
-            "picture": "/images/redjbl-boombox.jpeg",
-            "isCurrentStyle": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "12",
-      "cartItemId": "01495005-ef53-4910-acfd-ef05a25dde43",
-      "name": "LBJ Boom Box",
-      "price": 59.99,
-      "quantity": 1,
-      "style": "Black",
-      "picture": "/images/blackjblboombox.avif",
-      "product": {
-        "name": "LBJ Boom Box",
-        "id": "12",
-        "category": "Electronics",
-        "price": 59.99,
-        "ratings": 345,
-        "stars": 4,
-        "likes": 42,
-        "styles": [
-          {
-            "description": "Black",
-            "picture": "/images/blackjblboombox.avif",
-            "isCurrentStyle": true
-          },
-          {
-            "description": "Red",
-            "picture": "/images/redjbl-boombox.jpeg",
-            "isCurrentStyle": false
           }
         ]
       }
@@ -752,6 +650,42 @@
       "id": "1",
       "products": [
         {
+          "id": "23",
+          "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+          "price": 109,
+          "stars": 3,
+          "ratings": 470,
+          "category": "Electronics",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
+          "name": "Jupopo Leather Jacket",
+          "id": "3",
+          "category": "Men's Clothing",
+          "price": 129.99,
+          "ratings": 342,
+          "stars": 5,
+          "likes": 765,
+          "styles": [
+            {
+              "description": "Brown",
+              "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
+              "isCurrentStyle": true
+            },
+            {
+              "description": "Black",
+              "picture": "/images/asos-leather-jackets.webp",
+              "isCurrentStyle": false
+            }
+          ]
+        },
+        {
           "name": "LBJ Boom Box",
           "id": "12",
           "category": "Electronics",
@@ -810,42 +744,6 @@
               "description": "Red",
               "picture": "public/images/web_2303_108_s21dj151rdsp01_108_029.jpg",
               "isCurrentStyle": false
-            }
-          ]
-        },
-        {
-          "name": "Velmora Elegance Handbag",
-          "id": "8",
-          "category": "Women's Clothing",
-          "price": 120,
-          "ratings": 564,
-          "stars": 5,
-          "likes": 1201,
-          "styles": [
-            {
-              "description": "Black",
-              "picture": "/images/handbagblack.webp",
-              "isCurrentStyle": true
-            },
-            {
-              "description": "Beige",
-              "picture": "/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp",
-              "isCurrentStyle": false
-            }
-          ]
-        },
-        {
-          "id": "16",
-          "name": "Mens Cotton Jacket",
-          "price": 55.99,
-          "stars": 5,
-          "ratings": 500,
-          "category": "Men's Clothing",
-          "styles": [
-            {
-              "description": "",
-              "picture": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-              "isCurrentStyle": true
             }
           ]
         }

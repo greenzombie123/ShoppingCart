@@ -5,6 +5,10 @@ const useCartItems = (cart: Cart ) => {
 
   const [cartItems, setCartItems] = useState<Cart>(cart);
 
+  const handleUpdateCart = (cart:Cart)=>{
+    setCartItems(cart)
+  }
+
   const handleQuantityIncrease = (id: string) => {
     const updatedCart = cartItems.map((cartItem) => {
       if (cartItem.cartItemId === id)
@@ -34,7 +38,7 @@ const useCartItems = (cart: Cart ) => {
     setCartItems(updatedCart);
   };
 
-  return {cartItems, handleQuantityDecrease, handleQuantityIncrease}
+  return {cartItems, handleQuantityDecrease, handleQuantityIncrease, handleUpdateCart}
 };
 
 export default useCartItems

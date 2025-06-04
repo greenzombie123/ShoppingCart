@@ -6,7 +6,7 @@ import {
   getRandomProducts,
   getStoreItems,
   getViewedItems,
-  removeCartItem,
+  updateCart,
 } from "./Loaders";
 import Carousel from "./components/Carousel";
 import StorePage from "./components/StorePage";
@@ -38,7 +38,7 @@ const routes: RouteObject[] = [
         loader: getCart,
         element: <ShoppingCart />,
         path: "mycart",
-        action: removeCartItem,
+        action: updateCart,
         children: [
           {
             loader: getViewedItems,

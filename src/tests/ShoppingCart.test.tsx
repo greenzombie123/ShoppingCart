@@ -9,7 +9,11 @@ import {
   renderWithRouter,
   RouteObjectProps,
 } from "../utilities/testulit";
-import { screen, waitFor, within } from "@testing-library/dom";
+import {
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/dom";
 import {
   createMemoryRouter,
   RouteObject,
@@ -19,11 +23,13 @@ import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 import url from "node:url";
-import { CartItem, Product} from "../products";
+import { Cart, CartItem, Product } from "../products";
 
 beforeAll(() => {
   globalThis.URLSearchParams =
     url.URLSearchParams as typeof globalThis.URLSearchParams;
+
+  vi.resetModules();
 });
 
 describe("ShoppingCart", () => {
@@ -181,27 +187,97 @@ describe("ShoppingCart", () => {
     vi.resetAllMocks();
   });
 
-   it("removes a cartItem when remove button is pressed", async ()=>{
-      const route = {
+  it("removes a cartItem when remove button is pressed", async () => {
+    const firstLoaderCall = () => [mockOneCartItem];
+    const secondLoaderCall = () => [];
+
+    const mockLoader = vi
+      .fn()
+      .mockImplementationOnce(firstLoaderCall)
+      .mockImplementationOnce(secondLoaderCall);
+
+    const route: RouteObjectProps = {
       element: <ShoppingCart />,
       path: "/mycart",
-      loader: () => [mockOneCartItem],
+      loader: mockLoader,
+      action: () => {},
     };
 
-    const { user, findByRole, findByText } = renderWithRouter(route);
+    const { user, findByRole, findByText } =
+      renderWithRouter(route);
+
+    expect(
+      await findByText("Jupopo AirFlex Running Shoes")
+    ).toBeInTheDocument();
+
     const removeButton = (await findByRole("button", {
-      name:"remove Cartitem Button",
+      name: "remove Cartitem Button",
     })) as HTMLButtonElement;
 
     await user.click(removeButton);
 
-    const dialog = await findByRole("dialog")
-    const dialogButton = await waitFor(()=>within(dialog).findByRole("button", {name:"Yes"})) as HTMLButtonElement
+    const dialog = (await findByRole("dialog", {
+      hidden: true,
+    })) as HTMLDialogElement;
 
-    await user.click(dialogButton)
+    expect(dialog).not.toBeVisible();
 
-    await waitFor(async ()=>expect(await findByText("Jupopo AirFlex Running Shoes")).not.toBeInTheDocument())
-   })
+    const dialogButtons = dialog.querySelectorAll("button");
+
+    await user.click(dialogButtons[0]);
+
+    const cart = await findByRole("cart");
+
+    expect( within(cart).queryByText("Jupopo AirFlex Running Shoes")).not.toBeInTheDocument()
+  });
+
+  it("removes only one cartItem when remove button is pressed", async () => {
+    const mockTwoCartItem = {...mockOneCartItem, cartItemId:"fe", name:"Red Boots"}
+    const firstLoaderCall = ():Cart => [mockOneCartItem, mockTwoCartItem];
+    const secondLoaderCall = () => [mockTwoCartItem];
+
+    const mockLoader = vi
+      .fn()
+      .mockImplementationOnce(firstLoaderCall)
+      .mockImplementationOnce(secondLoaderCall);
+
+    const route: RouteObjectProps = {
+      element: <ShoppingCart />,
+      path: "/mycart",
+      loader: mockLoader,
+      action: () => {},
+    };
+
+    const { user, findByRole, findAllByRole,findByText, queryByText } =
+      renderWithRouter(route);
+
+    expect(
+      await findByText("Jupopo AirFlex Running Shoes")
+    ).toBeInTheDocument();
+
+    expect(
+      await findByText("Red Boots")
+    ).toBeInTheDocument();
+
+    const removeButtons = (await findAllByRole("button", {
+      name: "remove Cartitem Button",
+    })) as HTMLButtonElement[];
+
+    await user.click(removeButtons[0]);
+
+    const dialog = (await findByRole("dialog", {
+      hidden: true,
+    })) as HTMLDialogElement;
+
+    const dialogButtons = dialog.querySelectorAll("button");
+
+    await user.click(dialogButtons[0]);
+
+     const cart = await findByRole("cart");
+
+    expect( within(cart).queryByText("Jupopo AirFlex Running Shoes")).not.toBeInTheDocument()
+    expect(queryByText("Red Boots")).toBeInTheDocument()
+  });
 
   it("renders the viewed items container", async () => {
     const viewedItemsRoute: RouteObjectProps = {
@@ -218,7 +294,7 @@ describe("ShoppingCart", () => {
   });
 
   it("calls addToCart", async () => {
-    vi.mock(import("../Loaders.ts"), async (mod) => {
+    vi.doMock(import("../Loaders.ts"), async (mod) => {
       const originalModule = await mod();
 
       return {
@@ -371,12 +447,5 @@ describe("ShoppingCart", () => {
     await user.click(firstAddToCartButton);
 
     await waitFor(() => expect(mockAction).toBeCalled);
-
-    // await waitFor(() =>
-    //   expect(HTMLDialogElement.prototype.showModal).toBeCalled()
-    // );
-    // await waitFor(() =>
-    //   expect(HTMLDialogElement.prototype.showModal).not.toBeCalledTimes(2)
-    // );
   });
 });
