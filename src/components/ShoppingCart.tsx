@@ -83,7 +83,7 @@ const QuantityCounter = ({
         id="increaseButton"
         aria-label="Increase quantity"
         className={style.increaseButton}
-        onClick={() => onIncreaseButtonClick(cartItem.cartItemId)}
+        onClick={() => onIncreaseButtonClick(cartItem.id)}
       >
         &#43;
       </button>
@@ -99,7 +99,7 @@ const QuantityCounter = ({
         id="decreaseButton"
         aria-label="Decrease quantity"
         className={style.decreaseButton}
-        onClick={() => onDecreaseButtonClick(cartItem.cartItemId)}
+        onClick={() => onDecreaseButtonClick(cartItem.id)}
       >
         &#8722;
       </button>
@@ -180,7 +180,7 @@ const ShoppingCart = () => {
         {cartItems.map((cartItem) => (
           <Item
             cartItem={cartItem}
-            key={cartItem.cartItemId}
+            key={cartItem.id}
             onDecreaseButtonClick={handleQuantityDecrease}
             onIncreaseButtonClick={handleQuantityIncrease}
             setPopUp={setPopUpData}

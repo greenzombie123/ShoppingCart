@@ -41,9 +41,8 @@ export const renderWithRouter = ({
 
 export const mockCart: Cart = [
   {
-    cartItemId: "asd1",
     name: "LBJ Boom Box",
-    id: 12,
+    id: "12",
     price: 59.99,
     style: "Red",
     picture: "/images/redjbl-boombox.jpeg",
@@ -51,9 +50,8 @@ export const mockCart: Cart = [
     product: {} as Product,
   },
   {
-    cartItemId: "asd2",
     name: "Maggie Lo Blouse",
-    id: 13,
+    id: "13",
     price: 39.99,
     style: "Black",
     picture: "/images/brownblouse.jpg",
@@ -61,9 +59,8 @@ export const mockCart: Cart = [
     product: {} as Product,
   },
   {
-    cartItemId: "asd3",
     name: "Mens Cotton Jacket",
-    id: 16,
+    id: "16",
     price: 55.99,
     style: undefined,
     picture: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
@@ -176,21 +173,6 @@ export const mockProducts: Product[] = [
   },
 ];
 
-// export const mockModule = async <U, T extends Partial<U>>(
-//   path: string,
-//   newProps: T
-// ): Promise<void> => {
-
-//   vi.mock(path, async () => {
-//     const originalModule = (await vi.importActual(path)) as U;
-
-//     return {
-//       ...originalModule,
-//       ...newProps,
-//     };
-//   });
-// };
-
 export const mockGetOneViewedItem: () => Product[] = () => [
   {
     name: "Jupopo AirFlex Running Shoes",
@@ -216,7 +198,7 @@ export const mockAddOneItemToCart: () => { productInfo: CartItem } = () => ({
   productInfo: {
     cartItemId: "111",
     name: "Red Boom Box",
-    id: 1,
+    id: "1",
     price: 59.99,
     style: "Red",
     picture: "/images/redjbl-boombox.jpeg",

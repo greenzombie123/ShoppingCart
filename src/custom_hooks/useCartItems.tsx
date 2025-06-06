@@ -11,7 +11,7 @@ const useCartItems = (cart: Cart ) => {
 
   const handleQuantityIncrease = (id: string) => {
     const updatedCart = cartItems.map((cartItem) => {
-      if (cartItem.cartItemId === id)
+      if (cartItem.id === id)
         return {
           ...cartItem,
           quantity: cartItem.quantity + 1,
@@ -27,7 +27,7 @@ const useCartItems = (cart: Cart ) => {
     if (currentCartItem?.quantity === 1) return;
 
     const updatedCart = cartItems.map((cartItem) => {
-      if (cartItem.cartItemId === id)
+      if (cartItem.id === id)
         return {
           ...cartItem,
           quantity: cartItem.quantity - 1,

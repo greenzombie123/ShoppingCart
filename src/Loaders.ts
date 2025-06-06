@@ -9,9 +9,11 @@ import { createCartItemId } from "./utilities/utility";
 
 const updateCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
+  const removalId = formData.get("remove");
   const deleteRequests = [];
 
   for (const key of formData.keys()) {
+    if("remove" === key) continue
     const promise = fetch(`http://localhost:3000/cart/${key}`, {
       method: "DELETE",
     });
@@ -24,13 +26,16 @@ const updateCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
     console.log(error);
   }
 
-   const postRequests = [];
+  const postRequests = [];
 
   for (const pair of formData.entries()) {
+    
+    if (removalId === pair[0] || pair[0] === "remove") continue;
     const promise = fetch(`http://localhost:3000/cart`, {
       method: "POST",
-      body:pair[1]
+      body: pair[1],
     });
+    //  console.log(pair[0], pair[1])
     postRequests.push(promise);
   }
 
@@ -91,7 +96,7 @@ const addToCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
         product: product,
       };
 
-      const data = JSON.stringify({ ...cartItem});
+      const data = JSON.stringify({ ...cartItem });
 
       const response = await fetch("http://localhost:3000/cart", {
         method: "POST",

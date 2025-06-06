@@ -807,19 +807,19 @@ exports[`ShoppingCart > calls addToCart 1`] = `
         method="post"
       >
         <input
-          name="asd1"
+          name="12"
           type="hidden"
-          value="{"cartItemId":"asd1","name":"LBJ Boom Box","id":12,"price":59.99,"style":"Red","picture":"/images/redjbl-boombox.jpeg","quantity":2,"product":{}}"
+          value="{"name":"LBJ Boom Box","id":"12","price":59.99,"style":"Red","picture":"/images/redjbl-boombox.jpeg","quantity":2,"product":{}}"
         />
         <input
-          name="asd2"
+          name="13"
           type="hidden"
-          value="{"cartItemId":"asd2","name":"Maggie Lo Blouse","id":13,"price":39.99,"style":"Black","picture":"/images/brownblouse.jpg","quantity":1,"product":{}}"
+          value="{"name":"Maggie Lo Blouse","id":"13","price":39.99,"style":"Black","picture":"/images/brownblouse.jpg","quantity":1,"product":{}}"
         />
         <input
-          name="asd3"
+          name="16"
           type="hidden"
-          value="{"cartItemId":"asd3","name":"Mens Cotton Jacket","id":16,"price":55.99,"picture":"https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg","quantity":4,"product":{}}"
+          value="{"name":"Mens Cotton Jacket","id":"16","price":55.99,"picture":"https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg","quantity":4,"product":{}}"
         />
         <p>
           Remove the following item from your cart?

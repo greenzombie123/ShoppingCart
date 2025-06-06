@@ -29,46 +29,51 @@
   ],
   "cart": [
     {
-      "id": "23",
-      "cartItemId": "68393b49-edd5-4416-8b25-48cdfddfb1ab",
-      "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-      "price": 109,
-      "quantity": 3,
-      "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+      "id": "a6e0864f-0683-4477-8139-6f917c9d8bbb",
+      "name": "Velmora Elegance Handbag",
+      "price": 120,
+      "quantity": 1,
+      "style": "Black",
+      "picture": "/images/handbagblack.webp",
       "product": {
-        "id": "23",
-        "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-        "price": 109,
-        "stars": 3,
-        "ratings": 470,
-        "category": "Electronics",
+        "name": "Velmora Elegance Handbag",
+        "id": "8",
+        "category": "Women's Clothing",
+        "price": 120,
+        "ratings": 564,
+        "stars": 5,
+        "likes": 1201,
         "styles": [
           {
-            "description": "",
-            "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+            "description": "Black",
+            "picture": "/images/handbagblack.webp",
             "isCurrentStyle": true
+          },
+          {
+            "description": "Beige",
+            "picture": "/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp",
+            "isCurrentStyle": false
           }
         ]
       }
     },
     {
-      "id": "23",
-      "cartItemId": "68393b49-edd5-4416-8b25-48cdfddfb1ab",
-      "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-      "price": 109,
-      "quantity": 3,
-      "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+      "id": "3475d4b8-0348-4563-8c89-32a8d60ab76c",
+      "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+      "price": 695,
+      "quantity": 1,
+      "picture": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
       "product": {
-        "id": "23",
-        "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-        "price": 109,
-        "stars": 3,
-        "ratings": 470,
-        "category": "Electronics",
+        "id": "18",
+        "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+        "price": 695,
+        "stars": 5,
+        "ratings": 400,
+        "category": "Jewelry",
         "styles": [
           {
             "description": "",
-            "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+            "picture": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
             "isCurrentStyle": true
           }
         ]
@@ -650,6 +655,79 @@
       "id": "1",
       "products": [
         {
+          "id": "18",
+          "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+          "price": 695,
+          "stars": 5,
+          "ratings": 400,
+          "category": "Jewelry",
+          "styles": [
+            {
+              "description": "",
+              "picture": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
+          "name": "Velmora Elegance Handbag",
+          "id": "8",
+          "category": "Women's Clothing",
+          "price": 120,
+          "ratings": 564,
+          "stars": 5,
+          "likes": 1201,
+          "styles": [
+            {
+              "description": "Black",
+              "picture": "/images/handbagblack.webp",
+              "isCurrentStyle": true
+            },
+            {
+              "description": "Beige",
+              "picture": "/images/1_536aef2b-2ba4-4bb5-98ec-6d6ac443cb43.webp",
+              "isCurrentStyle": false
+            }
+          ]
+        },
+        {
+          "name": "Talimo 3DX Ruby Ring",
+          "id": "1",
+          "category": "Jewelry",
+          "price": 199.99,
+          "ratings": 145,
+          "stars": 5,
+          "likes": 342,
+          "styles": [
+            {
+              "description": "Gold",
+              "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp",
+              "isCurrentStyle": true
+            },
+            {
+              "description": "Silver",
+              "picture": "/images/silverring.webp",
+              "isCurrentStyle": false
+            }
+          ]
+        },
+        {
+          "name": "Jupopo AirFlex Running Shoes",
+          "id": "7",
+          "category": "Men's Clothing",
+          "price": 89.99,
+          "ratings": 198,
+          "stars": 4,
+          "likes": 431,
+          "styles": [
+            {
+              "description": "",
+              "picture": "/images/ID3692_HM5.avif",
+              "isCurrentStyle": true
+            }
+          ]
+        },
+        {
           "id": "23",
           "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
           "price": 109,
@@ -661,89 +739,6 @@
               "description": "",
               "picture": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
               "isCurrentStyle": true
-            }
-          ]
-        },
-        {
-          "name": "Jupopo Leather Jacket",
-          "id": "3",
-          "category": "Men's Clothing",
-          "price": 129.99,
-          "ratings": 342,
-          "stars": 5,
-          "likes": 765,
-          "styles": [
-            {
-              "description": "Brown",
-              "picture": "/images/Mens-Leather-Vintage-Biker-Jacket-In-Tan-Brown-a-_1.jpg",
-              "isCurrentStyle": true
-            },
-            {
-              "description": "Black",
-              "picture": "/images/asos-leather-jackets.webp",
-              "isCurrentStyle": false
-            }
-          ]
-        },
-        {
-          "name": "LBJ Boom Box",
-          "id": "12",
-          "category": "Electronics",
-          "price": 59.99,
-          "ratings": 345,
-          "stars": 4,
-          "likes": 42,
-          "styles": [
-            {
-              "description": "Black",
-              "picture": "/images/blackjblboombox.avif",
-              "isCurrentStyle": true
-            },
-            {
-              "description": "Red",
-              "picture": "/images/redjbl-boombox.jpeg",
-              "isCurrentStyle": false
-            }
-          ]
-        },
-        {
-          "id": "30",
-          "name": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
-          "price": 39.99,
-          "stars": 4,
-          "ratings": 679,
-          "category": "Women's Clothing",
-          "styles": [
-            {
-              "description": "",
-              "picture": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
-              "isCurrentStyle": true
-            }
-          ]
-        },
-        {
-          "name": "Zinolia Floral Summer Dress",
-          "id": "4",
-          "category": "Women's Clothing",
-          "price": 49.99,
-          "ratings": 432,
-          "stars": 4,
-          "likes": 890,
-          "styles": [
-            {
-              "description": "Blue",
-              "picture": "/images/dress.webp",
-              "isCurrentStyle": true
-            },
-            {
-              "description": "Yellow",
-              "picture": "/images/LC225156-7-13.webp",
-              "isCurrentStyle": false
-            },
-            {
-              "description": "Red",
-              "picture": "public/images/web_2303_108_s21dj151rdsp01_108_029.jpg",
-              "isCurrentStyle": false
             }
           ]
         }

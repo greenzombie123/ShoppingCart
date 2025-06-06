@@ -259,12 +259,11 @@ describe("PopUp", () => {
       productInfo: {
         name: product.name,
         price: product.price,
-        id: product.id,
+        id: product.id + "",
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
         product: {} as Product,
-        cartItemId: "",
       },
     };
     const status = "idle";
@@ -280,12 +279,11 @@ describe("PopUp", () => {
       productInfo: {
         name: product.name,
         price: product.price,
-        id: product.id,
+        id: product.id + "",
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
         product: {} as Product,
-        cartItemId: "",
       },
     };
     const status = "idle";
@@ -311,12 +309,11 @@ describe("PopUp", () => {
       productInfo: {
         name: product.name,
         price: product.price,
-        id: product.id,
+        id: product.id +"",
         quantity: 1,
         style: product.styles[0].description,
         picture: product.styles[0].picture,
         product: {} as Product,
-        cartItemId: "",
       },
     };
     const status = "idle";

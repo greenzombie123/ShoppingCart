@@ -1,4 +1,4 @@
-import { describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
+import {  describe, expect, expectTypeOf, it, Mock, vi } from "vitest";
 import {
   addToCart,
   getCart,
@@ -7,12 +7,11 @@ import {
   getRandomProducts,
   getStoreItems,
   getViewedItems,
-  removeCartItem,
   updateCart,
 } from "../Loaders.js";
 import { Cart, CartItem, Product } from "../products.js";
 import { ActionFunctionArgs, LoaderFunctionArgs } from "react-router-dom";
-import { mockOneCartItem, mockOneProduct } from "../utilities/testulit.js";
+import { mockOneCartItem } from "../utilities/testulit.js";
 
 //Pre setup
 
@@ -123,6 +122,10 @@ const mockProducts: Product[] = [
     ],
   },
 ];
+
+// afterEach(()=>{
+//   vi.clearAllMocks()
+// })
 
 describe("getProducts", () => {
   it("Get Yuks Polo Shirt from the server", async () => {
@@ -581,9 +584,74 @@ describe("updateCart", () => {
     await updateCart(mockActionFuncArgs);
 
     expect(spy).toBeCalledTimes(4);
-    expect(spy.mock.calls[0]).toEqual([`http://localhost:3000/cart/123`, {method:"DELETE"}])
-    expect(spy.mock.calls[1]).toEqual([`http://localhost:3000/cart/ttt`, {method:"DELETE"}])
-    expect(spy.mock.calls[2]).toEqual([`http://localhost:3000/cart`, {method:"POST", body:JSON.stringify(mockCartItem1)}])
-    expect(spy.mock.calls[3]).toEqual([`http://localhost:3000/cart`, {method:"POST", body:JSON.stringify(mockCartItem2)}])
+    expect(spy.mock.calls[0]).toEqual([
+      `http://localhost:3000/cart/123`,
+      { method: "DELETE" },
+    ]);
+    expect(spy.mock.calls[1]).toEqual([
+      `http://localhost:3000/cart/ttt`,
+      { method: "DELETE" },
+    ]);
+    expect(spy.mock.calls[2]).toEqual([
+      `http://localhost:3000/cart`,
+      { method: "POST", body: JSON.stringify(mockCartItem1) },
+    ]);
+    expect(spy.mock.calls[3]).toEqual([
+      `http://localhost:3000/cart`,
+      { method: "POST", body: JSON.stringify(mockCartItem2) },
+    ]);
+  });
+
+  it("removes only one cart item from your cart", async () => {
+    const mockCartItem1: CartItem = mockOneCartItem;
+    const mockCartItem2: CartItem = {
+      ...mockCartItem1,
+      quantity: 2,
+      id: "ttt",
+    };
+
+    const mockDelete = vi.fn().mockResolvedValue({ ok: true });
+    const mockPost = vi.fn().mockResolvedValue({ ok: true });
+
+    const spy = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementationOnce(mockDelete)
+      .mockImplementationOnce(mockDelete)
+      .mockImplementationOnce(mockPost)
+      .mockImplementationOnce(mockPost);
+
+    const formData: FormData = new FormData();
+    formData.set(mockCartItem1.id, JSON.stringify(mockCartItem1));
+    formData.set(mockCartItem2.id, JSON.stringify(mockCartItem2));
+    formData.set("remove", mockCartItem2.id);
+
+
+    const request: Request = new Request(`http://localhost:3000/cart/`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const mockActionFuncArgs: ActionFunctionArgs = {
+      params: {},
+      request: request,
+      context: null,
+    };
+
+    await updateCart(mockActionFuncArgs);
+
+    expect(spy).toBeCalledTimes(3);
+    expect(spy.mock.calls[0]).toEqual([
+      `http://localhost:3000/cart/123`,
+      { method: "DELETE" },
+    ]);
+    expect(spy.mock.calls[1]).toEqual([
+      `http://localhost:3000/cart/ttt`,
+      { method: "DELETE" },
+    ]);
+    expect(spy.mock.calls[2]).toEqual([
+      `http://localhost:3000/cart`,
+      { method: "POST", body: JSON.stringify(mockCartItem1) },
+    ]);
+    expect(spy.mock.calls[3]).toEqual(undefined);
   });
 });
