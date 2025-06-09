@@ -9,11 +9,7 @@ import {
   renderWithRouter,
   RouteObjectProps,
 } from "../utilities/testulit";
-import {
-  screen,
-  waitFor,
-  within,
-} from "@testing-library/dom";
+import { screen, waitFor, within } from "@testing-library/dom";
 import {
   ActionFunction,
   ActionFunctionArgs,
@@ -204,8 +200,7 @@ describe("ShoppingCart", () => {
       action: () => {},
     };
 
-    const { user, findByRole, findByText } =
-      renderWithRouter(route);
+    const { user, findByRole, findByText } = renderWithRouter(route);
 
     expect(
       await findByText("Jupopo AirFlex Running Shoes")
@@ -229,12 +224,14 @@ describe("ShoppingCart", () => {
 
     const cart = await findByRole("cart");
 
-    expect( within(cart).queryByText("Jupopo AirFlex Running Shoes")).not.toBeInTheDocument()
+    expect(
+      within(cart).queryByText("Jupopo AirFlex Running Shoes")
+    ).not.toBeInTheDocument();
   });
 
   it("removes only one cartItem when remove button is pressed", async () => {
-    const mockTwoCartItem = {...mockOneCartItem, id:"fe", name:"Red Boots"}
-    const firstLoaderCall = ():Cart => [mockOneCartItem, mockTwoCartItem];
+    const mockTwoCartItem = { ...mockOneCartItem, id: "fe", name: "Red Boots" };
+    const firstLoaderCall = (): Cart => [mockOneCartItem, mockTwoCartItem];
     const secondLoaderCall = () => [mockTwoCartItem];
 
     const mockLoader = vi
@@ -249,16 +246,14 @@ describe("ShoppingCart", () => {
       action: () => {},
     };
 
-    const { user, findByRole, findAllByRole,findByText, queryByText } =
+    const { user, findByRole, findAllByRole, findByText, queryByText } =
       renderWithRouter(route);
 
     expect(
       await findByText("Jupopo AirFlex Running Shoes")
     ).toBeInTheDocument();
 
-    expect(
-      await findByText("Red Boots")
-    ).toBeInTheDocument();
+    expect(await findByText("Red Boots")).toBeInTheDocument();
 
     const removeButtons = (await findAllByRole("button", {
       name: "remove Cartitem Button",
@@ -274,10 +269,12 @@ describe("ShoppingCart", () => {
 
     await user.click(dialogButtons[0]);
 
-     const cart = await findByRole("cart");
+    const cart = await findByRole("cart");
 
-    expect( within(cart).queryByText("Jupopo AirFlex Running Shoes")).not.toBeInTheDocument()
-    expect(queryByText("Red Boots")).toBeInTheDocument()
+    expect(
+      within(cart).queryByText("Jupopo AirFlex Running Shoes")
+    ).not.toBeInTheDocument();
+    expect(queryByText("Red Boots")).toBeInTheDocument();
   });
 
   it("renders the viewed items container", async () => {
@@ -449,30 +446,38 @@ describe("ShoppingCart", () => {
     await waitFor(() => expect(mockAction).toBeCalled);
   });
 
-  it("removes a cartitem when you press the remove button on both the cartitem and the dialog button", async ()=>{
-    const mockTwoCartItem = {...mockOneCartItem,  id:"mmm"}
-    const mockCartItems:Cart = [mockOneCartItem, mockTwoCartItem]
-    const mockFirstLoaderCall = ()=>mockCartItems
-    const mockSecondLoaderCall = ()=>[mockTwoCartItem]
-    const mockLoader = vi.fn().mockImplementationOnce(mockFirstLoaderCall).mockImplementationOnce(mockSecondLoaderCall)
+  it("removes a cartitem when you press the remove button on both the cartitem and the dialog button", async () => {
+    const mockTwoCartItem = { ...mockOneCartItem, id: "mmm" };
+    const mockCartItems: Cart = [mockOneCartItem, mockTwoCartItem];
+    const mockFirstLoaderCall = () => mockCartItems;
+    const mockSecondLoaderCall = () => [mockTwoCartItem];
+    const mockLoader = vi
+      .fn()
+      .mockImplementationOnce(mockFirstLoaderCall)
+      .mockImplementationOnce(mockSecondLoaderCall);
 
-    const spy = vi.spyOn(globalThis, "fetch")
+    const spy = vi.spyOn(globalThis, "fetch");
 
-    const {updateCart} = await import("../Loaders.ts")
+    const { updateCart } = await import("../Loaders.ts");
 
-    const route:RouteObjectProps = {
+    const route: RouteObjectProps = {
       element: <ShoppingCart />,
       path: "/mycart",
       loader: mockLoader,
-      action:updateCart,
-    }
+      action: updateCart,
+    };
 
-    const { user, findByRole, findAllByRole,findByText, queryByText, queryAllByText, findAllByText } =
-      renderWithRouter(route);
+    const {
+      user,
+      findByRole,
+      findAllByRole,
+      findByText,
+      queryByText,
+      queryAllByText,
+      findAllByText,
+    } = renderWithRouter(route);
 
-    expect(
-      (await findAllByText(mockOneCartItem.name)).length
-    ).toBe(2)
+    expect((await findAllByText(mockOneCartItem.name)).length).toBe(2);
 
     const removeButtons = (await findAllByRole("button", {
       name: "remove Cartitem Button",
@@ -488,13 +493,38 @@ describe("ShoppingCart", () => {
 
     await user.click(dialogButtons[0]);
 
-    expect(spy.mock.calls[0]).toEqual([`http://localhost:3000/cart/${mockOneCartItem.id}`, {method:"DELETE"}] )
-    expect(spy.mock.calls[1]).toEqual([`http://localhost:3000/cart/${mockTwoCartItem.id}`, {method:"DELETE"}] )
-    expect(spy.mock.calls[2]).toEqual([`http://localhost:3000/cart`, {method:"POST", body:JSON.stringify(mockTwoCartItem)}] )
-    expect(spy.mock.calls[3]).toEqual(undefined)
+    expect(spy.mock.calls[0]).toEqual([
+      `http://localhost:3000/cart/${mockOneCartItem.id}`,
+      { method: "DELETE" },
+    ]);
+    expect(spy.mock.calls[1]).toEqual([
+      `http://localhost:3000/cart/${mockTwoCartItem.id}`,
+      { method: "DELETE" },
+    ]);
+    expect(spy.mock.calls[2]).toEqual([
+      `http://localhost:3000/cart`,
+      { method: "POST", body: JSON.stringify(mockTwoCartItem) },
+    ]);
+    expect(spy.mock.calls[3]).toEqual(undefined);
 
-     const cart = await findByRole("cart");
+    const cart = await findByRole("cart");
 
-    expect( within(cart).queryAllByText(mockOneCartItem.name).length).toBe(1)
-  })
+    expect(within(cart).queryAllByText(mockOneCartItem.name).length).toBe(1);
+  });
+
+  it("shows the price, as well as price including tax, in the price container", async () => {
+    const mockTwoCartItem = { ...mockOneCartItem, id: "mmm", price: 10.00 };
+    const mockCartItems: Cart = [mockOneCartItem, mockTwoCartItem];
+
+    const route: RouteObjectProps = {
+      element: <ShoppingCart />,
+      path: "/mycart",
+      loader: () => mockCartItems,
+    };
+
+    const {findByText} = renderWithRouter(route);
+
+    expect(await findByText("99.99")).toBeInTheDocument()
+    expect(await findByText("104.99")).toBeInTheDocument()
+  });
 });

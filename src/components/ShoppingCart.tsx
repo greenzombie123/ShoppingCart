@@ -8,10 +8,41 @@ import {
 import { Cart, CartItem, Product } from "../products";
 import style from "./ShoppingCart.module.css";
 import { StarContainer } from "./StorePage";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CartPopUp from "./CartPopUp";
 import useCartItems from "../custom_hooks/useCartItems";
 import { PopUp } from "./PopUp";
+
+type PriceContainerProps = {
+  cart: Cart;
+};
+
+export const PriceContainer = ({ cart }: PriceContainerProps) => {
+  const price = cart.reduce(
+    (total: number, nextItem: CartItem) => total + nextItem.price,
+    0
+  );
+
+  // Adds a 5% tax to each cart item
+  const priceWithTax = cart.reduce(
+    (total: number, nextItem: CartItem) => total + nextItem.price + Math.round((nextItem.price * .05)*100) / 100,
+    0
+  );
+
+  return (
+    <Form className={style.priceContainer}>
+      <div className={style.topPrice}>
+        <p>Subtotal</p>
+        <p>{price}</p>
+      </div>
+      <div className={style.bottomPrice}>
+        <p>Total Incl. Tax</p>
+        <p>{priceWithTax}</p>
+      </div>
+      <button className={style.checkoutButton}>Checkout</button>
+    </Form>
+  );
+};
 
 export const ViewedItemsContainer = () => {
   const viewedItems = useLoaderData<Product[]>();
@@ -188,17 +219,7 @@ const ShoppingCart = () => {
         ))}
       </div>
       <div className={style.rightSide}>
-        <Form className={style.priceContainer}>
-          <div className={style.topPrice}>
-            <p>Subtotal</p>
-            <p>$1200</p>
-          </div>
-          <div className={style.bottomPrice}>
-            <p>Total Incl. Tax</p>
-            <p>$1222</p>
-          </div>
-          <button className={style.checkoutButton}>Checkout</button>
-        </Form>
+        <PriceContainer cart={cartItems} />
 
         <Outlet />
       </div>

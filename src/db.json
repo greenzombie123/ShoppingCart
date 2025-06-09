@@ -58,6 +58,35 @@
       }
     },
     {
+      "id": "8e175b30-9483-4d99-8ed6-8de681c61b46",
+      "name": "Talimo 3DX Ruby Ring",
+      "price": 199.99,
+      "quantity": 1,
+      "style": "Gold",
+      "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp",
+      "product": {
+        "name": "Talimo 3DX Ruby Ring",
+        "id": "1",
+        "category": "Jewelry",
+        "price": 199.99,
+        "ratings": 145,
+        "stars": 5,
+        "likes": 342,
+        "styles": [
+          {
+            "description": "Gold",
+            "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp",
+            "isCurrentStyle": true
+          },
+          {
+            "description": "Silver",
+            "picture": "/images/silverring.webp",
+            "isCurrentStyle": false
+          }
+        ]
+      }
+    },
+    {
       "id": "3475d4b8-0348-4563-8c89-32a8d60ab76c",
       "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
       "price": 695,
@@ -75,6 +104,35 @@
             "description": "",
             "picture": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
             "isCurrentStyle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "d0a01b22-7384-4232-a14f-3437890535c7",
+      "name": "Talimo 3DX Ruby Ring",
+      "price": 199.99,
+      "quantity": 1,
+      "style": "Gold",
+      "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp",
+      "product": {
+        "name": "Talimo 3DX Ruby Ring",
+        "id": "1",
+        "category": "Jewelry",
+        "price": 199.99,
+        "ratings": 145,
+        "stars": 5,
+        "likes": 342,
+        "styles": [
+          {
+            "description": "Gold",
+            "picture": "/images/4ct-Emerald-Cut-Ruby-Ring-Lab-Created-Ruby-Engagement-Ring.webp",
+            "isCurrentStyle": true
+          },
+          {
+            "description": "Silver",
+            "picture": "/images/silverring.webp",
+            "isCurrentStyle": false
           }
         ]
       }

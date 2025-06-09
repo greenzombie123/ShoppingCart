@@ -243,7 +243,7 @@ exports[`ShoppingCart > calls addToCart 1`] = `
             Subtotal
           </p>
           <p>
-            $1200
+            155.97
           </p>
         </div>
         <div
@@ -253,7 +253,7 @@ exports[`ShoppingCart > calls addToCart 1`] = `
             Total Incl. Tax
           </p>
           <p>
-            $1222
+            163.77
           </p>
         </div>
         <button
