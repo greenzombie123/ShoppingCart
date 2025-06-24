@@ -6,12 +6,14 @@ import {
   getRandomProducts,
   getStoreItems,
   getViewedItems,
+  moveToCheckout,
   updateCart,
 } from "./Loaders";
 import Carousel from "./components/Carousel";
 import StorePage from "./components/StorePage";
 import ShoppingProduct from "./components/ShoppingProduct";
 import ShoppingCart, { ViewedItemsContainer } from "./components/ShoppingCart";
+import Checkout from "./components/Checkout";
 
 const routes: RouteObject[] = [
   {
@@ -44,10 +46,14 @@ const routes: RouteObject[] = [
             loader: getViewedItems,
             index: true,
             element: <ViewedItemsContainer />,
-            action:addToCart
+            action: addToCart,
           },
         ],
       },
+      {
+        element:<Checkout/>,
+        path:"checkout"
+      }
     ],
   },
 ];

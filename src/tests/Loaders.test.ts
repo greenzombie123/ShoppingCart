@@ -473,7 +473,7 @@ describe("addToCart", () => {
   it("adds customer's request to the cart", async () => {
     vi.mock("uuid", () => ({ v4: () => "abc" }));
 
-    const mock = vi.fn();
+    const mock = ()=>({ok:true});
 
     const spy = vi.spyOn(global, "fetch").mockImplementation(mock as Mock);
 

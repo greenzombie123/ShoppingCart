@@ -234,7 +234,7 @@ exports[`ShoppingCart > calls addToCart 1`] = `
         action="/mycart"
         class="_priceContainer_fa5548"
         data-discover="true"
-        method="get"
+        method="post"
       >
         <div
           class="_topPrice_fa5548"
@@ -258,6 +258,8 @@ exports[`ShoppingCart > calls addToCart 1`] = `
         </div>
         <button
           class="_checkoutButton_fa5548"
+          name="checkout"
+          value="yes"
         >
           Checkout
         </button>

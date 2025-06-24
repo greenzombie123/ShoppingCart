@@ -3,17 +3,25 @@ import {
   ActionFunctionArgs,
   LoaderFunction,
   LoaderFunctionArgs,
+  redirect,
 } from "react-router-dom";
 import { Cart, CartItem, Product, ProductCategory } from "./products";
 import { createCartItemId } from "./utilities/utility";
 
+const moveToCheckout: ActionFunction = async ({
+  request,
+}: ActionFunctionArgs) => {
+  redirect("/checkout");
+};
+
 const updateCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
+
   const formData = await request.formData();
   const removalId = formData.get("remove");
   const deleteRequests = [];
 
   for (const key of formData.keys()) {
-    if("remove" === key) continue
+    if ("remove" === key) continue;
     const promise = fetch(`http://localhost:3000/cart/${key}`, {
       method: "DELETE",
     });
@@ -29,13 +37,11 @@ const updateCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const postRequests = [];
 
   for (const pair of formData.entries()) {
-    
     if (removalId === pair[0] || pair[0] === "remove") continue;
     const promise = fetch(`http://localhost:3000/cart`, {
       method: "POST",
       body: pair[1],
     });
-    //  console.log(pair[0], pair[1])
     postRequests.push(promise);
   }
 
@@ -43,6 +49,11 @@ const updateCart: ActionFunction = async ({ request }: ActionFunctionArgs) => {
     await Promise.all(postRequests);
   } catch (error) {
     console.log(error);
+  }
+
+  const moveToCheckout = formData.get("checkout");
+  if (moveToCheckout) {
+    return redirect("/checkout");
   }
 };
 
@@ -177,4 +188,5 @@ export {
   removeCartItem,
   getViewedItems,
   updateCart,
+  moveToCheckout,
 };

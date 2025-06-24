@@ -14,6 +14,7 @@ import {
   ActionFunction,
   ActionFunctionArgs,
   createMemoryRouter,
+  Outlet,
   RouteObject,
   RouterProvider,
 } from "react-router-dom";
@@ -22,6 +23,8 @@ import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 import url from "node:url";
 import { Cart, CartItem, Product } from "../products";
+import Checkout from "../components/Checkout.tsx";
+import { Mock } from "node:test";
 
 beforeAll(() => {
   globalThis.URLSearchParams =
@@ -513,7 +516,7 @@ describe("ShoppingCart", () => {
   });
 
   it("shows the price, as well as price including tax, in the price container", async () => {
-    const mockTwoCartItem = { ...mockOneCartItem, id: "mmm", price: 10.00 };
+    const mockTwoCartItem = { ...mockOneCartItem, id: "mmm", price: 10.0 };
     const mockCartItems: Cart = [mockOneCartItem, mockTwoCartItem];
 
     const route: RouteObjectProps = {
@@ -522,9 +525,60 @@ describe("ShoppingCart", () => {
       loader: () => mockCartItems,
     };
 
-    const {findByText} = renderWithRouter(route);
+    const { findByText } = renderWithRouter(route);
 
-    expect(await findByText("99.99")).toBeInTheDocument()
-    expect(await findByText("104.99")).toBeInTheDocument()
+    expect(await findByText("99.99")).toBeInTheDocument();
+    expect(await findByText("104.99")).toBeInTheDocument();
+  });
+
+  it("directs the user to the checkout page when the checkout button is clicked", async () => {
+    const mockTwoCartItem = { ...mockOneCartItem, id: "mmm", price: 10.0 };
+    const mockCartItems: Cart = [mockOneCartItem, mockTwoCartItem];
+
+    const mock1stFetch = () => Promise.resolve(new Response());
+    const mock2ndFetch = () => Promise.resolve(new Response());
+
+    vi.spyOn(globalThis, "fetch")
+      .mockImplementationOnce(mock1stFetch)
+      .mockImplementationOnce(mock2ndFetch);
+
+    const { updateCart } = await import("../Loaders.ts");
+
+    const routes: RouteObject[] = [
+      {
+        path: "/",
+        element: (
+          <div>
+            <Outlet />
+          </div>
+        ),
+        children: [
+          {
+            loader: () => mockCartItems,
+            element: <ShoppingCart />,
+            path: "mycart",
+            action: updateCart
+          },
+          {
+            element: <Checkout />,
+            path: "checkout",
+          },
+        ],
+      },
+    ];
+
+    const router = createMemoryRouter(routes, { initialEntries: ["/mycart"] });
+
+    const user = userEvent.setup();
+
+    const { findByRole } = render(<RouterProvider router={router} />); //renderWithRouter(route);
+
+    const checkoutButton = await findByRole("button", { name: "Checkout" });
+
+    await user.click(checkoutButton);
+
+    expect(
+      await findByRole("heading", { name: "Checkout" })
+    ).toBeInTheDocument();
   });
 });

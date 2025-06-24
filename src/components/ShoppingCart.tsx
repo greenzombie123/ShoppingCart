@@ -18,6 +18,7 @@ type PriceContainerProps = {
 };
 
 export const PriceContainer = ({ cart }: PriceContainerProps) => {
+  //const fetcher = useFetcher()
   const price = cart.reduce(
     (total: number, nextItem: CartItem) => total + nextItem.price,
     0
@@ -30,7 +31,7 @@ export const PriceContainer = ({ cart }: PriceContainerProps) => {
   );
 
   return (
-    <Form className={style.priceContainer}>
+    <Form className={style.priceContainer} method="POST">
       <div className={style.topPrice}>
         <p>Subtotal</p>
         <p>{price}</p>
@@ -39,7 +40,7 @@ export const PriceContainer = ({ cart }: PriceContainerProps) => {
         <p>Total Incl. Tax</p>
         <p>{priceWithTax}</p>
       </div>
-      <button className={style.checkoutButton}>Checkout</button>
+      <button className={style.checkoutButton} name={"checkout"} value={"yes"}>Checkout</button>
     </Form>
   );
 };
